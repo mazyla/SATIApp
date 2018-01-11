@@ -1,12 +1,10 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-
 import * as React from 'react';
 import {
   Animated,
   View,
   TouchableWithoutFeedback,
   StyleSheet,
+  Text, Image,
 } from 'react-native';
 import { TabViewAnimated } from 'react-native-tab-view';
 import { Ionicons } from '@expo/vector-icons';
@@ -112,9 +110,9 @@ export default class TopBarIconExample extends React.Component<*, State> {
     switch (route.key) {
       case '1':
         return (
-          <View
-            style={[styles.page, { backgroundColor: '#E3F4DD' }]}
-          />
+          <View>
+            <EmergencyCallView />
+          </View>
         );
       case '2':
         return (
@@ -160,6 +158,23 @@ export default class TopBarIconExample extends React.Component<*, State> {
   }
 }
 
+class EmergencyCallView extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <Image
+          source = {require('./emergency.png')}
+          style = {[styles.image]}
+        />
+      </View>
+    );
+  }
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -201,5 +216,10 @@ const styles = StyleSheet.create({
   page: {
     flex: 1,
     backgroundColor: '#f9f9f9',
+  },
+  image: {
+        marginTop: 200,
+        height: 200,
+        width: 200,
   },
 });
