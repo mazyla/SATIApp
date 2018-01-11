@@ -1,14 +1,160 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+/* @flow */
 
-export default class App extends React.Component {
+import * as React from 'react';
+import {
+  Animated,
+  View,
+  TouchableWithoutFeedback,
+  StyleSheet,
+} from 'react-native';
+import { TabViewAnimated } from 'react-native-tab-view';
+import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
+// import BasicListView from './BasicListView';
+
+import type { Route, NavigationState } from 'react-native-tab-view/types';
+
+const AnimatedIcon = Animated.createAnimatedComponent(Ionicons, Feather);
+// const AnimatedIcon2 = Animated.createAnimatedComponent(Feather);
+
+type State = NavigationState<
+  Route<{
+    key: string,
+    title: string,
+    icon: string,
+  }>
+>;
+
+export default class TopBarIconExample extends React.Component<*, State> {
+  static title = 'No animation';
+  static backgroundColor = '#f4f4f4';
+  static tintColor = '#222';
+  static appbarElevation = 4;
+
+  state = {
+    index: 0,
+    routes: [
+      { key: '1', title: 'Contact', icon: 'ios-call-outline' },
+      { key: '2', title: 'Resources', icon: 'ios-compass-outline' },
+      { key: '3', title: 'Newsfeed', icon: 'ios-navigate-outline' },
+      { key: '4', title: 'Check In', icon: 'ios-checkmark-circle-outline' },
+      { key: '5', title: 'More', icon: 'ios-more-outline' },
+    ],
+  };
+
+  _handleIndexChange = index =>
+    this.setState({
+      index,
+    });
+
+  _renderLabel = ({ position, navigationState }) => ({ route, index }) => {
+    const inputRange = navigationState.routes.map((x, i) => i);
+    const outputRange = inputRange.map(
+      inputIndex => (inputIndex === index ? '#2196f3' : '#939393')
+    );
+    const color = position.interpolate({
+      inputRange,
+      outputRange,
+    });
+    return (
+      <Animated.Text style={[styles.label, { color }]}>
+        {route.title}
+      </Animated.Text>
+    );
+  };
+
+  _renderIcon = ({ navigationState, position }) => ({ route, index }) => {
+    const inputRange = navigationState.routes.map((x, i) => i);
+    const filledOpacity = position.interpolate({
+      inputRange,
+      outputRange: inputRange.map(i => (i === index ? 1 : 0)),
+    });
+    const outlineOpacity = position.interpolate({
+      inputRange,
+      outputRange: inputRange.map(i => (i === index ? 0 : 1)),
+    });
+    return (
+      <View style={styles.iconContainer}>
+        <AnimatedIcon
+          name={route.icon}
+          size={26}
+          style={[styles.icon, { opacity: filledOpacity }]}
+        />
+        <AnimatedIcon
+          name={route.icon}
+          size={26}
+          style={[styles.icon, styles.outline, { opacity: outlineOpacity }]}
+        />
+      </View>
+    );
+  };
+
+  _renderFooter = props => (
+    <View style={styles.tabbar}>
+      {props.navigationState.routes.map((route, index) => {
+        return (
+          <TouchableWithoutFeedback
+            key={route.key}
+            onPress={() => props.jumpToIndex(index)}
+          >
+            <Animated.View style={styles.tab}>
+              {this._renderIcon(props)({ route, index })}
+              {this._renderLabel(props)({ route, index })}
+            </Animated.View>
+          </TouchableWithoutFeedback>
+        );
+      })}
+    </View>
+  );
+
+  _renderScene = ({ route }) => {
+    switch (route.key) {
+      case '1':
+        return (
+          <View
+            style={[styles.page, { backgroundColor: '#E3F4DD' }]}
+          />
+        );
+      case '2':
+        return (
+          <View
+            style={[styles.page, { backgroundColor: '#E6BDC5' }]}
+          />
+        );
+      case '3':
+        return (
+          <View
+            style={[styles.page, { backgroundColor: '#9DB1B5' }]}
+          />
+        );
+      case '4':
+        return (
+          <View
+            style={[styles.page, { backgroundColor: '#EDD8B5' }]}
+          />
+        );
+      case '5':
+        return (
+          <View
+            style={[styles.page, { backgroundColor: '#9E9694' }]}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text>IQP 3 Project Runaways!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <TabViewAnimated
+        style={[styles.container, this.props.style]}
+        navigationState={this.state}
+        renderScene={this._renderScene}
+        renderFooter={this._renderFooter}
+        onIndexChange={this._handleIndexChange}
+        animationEnabled={false}
+        swipeEnabled={false}
+      />
     );
   }
 }
@@ -16,8 +162,43 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+  },
+  tabbar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#f4f4f4',
+  },
+  tab: {
+    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: 'rgba(0, 0, 0, .2)',
+    paddingTop: 4.5,
+  },
+  iconContainer: {
+    height: 26,
+    width: 26,
+  },
+  icon: {
+    position: 'absolute',
+    textAlign: 'center',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    color: '#0084ff',
+  },
+  outline: {
+    color: '#939393',
+  },
+  label: {
+    fontSize: 10,
+    marginTop: 3,
+    marginBottom: 1.5,
+    backgroundColor: 'transparent',
+  },
+  page: {
+    flex: 1,
+    backgroundColor: '#f9f9f9',
   },
 });
