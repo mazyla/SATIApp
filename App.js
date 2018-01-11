@@ -116,27 +116,27 @@ export default class TopBarIconExample extends React.Component<*, State> {
         );
       case '2':
         return (
-          <View
-            style={[styles.page, { backgroundColor: '#E6BDC5' }]}
-          />
+          <View>
+            <ResourcesView />
+          </View>
         );
       case '3':
         return (
-          <View
-            style={[styles.page, { backgroundColor: '#9DB1B5' }]}
-          />
+          <View>
+            <NewsfeedView />
+          </View>
         );
       case '4':
         return (
-          <View
-            style={[styles.page, { backgroundColor: '#EDD8B5' }]}
-          />
+          <View>
+            <CheckInView />
+          </View>
         );
       case '5':
         return (
-          <View
-            style={[styles.page, { backgroundColor: '#9E9694' }]}
-          />
+          <View>
+            <MoreView />
+          </View>
         );
       default:
         return null;
@@ -170,6 +170,71 @@ class EmergencyCallView extends React.Component {
           source = {require('./emergency.png')}
           style = {[styles.image]}
         />
+      </View>
+    );
+  }
+}
+
+class ResourcesView extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <Image
+          source = {require('./maps.png')}
+          style = {[styles.image]}
+        />
+      </View>
+    );
+  }
+}
+
+class NewsfeedView extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <Image
+          source = {require('./feed.jpg')}
+          style = {[styles.image]}
+        />
+      </View>
+    );
+  }
+}
+
+class CheckInView extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <Image
+          source = {require('./sati.png')}
+          style = {[styles.image]}
+        />
+      </View>
+    );
+  }
+}
+
+class MoreView extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <Text style={{marginTop: 200}}> More </Text>
       </View>
     );
   }
