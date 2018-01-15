@@ -1,0 +1,8 @@
+dependencies: \
+  /Users/MZ/Documents/SATIApp/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTStyleAnimatedNode.m \
+  /Users/MZ/Documents/SATIApp/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTStyleAnimatedNode.h \
+  /Users/MZ/Documents/SATIApp/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAnimatedNode.h \
+  /Users/MZ/Documents/SATIApp/node_modules/react-native/Libraries/NativeAnimation/RCTAnimationUtils.h \
+  /Users/MZ/Documents/SATIApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/MZ/Documents/SATIApp/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTValueAnimatedNode.h \
+  /Users/MZ/Documents/SATIApp/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTTransformAnimatedNode.h

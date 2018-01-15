@@ -4,16 +4,31 @@ import {
   View,
   TouchableWithoutFeedback,
   StyleSheet,
-  Text, Image,
+  Text, Image, Dimensions,
 } from 'react-native';
+import MapView from 'react-native-maps';
 import { TabViewAnimated } from 'react-native-tab-view';
-import { Ionicons } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
-// import BasicListView from './BasicListView';
+import { Ionicons } from 'react-native-vector-icons';
+import { Feather } from 'react-native-vector-icons';
+//import BasicListView from './BasicListView';
 
 import type { Route, NavigationState } from 'react-native-tab-view/types';
 
-const AnimatedIcon = Animated.createAnimatedComponent(Ionicons, Feather);
+import Icon from 'react-native-vector-icons/Ionicons';
+// const IconCall = (<Icon name="call" size={30} color="#900" />)
+// const IconCompass = (<Icon name="compass" size={30} color="#900" />)
+// const IconNavigate = (<Icon name="navigate" size={30} color="#900" />)
+// const IconCheckmark = (<Icon name="checkmark" size={30} color="#900" />)
+// const IconMore = (<Icon name="more" size={30} color="#900" />)
+
+const AnimatedIcon = Animated.createAnimatedComponent(Icon);
+// const AnimatedIconCall = Animated.createAnimatedComponent(IconCall);
+// const AnimatedIconCompass = Animated.createAnimatedComponent(IconCompass);
+// const AnimatedIconNavigate = Animated.createAnimatedComponent(IconNavigate);
+// const AnimatedIconCheckmark = Animated.createAnimatedComponent(IconCheckmark);
+// const AnimatedIconMore = Animated.createAnimatedComponent(IconMore);
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
 // const AnimatedIcon2 = Animated.createAnimatedComponent(Feather);
 
 type State = NavigationState<
@@ -178,19 +193,44 @@ class EmergencyCallView extends React.Component {
 class ResourcesView extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+    //  isMapReady: false,
+      region: {
+        latitude: 47.6062,
+        longitude: 122.3321,
+        latitudeDelta: 0.02,
+        longitudeDelta: 0.02
+      }
+    }
   }
 
+ //  onMapLayout = () => {
+ //   this.setState({ isMapReady: true });
+ // }
   render() {
     return (
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        <Image
-          source = {require('./maps.png')}
-          style = {[styles.image]}
+    //  <View style={styles.container}>
+      <MapView style={styles.map}
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
         />
-      </View>
-    );
-  }
-}
+        // { this.state.isMapReady &&
+        //   <MapView.Marker
+        //     title={this.props.title}
+        //     coordinate={{
+        //       latitude: this.state.region.latitude,
+        //       longitude: this.state.region.longitude
+        //     }} />
+        // }
+      // </MapView>
+  //  </View>
+      );
+      }
+    }
 
 class NewsfeedView extends React.Component {
   constructor(props) {
@@ -287,4 +327,26 @@ const styles = StyleSheet.create({
         height: 200,
         width: 200,
   },
+  map: {
+    flex: 1,
+    height: height,
+    width: width
+  },
 });
+
+// export default class NewsfeedView extends React.Component {
+//   constructor(props) {
+//     super(props);
+//   }
+//
+//   render() {
+//     return (
+//       <View style={{justifyContent: 'center', alignItems: 'center'}}>
+//         <Image
+//           source = {require('./feed.jpg')}
+//           //style = {[styles.image]}
+//         />
+//       </View>
+//     );
+//   }
+// }
