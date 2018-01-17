@@ -1,0 +1,582 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A94B08A74561A2660F997579894EE33 /* Yoga.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF04A2DD502DDE8CC296AC98B9B36A60 /* Yoga.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
+		2BA47EF74674416B5B76B6BD5CE3E948 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		3EBA8F235982B8790C94447B8549928C /* YGEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D20EA8642AF01CFC3A06E600767E6B6 /* YGEnums.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
+		464F03A8625C15A20F41E4CF5F96B04C /* Pods-SATIApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F97C1EFE03FBF00169A5A133EBB691F1 /* Pods-SATIApp-dummy.m */; };
+		6480124F86EA4D24091B7B89E972D00D /* yoga-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F73E8505E19433C7CFC2F9991682749 /* yoga-dummy.m */; };
+		657D7AF859C90C445BE9905EDB15DDF6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		8BDD5E9930D7CBBCDADBA17F9F1E8ED0 /* Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = 83EF2D4F03AC60D42D558AE5758F0CE2 /* Yoga.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9977A527AF6A924F19D2B89337F8BD02 /* YGNodePrint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF3130481D75DE06AC051564B082D267 /* YGNodePrint.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
+		A166278D9EAF76AD9CE41D5CB4E1C2C2 /* YGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 86991D828CB10A40761947811E67DBBC /* YGMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B4412FCCC26C63757C200D00B851FABE /* YGNodePrint.h in Headers */ = {isa = PBXBuildFile; fileRef = D829D72E7D52E1A4B5B2E1CA74A5992F /* YGNodePrint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FD8CBD0E12524E91794347DD7B4F06B4 /* YGEnums.h in Headers */ = {isa = PBXBuildFile; fileRef = 38510E8238ADFF01D4399F1377195C9D /* YGEnums.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FFBEB9CAAFA55DB743264C116C532A4D /* Yoga-internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 89ED2D35527212C30A261FEE464DEE54 /* Yoga-internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8D24AE78BD74C9B4E0754C230FB7E9AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 906A2F6F91BA5E620112EFF88D4D3E64;
+			remoteInfo = yoga;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		042AD6CB814B6A14E1DC0F61D18AE2A0 /* Pods-SATIApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SATIApp.debug.xcconfig"; sourceTree = "<group>"; };
+		0576E89670F8F5DE91E2CA9E8F82DC9F /* yoga.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = yoga.xcconfig; sourceTree = "<group>"; };
+		0FDC6B303D5EBEAE64AC7B0B82D5CDAA /* yoga-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "yoga-prefix.pch"; sourceTree = "<group>"; };
+		1FC4D68A02C01D21074FBE7CF849B7FF /* Pods-SATIApp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SATIApp-frameworks.sh"; sourceTree = "<group>"; };
+		265B89575E67509E62FE1AD9109AD390 /* libPods-SATIApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-SATIApp.a"; path = "libPods-SATIApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		36DB83CB4279B90D59054691B89501D1 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = Maps/Frameworks/GoogleMapsCore.framework; sourceTree = "<group>"; };
+		38510E8238ADFF01D4399F1377195C9D /* YGEnums.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGEnums.h; path = yoga/YGEnums.h; sourceTree = "<group>"; };
+		44617E158040F50D63E95637AF09959C /* Pods-SATIApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SATIApp-acknowledgements.markdown"; sourceTree = "<group>"; };
+		5D9628A296E4B7EA2D6B76AEA1F191BC /* Pods-SATIApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SATIApp.release.xcconfig"; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		67C69426954CFBC1BDEAF0969A79C14B /* libyoga.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libyoga.a; path = libyoga.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		83EF2D4F03AC60D42D558AE5758F0CE2 /* Yoga.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Yoga.h; path = yoga/Yoga.h; sourceTree = "<group>"; };
+		86991D828CB10A40761947811E67DBBC /* YGMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGMacros.h; path = yoga/YGMacros.h; sourceTree = "<group>"; };
+		89ED2D35527212C30A261FEE464DEE54 /* Yoga-internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Yoga-internal.h"; path = "yoga/Yoga-internal.h"; sourceTree = "<group>"; };
+		8BF8768E5B0A10F27C116BE2BD85186A /* Pods-SATIApp-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SATIApp-resources.sh"; sourceTree = "<group>"; };
+		8D20EA8642AF01CFC3A06E600767E6B6 /* YGEnums.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = YGEnums.cpp; path = yoga/YGEnums.cpp; sourceTree = "<group>"; };
+		8F73E8505E19433C7CFC2F9991682749 /* yoga-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "yoga-dummy.m"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B7D4DADC5AA3B7829AA6B73763505BD4 /* Pods-SATIApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SATIApp-acknowledgements.plist"; sourceTree = "<group>"; };
+		BE887D0024608594C3B440F4DF167E08 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		CF04A2DD502DDE8CC296AC98B9B36A60 /* Yoga.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Yoga.cpp; path = yoga/Yoga.cpp; sourceTree = "<group>"; };
+		CF3130481D75DE06AC051564B082D267 /* YGNodePrint.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = YGNodePrint.cpp; path = yoga/YGNodePrint.cpp; sourceTree = "<group>"; };
+		D829D72E7D52E1A4B5B2E1CA74A5992F /* YGNodePrint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGNodePrint.h; path = yoga/YGNodePrint.h; sourceTree = "<group>"; };
+		E004374149D836C1256FFFCB38FECB72 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
+		F95DB7ACF73CF03040C57A3D42223A51 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Maps/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
+		F97C1EFE03FBF00169A5A133EBB691F1 /* Pods-SATIApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SATIApp-dummy.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6428925587EFA1AC84780BF297D84DA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				657D7AF859C90C445BE9905EDB15DDF6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D796628E94D82650901C0BD858E09AF8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BA47EF74674416B5B76B6BD5CE3E948 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1418B056D31B27EE2CEBA552B5ADFE56 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				501562BF592517FC6A65661FF1B35C78 /* Frameworks */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		2188FE3D13204E4BC51FB7548DCF124B /* Pods-SATIApp */ = {
+			isa = PBXGroup;
+			children = (
+				44617E158040F50D63E95637AF09959C /* Pods-SATIApp-acknowledgements.markdown */,
+				B7D4DADC5AA3B7829AA6B73763505BD4 /* Pods-SATIApp-acknowledgements.plist */,
+				F97C1EFE03FBF00169A5A133EBB691F1 /* Pods-SATIApp-dummy.m */,
+				1FC4D68A02C01D21074FBE7CF849B7FF /* Pods-SATIApp-frameworks.sh */,
+				8BF8768E5B0A10F27C116BE2BD85186A /* Pods-SATIApp-resources.sh */,
+				042AD6CB814B6A14E1DC0F61D18AE2A0 /* Pods-SATIApp.debug.xcconfig */,
+				5D9628A296E4B7EA2D6B76AEA1F191BC /* Pods-SATIApp.release.xcconfig */,
+			);
+			name = "Pods-SATIApp";
+			path = "Target Support Files/Pods-SATIApp";
+			sourceTree = "<group>";
+		};
+		243FAC914C81DCF02EFAD12598762AD5 /* GoogleMaps */ = {
+			isa = PBXGroup;
+			children = (
+				1418B056D31B27EE2CEBA552B5ADFE56 /* Base */,
+				6BC99F081C91F80679CFA5DDC6213D57 /* Maps */,
+			);
+			name = GoogleMaps;
+			path = GoogleMaps;
+			sourceTree = "<group>";
+		};
+		2B9994B8C5D6A008FC3DF2E048FBC034 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2188FE3D13204E4BC51FB7548DCF124B /* Pods-SATIApp */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		3598CBA77D53C0AA5CCFD958CD2E8857 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BE887D0024608594C3B440F4DF167E08 /* GoogleMaps.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		501562BF592517FC6A65661FF1B35C78 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E004374149D836C1256FFFCB38FECB72 /* GoogleMapsBase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6B9DDBFD34805D0CECB3FE7AA6B7B594 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				243FAC914C81DCF02EFAD12598762AD5 /* GoogleMaps */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6BC99F081C91F80679CFA5DDC6213D57 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				E10253D9A6AF596CDA1C3BBE1F2FBFD6 /* Frameworks */,
+				3598CBA77D53C0AA5CCFD958CD2E8857 /* Resources */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				7ED7F29F81AE374220E75F5CD19CDFB0 /* Development Pods */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				6B9DDBFD34805D0CECB3FE7AA6B7B594 /* Pods */,
+				A041ECE430C50B7D31A118886DBBF5E7 /* Products */,
+				2B9994B8C5D6A008FC3DF2E048FBC034 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		7ED7F29F81AE374220E75F5CD19CDFB0 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B3CBB0704C3B2598552B6F65A39F0FBC /* yoga */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		8BFE98C124543A687AD0CBBA5D9209AC /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0576E89670F8F5DE91E2CA9E8F82DC9F /* yoga.xcconfig */,
+				8F73E8505E19433C7CFC2F9991682749 /* yoga-dummy.m */,
+				0FDC6B303D5EBEAE64AC7B0B82D5CDAA /* yoga-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../../../../ios/Pods/Target Support Files/yoga";
+			sourceTree = "<group>";
+		};
+		A041ECE430C50B7D31A118886DBBF5E7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				265B89575E67509E62FE1AD9109AD390 /* libPods-SATIApp.a */,
+				67C69426954CFBC1BDEAF0969A79C14B /* libyoga.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B3CBB0704C3B2598552B6F65A39F0FBC /* yoga */ = {
+			isa = PBXGroup;
+			children = (
+				8D20EA8642AF01CFC3A06E600767E6B6 /* YGEnums.cpp */,
+				38510E8238ADFF01D4399F1377195C9D /* YGEnums.h */,
+				86991D828CB10A40761947811E67DBBC /* YGMacros.h */,
+				CF3130481D75DE06AC051564B082D267 /* YGNodePrint.cpp */,
+				D829D72E7D52E1A4B5B2E1CA74A5992F /* YGNodePrint.h */,
+				CF04A2DD502DDE8CC296AC98B9B36A60 /* Yoga.cpp */,
+				83EF2D4F03AC60D42D558AE5758F0CE2 /* Yoga.h */,
+				89ED2D35527212C30A261FEE464DEE54 /* Yoga-internal.h */,
+				8BFE98C124543A687AD0CBBA5D9209AC /* Support Files */,
+			);
+			name = yoga;
+			path = "../../node_modules/react-native/ReactCommon/yoga";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		E10253D9A6AF596CDA1C3BBE1F2FBFD6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F95DB7ACF73CF03040C57A3D42223A51 /* GoogleMaps.framework */,
+				36DB83CB4279B90D59054691B89501D1 /* GoogleMapsCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F64969B7BA9140712C14A39C38192F8D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD8CBD0E12524E91794347DD7B4F06B4 /* YGEnums.h in Headers */,
+				A166278D9EAF76AD9CE41D5CB4E1C2C2 /* YGMacros.h in Headers */,
+				B4412FCCC26C63757C200D00B851FABE /* YGNodePrint.h in Headers */,
+				FFBEB9CAAFA55DB743264C116C532A4D /* Yoga-internal.h in Headers */,
+				8BDD5E9930D7CBBCDADBA17F9F1E8ED0 /* Yoga.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		6972409F9492C9BE59BF3A3DFFCCB784 /* Pods-SATIApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8188F061C3FF44556D96DD31A91DB5E0 /* Build configuration list for PBXNativeTarget "Pods-SATIApp" */;
+			buildPhases = (
+				DF64FF353ED0FA8AFFB4048A7BAEFB2C /* Sources */,
+				D796628E94D82650901C0BD858E09AF8 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1D60F04929520BD0047322B62964475C /* PBXTargetDependency */,
+			);
+			name = "Pods-SATIApp";
+			productName = "Pods-SATIApp";
+			productReference = 265B89575E67509E62FE1AD9109AD390 /* libPods-SATIApp.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		906A2F6F91BA5E620112EFF88D4D3E64 /* yoga */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 421F28D4920E9E390FA888B617E288EF /* Build configuration list for PBXNativeTarget "yoga" */;
+			buildPhases = (
+				3509CEEB07B7F30A22A038892509DF53 /* Sources */,
+				6428925587EFA1AC84780BF297D84DA7 /* Frameworks */,
+				F64969B7BA9140712C14A39C38192F8D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = yoga;
+			productName = yoga;
+			productReference = 67C69426954CFBC1BDEAF0969A79C14B /* libyoga.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = A041ECE430C50B7D31A118886DBBF5E7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6972409F9492C9BE59BF3A3DFFCCB784 /* Pods-SATIApp */,
+				906A2F6F91BA5E620112EFF88D4D3E64 /* yoga */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3509CEEB07B7F30A22A038892509DF53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EBA8F235982B8790C94447B8549928C /* YGEnums.cpp in Sources */,
+				9977A527AF6A924F19D2B89337F8BD02 /* YGNodePrint.cpp in Sources */,
+				6480124F86EA4D24091B7B89E972D00D /* yoga-dummy.m in Sources */,
+				0A94B08A74561A2660F997579894EE33 /* Yoga.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF64FF353ED0FA8AFFB4048A7BAEFB2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				464F03A8625C15A20F41E4CF5F96B04C /* Pods-SATIApp-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1D60F04929520BD0047322B62964475C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = yoga;
+			target = 906A2F6F91BA5E620112EFF88D4D3E64 /* yoga */;
+			targetProxy = 8D24AE78BD74C9B4E0754C230FB7E9AF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		52F8AC422F695FC65E44C58D815C8609 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D9628A296E4B7EA2D6B76AEA1F191BC /* Pods-SATIApp.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5939C053E1457F438FF1E9584542C11C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 042AD6CB814B6A14E1DC0F61D18AE2A0 /* Pods-SATIApp.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B1A2450A3ACE4ED365C126F8629BEA61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0576E89670F8F5DE91E2CA9E8F82DC9F /* yoga.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/yoga/yoga-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B254DAA6CF0CE39F4A3D11B90A7E059A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		DA3E27A81396A0CE897FED293BB97D58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0576E89670F8F5DE91E2CA9E8F82DC9F /* yoga.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/yoga/yoga-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E4B68EE12B21C47CB798D9B1ECA6D7A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E4B68EE12B21C47CB798D9B1ECA6D7A7 /* Debug */,
+				B254DAA6CF0CE39F4A3D11B90A7E059A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		421F28D4920E9E390FA888B617E288EF /* Build configuration list for PBXNativeTarget "yoga" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1A2450A3ACE4ED365C126F8629BEA61 /* Debug */,
+				DA3E27A81396A0CE897FED293BB97D58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8188F061C3FF44556D96DD31A91DB5E0 /* Build configuration list for PBXNativeTarget "Pods-SATIApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5939C053E1457F438FF1E9584542C11C /* Debug */,
+				52F8AC422F695FC65E44C58D815C8609 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
