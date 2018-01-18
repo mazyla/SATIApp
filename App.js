@@ -18,16 +18,19 @@ import { TabViewAnimated } from 'react-native-tab-view';
 import Icon from 'react-native-vector-icons/Ionicons';
 import type { Route, NavigationState } from 'react-native-tab-view/types';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
+const ASPECT_RATIO = width/height;
+
+// initial constant Bangkok location
+const LATITUDE = 13.73617;
+const LONGITUDE = 100.523186;
+
+const LATITUDE_DELTA = 0.01;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
+const AnimatedIcon = Animated.createAnimatedComponent(Icon);
+
 
 type State = NavigationState<
   Route<{
@@ -171,6 +174,7 @@ export default class App extends Component<*, State> {
   }
   }
 
+
   class EmergencyCallView extends React.Component {
   constructor(props) {
     super(props);
@@ -188,21 +192,40 @@ export default class App extends Component<*, State> {
   }
   }
 
-  class ResourcesView extends React.Component {
+class ResourcesView extends React.Component {
+// var ResourcesView = React.createClass({
   constructor(props) {
     super(props);
+
+    this.state = {
+      region: null,
+      longitude: null,
+      latitude: null
+    };
+  }
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          region: position.region,
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+    );
   }
 
   render() {
     return (
       <MapView style={styles.map}
         provider={ PROVIDER_GOOGLE }
-        initialRegion={{
-          latitude: 13.736717,
-          longitude: 100.523186,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}/>
+        region={this.state.region}
+        showsUserLocation={true}
+        followUserLocation={true}
+        />
       );
       }
     }
