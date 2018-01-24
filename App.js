@@ -11,6 +11,7 @@ import {
   Text, Image,
   View, Animated, Dimensions,
   TouchableWithoutFeedback,
+  StatusBar,
 } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { TabViewAnimated } from 'react-native-tab-view';
@@ -123,34 +124,58 @@ export default class App extends Component<*, State> {
   );
 
   _renderScene = ({ route }) => {
+    <StatusBar
+    barStyle="light-content"
+    />
     switch (route.key) {
       case '1':
         return (
           <View>
+            <View style={ styles.topBar } >
+              <Text style={ styles.topBarText }>
+                Emergency </Text>
+            </View>
+
             <EmergencyCallView />
           </View>
         );
       case '2':
         return (
-          <View style={{flex: 1}}>
+          <View>
+            <View style={ styles.topBar } >
+              <Text style={ styles.topBarText }>
+                Resources </Text>
+            </View>
             <ResourcesView />
           </View>
         );
       case '3':
         return (
           <View>
+            <View style={ styles.topBar } >
+              <Text style={ styles.topBarText }>
+                All Feeds </Text>
+            </View>
             <NewsfeedView />
           </View>
         );
       case '4':
         return (
           <View>
+            <View style={ styles.topBar } >
+              <Text style={ styles.topBarText }>
+                Check-In </Text>
+            </View>
             <CheckInView />
           </View>
         );
       case '5':
         return (
           <View>
+            <View style={ styles.topBar } >
+              <Text style={ styles.topBarText }>
+                Settings </Text>
+            </View>
             <MoreView />
           </View>
         );
@@ -193,24 +218,29 @@ export default class App extends Component<*, State> {
   }
 
 class ResourcesView extends React.Component {
-// var ResourcesView = React.createClass({
   constructor(props) {
     super(props);
 
     this.state = {
-      region: null,
-      longitude: null,
-      latitude: null
+      region: {
+        longitude: 13.736717,
+        latitude: 100.523186,
+        latitudeDelta: LATITUDE_DELTA,
+        longitudeDelta: LONGITUDE_DELTA
+      },
+      error: null
     };
   }
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        this.setState({
-          region: position.region,
+        this.setState({ region: {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGITUDE_DELTA
+        }
         });
       },
       (error) => this.setState({ error: error.message }),
@@ -328,6 +358,18 @@ class ResourcesView extends React.Component {
   map: {
         position: 'absolute',
         width: width,
-        height: height,
-      }
+        height: height - 48,
+        marginTop: 48,
+      },
+  topBar: {
+    height: 48,
+    backgroundColor: "#55ab98",
+  },
+  topBarText: {
+    color: 'white',
+    textAlign: 'center',
+    marginTop: 22,
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
   });
