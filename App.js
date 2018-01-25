@@ -5,10 +5,10 @@ import {
   Text, Image,
   View, Animated, Dimensions,
   TouchableWithoutFeedback,
+  StatusBar,
 } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { TabViewAnimated } from 'react-native-tab-view';
-//import { Ionicons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import type { Route, NavigationState } from 'react-native-tab-view/types';
 // Import CheckIn
@@ -123,30 +123,52 @@ export default class App extends Component<*, State> {
       case '1':
         return (
           <View>
+            <StatusBar
+              barStyle="light-content" />
+            <View style={ styles.topBar } >
+              <Text style={ styles.topBarText }>
+                Emergency </Text>
+            </View>
+
             <EmergencyCallView />
           </View>
         );
       case '2':
         return (
-          <View style={{flex: 1}}>
-            <ResourcesView />
+          <View>
+            <View style={ styles.topBar } >
+              <Text style={ styles.topBarText }>
+                Resources </Text>
+            </View>
+            <ResourcesView/>
           </View>
         );
       case '3':
         return (
           <View>
-            <NewsfeedView />
+            <View style={ styles.topBar } >
+              <Text style={ styles.topBarText }>
+                All Feeds </Text>
+            </View>
           </View>
         );
       case '4':
         return (
           <View>
+            <View style={ styles.topBar } >
+              <Text style={ styles.topBarText }>
+                Check-In </Text>
+            </View>
             <CheckInView />
           </View>
         );
       case '5':
         return (
           <View>
+            <View style={ styles.topBar } >
+              <Text style={ styles.topBarText }>
+                Settings </Text>
+            </View>
             <MoreView />
           </View>
         );
@@ -304,8 +326,20 @@ const styles = StyleSheet.create({
     width: 200,
   },
   map: {
-    position: 'absolute',
-    width: width,
-    height: height,
-  }
+        position: 'absolute',
+        width: width,
+        height: height - 48,
+        marginTop: 48,
+      },
+  topBar: {
+    height: 48,
+    backgroundColor: "#55ab98",
+  },
+  topBarText: {
+    color: 'white',
+    textAlign: 'center',
+    marginTop: 22,
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
 });
