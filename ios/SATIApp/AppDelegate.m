@@ -19,7 +19,7 @@
 {
   NSURL *jsCodeLocation;
   
-  [GMSServices provideAPIKey:@"AIzaSyC0aYA_J2bVCrOeWx2bQGSNtW2iRGltY2Y"];
+  [GMSServices provideAPIKey:@"AIzaSyCakpdwemFqkTlfikUD2GqG53nSekulmVg"];
   
   
 
