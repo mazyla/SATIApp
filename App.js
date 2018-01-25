@@ -11,13 +11,14 @@ import {
   Text, Image,
   View, Animated, Dimensions,
   TouchableWithoutFeedback,
-  StatusBar,
 } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { TabViewAnimated } from 'react-native-tab-view';
-// import { Ionicons } from '@expo/vector-icons';
+//import { Ionicons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import type { Route, NavigationState } from 'react-native-tab-view/types';
+// Import CheckIn
+import CheckInView from './src/components/CheckIn.js';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -128,53 +129,30 @@ export default class App extends Component<*, State> {
       case '1':
         return (
           <View>
-            <StatusBar
-              barStyle="light-content" />
-            <View style={ styles.topBar } >
-              <Text style={ styles.topBarText }>
-                Emergency </Text>
-            </View>
-
             <EmergencyCallView />
           </View>
         );
       case '2':
         return (
-          <View>
-            <View style={ styles.topBar } >
-              <Text style={ styles.topBarText }>
-                Resources </Text>
-            </View>
+          <View style={{flex: 1}}>
             <ResourcesView />
           </View>
         );
       case '3':
         return (
           <View>
-            <View style={ styles.topBar } >
-              <Text style={ styles.topBarText }>
-                All Feeds </Text>
-            </View>
             <NewsfeedView />
           </View>
         );
       case '4':
         return (
           <View>
-            <View style={ styles.topBar } >
-              <Text style={ styles.topBarText }>
-                Check-In </Text>
-            </View>
             <CheckInView />
           </View>
         );
       case '5':
         return (
           <View>
-            <View style={ styles.topBar } >
-              <Text style={ styles.topBarText }>
-                Settings </Text>
-            </View>
             <MoreView />
           </View>
         );
@@ -196,10 +174,10 @@ export default class App extends Component<*, State> {
       />
     );
   }
-  }
+}
 
 
-  class EmergencyCallView extends React.Component {
+class EmergencyCallView extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -214,32 +192,26 @@ export default class App extends Component<*, State> {
       </View>
     );
   }
-  }
+}
 
 class ResourcesView extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      region: {
-        longitude: 13.736717,
-        latitude: 100.523186,
-        latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA
-      },
-      error: null
+      region: null,
+      longitude: null,
+      latitude: null
     };
   }
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        this.setState({ region: {
+        this.setState({
+          region: position.region,
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
-          latitudeDelta: LATITUDE_DELTA,
-          longitudeDelta: LONGITUDE_DELTA
-        }
         });
       },
       (error) => this.setState({ error: error.message }),
@@ -255,11 +227,11 @@ class ResourcesView extends React.Component {
         showsUserLocation={true}
         followUserLocation={true}
         />
-      );
-      }
-    }
+    );
+  }
+}
 
-  class NewsfeedView extends React.Component {
+class NewsfeedView extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -274,26 +246,9 @@ class ResourcesView extends React.Component {
       </View>
     );
   }
-  }
+}
 
-  class CheckInView extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        <Image
-          source = {require('./sati.png')}
-          style = {[styles.image]}
-        />
-      </View>
-    );
-  }
-  }
-
-  class MoreView extends React.Component {
+class MoreView extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -305,9 +260,9 @@ class ResourcesView extends React.Component {
       </View>
     );
   }
-  }
+}
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
@@ -350,25 +305,13 @@ class ResourcesView extends React.Component {
     backgroundColor: '#f9f9f9',
   },
   image: {
-        marginTop: 200,
-        height: 200,
-        width: 200,
+    marginTop: 200,
+    height: 200,
+    width: 200,
   },
   map: {
-        position: 'absolute',
-        width: width,
-        height: height - 48,
-        marginTop: 48,
-      },
-  topBar: {
-    height: 48,
-    backgroundColor: "#55ab98",
-  },
-  topBarText: {
-    color: 'white',
-    textAlign: 'center',
-    marginTop: 22,
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
-  });
+    position: 'absolute',
+    width: width,
+    height: height,
+  }
+});
