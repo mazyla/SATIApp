@@ -124,13 +124,12 @@ export default class App extends Component<*, State> {
   );
 
   _renderScene = ({ route }) => {
-    <StatusBar
-    barStyle="light-content"
-    />
     switch (route.key) {
       case '1':
         return (
           <View>
+            <StatusBar
+              barStyle="light-content" />
             <View style={ styles.topBar } >
               <Text style={ styles.topBarText }>
                 Emergency </Text>
