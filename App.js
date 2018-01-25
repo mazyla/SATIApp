@@ -1,20 +1,32 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import {
-  Animated,
-  View,
-  TouchableWithoutFeedback,
+  Platform,
   StyleSheet,
   Text, Image,
+  View, Animated, Dimensions,
+  TouchableWithoutFeedback,
+  StatusBar,
 } from 'react-native';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { TabViewAnimated } from 'react-native-tab-view';
-import { Ionicons } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
-// import BasicListView from './BasicListView';
-
+import Icon from 'react-native-vector-icons/Ionicons';
 import type { Route, NavigationState } from 'react-native-tab-view/types';
+// Import CheckIn
+import CheckInView from './src/components/CheckIn.js';
 
-const AnimatedIcon = Animated.createAnimatedComponent(Ionicons, Feather);
-// const AnimatedIcon2 = Animated.createAnimatedComponent(Feather);
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
+const ASPECT_RATIO = width/height;
+
+// initial constant Bangkok location
+const LATITUDE = 13.73617;
+const LONGITUDE = 100.523186;
+
+const LATITUDE_DELTA = 0.01;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
+const AnimatedIcon = Animated.createAnimatedComponent(Icon);
+
 
 type State = NavigationState<
   Route<{
@@ -24,7 +36,7 @@ type State = NavigationState<
   }>
 >;
 
-export default class TopBarIconExample extends React.Component<*, State> {
+export default class App extends Component<*, State> {
   static title = 'No animation';
   static backgroundColor = '#f4f4f4';
   static tintColor = '#222';
@@ -33,11 +45,11 @@ export default class TopBarIconExample extends React.Component<*, State> {
   state = {
     index: 0,
     routes: [
-      { key: '1', title: 'Contact', icon: 'ios-call-outline' },
-      { key: '2', title: 'Resources', icon: 'ios-compass-outline' },
-      { key: '3', title: 'Newsfeed', icon: 'ios-navigate-outline' },
-      { key: '4', title: 'Check In', icon: 'ios-checkmark-circle-outline' },
-      { key: '5', title: 'More', icon: 'ios-more-outline' },
+      { key: '1', title: 'Contact', icon: 'ios-call' },
+      { key: '2', title: 'Resources', icon: 'ios-compass' },
+      { key: '3', title: 'Newsfeed', icon: 'ios-navigate' },
+      { key: '4', title: 'Check In', icon: 'ios-checkmark' },
+      { key: '5', title: 'More', icon: 'ios-more' },
     ],
   };
 
@@ -111,30 +123,52 @@ export default class TopBarIconExample extends React.Component<*, State> {
       case '1':
         return (
           <View>
+            <StatusBar
+              barStyle="light-content" />
+            <View style={ styles.topBar } >
+              <Text style={ styles.topBarText }>
+                Emergency </Text>
+            </View>
+
             <EmergencyCallView />
           </View>
         );
       case '2':
         return (
           <View>
-            <ResourcesView />
+            <View style={ styles.topBar } >
+              <Text style={ styles.topBarText }>
+                Resources </Text>
+            </View>
+            <ResourcesView/>
           </View>
         );
       case '3':
         return (
           <View>
-            <NewsfeedView />
+            <View style={ styles.topBar } >
+              <Text style={ styles.topBarText }>
+                All Feeds </Text>
+            </View>
           </View>
         );
       case '4':
         return (
           <View>
+            <View style={ styles.topBar } >
+              <Text style={ styles.topBarText }>
+                Check-In </Text>
+            </View>
             <CheckInView />
           </View>
         );
       case '5':
         return (
           <View>
+            <View style={ styles.topBar } >
+              <Text style={ styles.topBarText }>
+                Settings </Text>
+            </View>
             <MoreView />
           </View>
         );
@@ -158,6 +192,7 @@ export default class TopBarIconExample extends React.Component<*, State> {
   }
 }
 
+
 class EmergencyCallView extends React.Component {
   constructor(props) {
     super(props);
@@ -178,16 +213,36 @@ class EmergencyCallView extends React.Component {
 class ResourcesView extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      region: null,
+      longitude: null,
+      latitude: null
+    };
+  }
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          region: position.region,
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+    );
   }
 
   render() {
     return (
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        <Image
-          source = {require('./maps.png')}
-          style = {[styles.image]}
+      <MapView style={styles.map}
+        provider={ PROVIDER_GOOGLE }
+        region={this.state.region}
+        showsUserLocation={true}
+        followUserLocation={true}
         />
-      </View>
     );
   }
 }
@@ -202,23 +257,6 @@ class NewsfeedView extends React.Component {
       <View style={{justifyContent: 'center', alignItems: 'center'}}>
         <Image
           source = {require('./feed.jpg')}
-          style = {[styles.image]}
-        />
-      </View>
-    );
-  }
-}
-
-class CheckInView extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        <Image
-          source = {require('./sati.png')}
           style = {[styles.image]}
         />
       </View>
@@ -283,8 +321,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#f9f9f9',
   },
   image: {
-        marginTop: 200,
-        height: 200,
-        width: 200,
+    marginTop: 200,
+    height: 200,
+    width: 200,
+  },
+  map: {
+        position: 'absolute',
+        width: width,
+        height: height - 48,
+        marginTop: 48,
+      },
+  topBar: {
+    height: 48,
+    backgroundColor: "#55ab98",
+  },
+  topBarText: {
+    color: 'white',
+    textAlign: 'center',
+    marginTop: 22,
+    fontWeight: 'bold',
+    fontSize: 18,
   },
 });
