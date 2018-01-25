@@ -11,8 +11,15 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { TabViewAnimated } from 'react-native-tab-view';
 import Icon from 'react-native-vector-icons/Ionicons';
 import type { Route, NavigationState } from 'react-native-tab-view/types';
-// Import CheckIn
+
+// import the views from components folder
 import CheckInView from './src/components/CheckIn.js';
+import NewsFeedView from './src/components/NewsFeed.js';
+import MoreView from './src/components/More.js';
+import ResourcesView from './src/components/Resources.js';
+
+// import styles from styles folder
+import styles from './src/styles/styles.js'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -129,7 +136,6 @@ export default class App extends Component<*, State> {
               <Text style={ styles.topBarText }>
                 Emergency </Text>
             </View>
-
             <EmergencyCallView />
           </View>
         );
@@ -150,6 +156,7 @@ export default class App extends Component<*, State> {
               <Text style={ styles.topBarText }>
                 All Feeds </Text>
             </View>
+            <NewsFeedView/>
           </View>
         );
       case '4':
@@ -209,137 +216,3 @@ class EmergencyCallView extends React.Component {
     );
   }
 }
-
-class ResourcesView extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      region: null,
-      longitude: null,
-      latitude: null
-    };
-  }
-
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.setState({
-          region: position.region,
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        });
-      },
-      (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
-    );
-  }
-
-  render() {
-    return (
-      <MapView style={styles.map}
-        provider={ PROVIDER_GOOGLE }
-        region={this.state.region}
-        showsUserLocation={true}
-        followUserLocation={true}
-        />
-    );
-  }
-}
-
-class NewsfeedView extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        <Image
-          source = {require('./feed.jpg')}
-          style = {[styles.image]}
-        />
-      </View>
-    );
-  }
-}
-
-class MoreView extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        <Text style={{marginTop: 200}}> More </Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  tabbar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: '#f4f4f4',
-  },
-  tab: {
-    flex: 1,
-    alignItems: 'center',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: 'rgba(0, 0, 0, .2)',
-    paddingTop: 4.5,
-  },
-  iconContainer: {
-    height: 26,
-    width: 26,
-  },
-  icon: {
-    position: 'absolute',
-    textAlign: 'center',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    color: '#0084ff',
-  },
-  outline: {
-    color: '#939393',
-  },
-  label: {
-    fontSize: 10,
-    marginTop: 3,
-    marginBottom: 1.5,
-    backgroundColor: 'transparent',
-  },
-  page: {
-    flex: 1,
-    backgroundColor: '#f9f9f9',
-  },
-  image: {
-    marginTop: 200,
-    height: 200,
-    width: 200,
-  },
-  map: {
-        position: 'absolute',
-        width: width,
-        height: height - 48,
-        marginTop: 48,
-      },
-  topBar: {
-    height: 48,
-    backgroundColor: "#55ab98",
-  },
-  topBarText: {
-    color: 'white',
-    textAlign: 'center',
-    marginTop: 22,
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
-});
