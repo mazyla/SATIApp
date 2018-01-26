@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { View, Text, Image, Picker, Switch, Button, StyleSheet } from 'react-native';
-import styles from '../styles/styles.js';
+//import styles from '../styles/styles.js';
 
 export default class CheckInView extends Component {
   constructor(props) {
@@ -28,9 +28,10 @@ export default class CheckInView extends Component {
   render() {
     return (
       <View style={{justifyContent: 'center', alignItems: 'center'}}>
+
         <Image
           source = {require('../../sati.png')}
-          style = {[styles.satiImage]}
+          style = {[styles.image]}
         />
         <View>
           <View style={{flexDirection: 'row'}}>
@@ -73,3 +74,11 @@ export default class CheckInView extends Component {
     );
   }
 }
+
+var styles = StyleSheet.create({
+  image: {
+        marginTop: 100,
+        height: 200,
+        width: 200,
+  },
+})
