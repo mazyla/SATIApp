@@ -75,13 +75,14 @@ var myStyles = React.StyleSheet.create({
         marginTop: 48,
       },
   btnimagecontainer: {
+        marginTop: 30,
         justifyContent:'center',
         alignItems:'center',
-        padding:30,
+        padding:50,
       },
   btnimage: {
-        height:50,
-        width:50,
+        height:100,
+        width:100,
       },
   header: {
         height:60,

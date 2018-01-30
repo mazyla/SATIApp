@@ -68,18 +68,6 @@ export default class EmergencyCallView extends Component {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={this._onPress}>
-            <View style={styles.btnimagecontainer}>
-              <Image
-                source = {require('../../images/location.jpg')}
-                style = {styles.btnimage}
-              />
-              <Text>Share Location to The Hub</Text>
-            </View>
-          </TouchableOpacity>
-          <Text>{this.state.location}</Text>
-
         </View>
       </View>
     );
