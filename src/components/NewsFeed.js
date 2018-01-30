@@ -11,7 +11,7 @@ export default class NewsFeedView extends Component {
     return (
       <View style={{justifyContent: 'center', alignItems: 'center'}}>
         <Image
-          source = {require('../../feed.jpg')}
+          source = {require('../../images/feed.jpg')}
           style = {[styles.satiImage]}
         />
       </View>

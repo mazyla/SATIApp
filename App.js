@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import type { Route, NavigationState } from 'react-native-tab-view/types';
 
 // import the views from components folder
+import EmergencyCallView from './src/components/EmergencyCall.js';
 import CheckInView from './src/components/CheckIn.js';
 import NewsFeedView from './src/components/NewsFeed.js';
 import MoreView from './src/components/More.js';
@@ -195,24 +196,6 @@ export default class App extends Component<*, State> {
         animationEnabled={false}
         swipeEnabled={false}
       />
-    );
-  }
-}
-
-
-class EmergencyCallView extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        <Image
-          source = {require('./emergency.png')}
-          style = {[styles.image]}
-        />
-      </View>
     );
   }
 }

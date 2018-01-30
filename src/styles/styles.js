@@ -74,6 +74,27 @@ var myStyles = React.StyleSheet.create({
         height: height - 48,
         marginTop: 48,
       },
+  btnimagecontainer: {
+        justifyContent:'center',
+        alignItems:'center',
+        padding:30,
+      },
+  btnimage: {
+        height:50,
+        width:50,
+      },
+  header: {
+        height:60,
+        backgroundColor:'blue',
+        justifyContent:'center',
+        alignItems:'center',
+      },
+  headertext: {
+        fontSize:20,
+        color:'white',
+        fontWeight:'bold',
+        fontFamily:'Cochin',
+      },
 });
 
 module.exports = myStyles;

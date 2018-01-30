@@ -29,7 +29,7 @@ export default class CheckInView extends Component {
     return (
       <View style={{justifyContent: 'center', alignItems: 'center'}}>
         <Image
-          source = {require('../../sati.png')}
+          source = {require('../../images/sati.png')}
           style = {[styles.satiImage]}
         />
         <View>

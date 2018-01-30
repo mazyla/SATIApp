@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { View, Text, Image, StatusBar, TouchableNativeFeedback } from 'react-native';
+import { View, Text, Image, StatusBar,
+  TouchableNativeFeedback, TouchableHighlight } from 'react-native';
 import styles from '../styles/styles.js';
 // Phone Call and SMS messaging (Can also open web addresses and email)
 import Communications from 'react-native-communications';
@@ -42,48 +43,41 @@ export default class EmergencyCallView extends Component {
   render() {
     return (
       <View>
-        <StatusBar
-          hidden={true}
-          backgroundColor="blue"
-          barStyle="light-content"
-        />
-        <View style={styles.header}>
-          <Text style={styles.headertext}>Emergency Call</Text>
-        </View>
+      
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
 
-          <TouchableNativeFeedback
+          <TouchableHighlight
             onPress={() => {Communications.phonecall('0803874355', false)}}>
             <View style={styles.btnimagecontainer}>
               <Image
-                source = {require('../images/call.jpg')}
+                source = {require('../../images/call.jpg')}
                 style = {styles.btnimage}
               />
               <Text>Call The Hub</Text>
             </View>
-          </TouchableNativeFeedback>
+          </TouchableHighlight>
 
-          <TouchableNativeFeedback
+          <TouchableHighlight
             onPress={() => {Communications.text('0803874355', null)}}>
             <View style={styles.btnimagecontainer}>
               <Image
-                source = {require('../images/message.jpg')}
+                source = {require('../../images/message.jpg')}
                 style = {styles.btnimage}
               />
               <Text>Text The Hub</Text>
             </View>
-          </TouchableNativeFeedback>
+          </TouchableHighlight>
 
-          <TouchableNativeFeedback
+          <TouchableHighlight
             onPress={this._onPress}>
             <View style={styles.btnimagecontainer}>
               <Image
-                source = {require('../images/location.jpg')}
+                source = {require('../../images/location.jpg')}
                 style = {styles.btnimage}
               />
               <Text>Share Location to The Hub</Text>
             </View>
-          </TouchableNativeFeedback>
+          </TouchableHighlight>
           <Text>{this.state.location}</Text>
 
         </View>
