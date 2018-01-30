@@ -1,6 +1,36 @@
 import React, {Component} from 'react';
 import { View, Text, Image, Picker, Switch, Button, StyleSheet } from 'react-native';
 //import styles from '../styles/styles.js';
+import * as firebase from 'firebase';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyClhl9Vzh2YZLuxfI7sRCzSf0jzGdAKURs",
+  authDomain: "satiapp-cda67.firebaseapp.com",
+  databaseURL: "https://satiapp-cda67.firebaseio.com",
+  storageBucket: "",
+};
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+export class Database {
+  static setUserMobile(userId, mobile) {
+    let userMobilePath = "/user/" + userId + "/details";
+    return firebase.database().ref(userMobilePath).set({
+      mobile:mobile
+    })
+  }
+
+  static listenUserMobile(userId, callback) {
+    let userMobilePath = "/user/" + userId + "/details";
+    firebase.database().ref(userMobilePath).on('value', (snapshot) => {
+      var mobile = "";
+      if (snapshot.val()) {
+        mobile = snapshot.val().mobile
+      }
+      callback(mobile)
+    });
+  }
+}
+//module.exports = Database;
 
 export default class CheckInView extends Component {
   constructor(props) {
