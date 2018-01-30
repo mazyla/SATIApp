@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
-import { View, Text, Image, Picker, Switch, Button, StyleSheet } from 'react-native';
+import { View, Text, Image, Picker, Switch, Button, StyleSheet,
+TouchableOpacity } from 'react-native';
 import styles from '../styles/styles.js';
+import CheckBox from 'react-native-checkbox-heaven';
+import PropTypes from 'prop-types';
 
 export default class CheckInView extends Component {
   constructor(props) {
@@ -14,6 +17,8 @@ export default class CheckInView extends Component {
     checkin = (now) => {
       this.setState({ lastcheckin: now });
     }
+
+
   }
 
   formatDate = (date) => {
@@ -25,50 +30,55 @@ export default class CheckInView extends Component {
     checkin(now);
   }
 
+  _onChange = (checkbox) => {
+    this.setState({ shareLocation: checkbox });
+  }
+
+
+
   render() {
     return (
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        <Image
-          source = {require('../../images/sati.png')}
-          style = {[styles.satiImage]}
-        />
-        <View>
-          <View style={{flexDirection: 'row'}}>
-            <Switch
-              onValueChange={() => {this.setState({shareLocation: !this.state.shareLocation})}}
-              value={this.state.shareLocation}
-            />
-            <Text>Share Location</Text>
-          </View>
-          <Button
-            onPress={this._onPress}
-            title="Update Status"
+      <View style={styles.checkInContainer}>
+        <Text style={styles.feelingText}> How I feel today? </Text>
+
+        <Picker
+          style={{width:300}}
+          selectedValue={this.state.statusMessage}
+          onValueChange={(itemValue, itemIndex) => this.setState({statusMessage: itemValue})}>
+          <Picker.Item label="🙂 Happy" value="happy" />
+          <Picker.Item label="🌷 Hopeful" value="hopeful" />
+          <Picker.Item label="😍 Loved" value="loved" />
+          <Picker.Item label="😀 Thankful" value="thankful" />
+          <Picker.Item label="😁 Awesome" value="awesome" />
+          <Picker.Item label="😌 Relaxed" value="relaxed" />
+          <Picker.Item label="😢 Sad" value="sad" />
+          <Picker.Item label="😵 Confused" value="confused" />
+          <Picker.Item label="😊 Good" value="good" />
+          <Picker.Item label="😟 Concerned" value="concerned" />
+          <Picker.Item label="😴 Tired" value="tired" />
+          <Picker.Item label="🆘 Need Help" value="help" />
+          <Picker.Item label="😷 Sick" value="sick" />
+          <Picker.Item label="🤕 Hurt" value="hurt" />
+        </Picker>
+
+        <View style={styles.shareLocationSwitchContainer}>
+          <Text style= {styles.shareLocationText}> Share Location </Text>
+          <CheckBox style={styles.checkbox}
+            iconSize={40}
+            checked={this.state.checked}
+            checkedColor='#ffffff'
+            uncheckedColor='#ffffff'
+            onChange={this._onChange}
           />
-          <Text style={{padding:0}}>{ this.formatDate(this.state.lastcheckin) }</Text>
         </View>
-        <View style={{marginTop:0}}>
-          <Text style={{fontSize: 30, alignSelf: 'center', color: 'blue'}}>How I feel today</Text>
-          <Text style={{fontSize: 20, alignSelf: 'center', color: 'red'}}>{ this.state.statusMessage }</Text>
-          <Picker
-            style={{width:200}}
-            selectedValue={this.state.statusMessage}
-            onValueChange={(itemValue, itemIndex) => this.setState({statusMessage: itemValue})}>
-            <Picker.Item label="🙂 Happy" value="happy" />
-            <Picker.Item label="🌷 Hopeful" value="hopeful" />
-            <Picker.Item label="😍 Loved" value="loved" />
-            <Picker.Item label="😀 Thankful" value="thankful" />
-            <Picker.Item label="😁 Awesome" value="awesome" />
-            <Picker.Item label="😌 Relaxed" value="relaxed" />
-            <Picker.Item label="😢 Sad" value="sad" />
-            <Picker.Item label="😵 Confused" value="confused" />
-            <Picker.Item label="😊 Good" value="good" />
-            <Picker.Item label="😟 Concerned" value="concerned" />
-            <Picker.Item label="😴 Tired" value="tired" />
-            <Picker.Item label="🆘 Need Help" value="help" />
-            <Picker.Item label="😷 Sick" value="sick" />
-            <Picker.Item label="🤕 Hurt" value="hurt" />
-          </Picker>
-        </View>
+
+        <TouchableOpacity style={styles.shareLocationCheckInContainer}
+          onPress={this._onPress}>
+          <Text style= {styles.checkInText}> Check In </Text>
+        </TouchableOpacity>
+
+          <Text style={{padding:20}}>{ this.formatDate(this.state.lastcheckin) }</Text>
+
       </View>
     );
   }

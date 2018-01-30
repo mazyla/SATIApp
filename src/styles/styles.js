@@ -96,6 +96,54 @@ var myStyles = React.StyleSheet.create({
         fontWeight:'bold',
         fontFamily:'Cochin',
       },
+  feelingText: {
+        fontSize: 40,
+        marginBottom: -25,
+        color:'black',
+        fontWeight: 'bold',
+        fontFamily: 'Cochin',
+  },
+  checkInContainer: {
+      marginTop: 30,
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
+  shareLocationSwitchContainer: {
+      borderRadius:10,
+      marginTop: 10,
+      backgroundColor: '#55ab98',
+      width: width - 50,
+      height: 60,
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'row',
+  },
+  shareLocationText: {
+      color: 'white',
+      fontWeight: 'bold',
+      fontFamily: 'Cochin',
+      fontSize: 30,
+      marginLeft: -30,
+      marginRight: 60,
+  },
+  checkbox: {
+      marginLeft: 30,
+  },
+  shareLocationCheckInContainer: {
+    borderRadius:10,
+    marginTop: 10,
+    backgroundColor: '#df555f',
+    width: width - 50,
+    height: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  checkInText: {
+      color: 'white',
+      fontWeight: 'bold',
+      fontFamily: 'Cochin',
+      fontSize: 40,
+  },
 });
 
 module.exports = myStyles;
