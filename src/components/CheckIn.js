@@ -7,7 +7,7 @@ export default class CheckInView extends Component {
     super(props);
     this.state = {
       lastcheckin: new Date(),
-      statusMessage: "happy",
+      statusMessage: "Happy",
       shareLocation: true,
     }
 
