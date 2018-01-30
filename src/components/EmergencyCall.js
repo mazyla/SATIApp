@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { View, Text, Image, StatusBar,
-  TouchableNativeFeedback, TouchableOpacity } from 'react-native';
+  TouchableNativeFeedback, TouchableHighlight, TouchableOpacity } from 'react-native';
 import styles from '../styles/styles.js';
 // Phone Call and SMS messaging (Can also open web addresses and email)
 import Communications from 'react-native-communications';
@@ -36,25 +36,9 @@ export default class EmergencyCallView extends Component {
     }, (e) => {console.log("ERROR(" + e.code + "):" + e.message)}, {timeout: 5000});
   }
 */
-  _onPress = () => {
-    this.setState({location: Math.random() % 5});
-  }
-
-  /*
-  Share location
-
-  <TouchableOpacity
-    onPress={this._onPress}>
-    <View style={styles.btnimagecontainer}>
-      <Image
-        source = {require('../../images/location.jpg')}
-        style = {styles.btnimage}
-      />
-      <Text>Share Location to The Hub</Text>
-    </View>
-  </TouchableOpacity>
-  <Text>{this.state.location}</Text>
-  */
+  // _onPress = () => {
+  //   this.setState({location: Math.random() % 5});
+  // }
 
   render() {
     return (
@@ -63,7 +47,7 @@ export default class EmergencyCallView extends Component {
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
 
           <TouchableOpacity
-            onPress={() => {Communications.phonecall('0803874355', false)}}>
+            onPress={() => {Communications.phonecall('0803874355', true)}}>
             <View style={styles.btnimagecontainer}>
               <Image
                 source = {require('../../images/call.jpg')}

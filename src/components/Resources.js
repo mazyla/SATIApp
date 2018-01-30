@@ -1,16 +1,35 @@
 import React, {Component} from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, Dimensions} from 'react-native';
 import styles from '../styles/styles.js';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+
+
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
+
+const ASPECT_RATIO = width/height;
+
+// initial constant Bangkok location
+const LATITUDE = 13.73617;
+const LONGITUDE = 100.523186;
+
+const LATITUDE_DELTA = 0.01;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
+
 
 export default class ResourcesView extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      region: null,
-      longitude: null,
-      latitude: null
+      region: {
+        longitude: LONGITUDE,
+        latitude: LATITUDE,
+        latitudeDelta: LATITUDE_DELTA,
+        longitudeDelta: LONGITUDE_DELTA
+      }
+
     };
   }
 
@@ -18,9 +37,13 @@ export default class ResourcesView extends React.Component {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         this.setState({
-          region: position.region,
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
+          region: {
+            longitude: position.coords.longitude,
+            latitude: position.coords.latitude,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA
+          },
+
         });
       },
       (error) => this.setState({ error: error.message }),
@@ -35,6 +58,8 @@ export default class ResourcesView extends React.Component {
         region={this.state.region}
         showsUserLocation={true}
         followUserLocation={true}
+        showsCompass={true}
+        showsBuildings={true}
         />
     );
   }

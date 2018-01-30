@@ -22,8 +22,8 @@ var myStyles = React.StyleSheet.create({
     paddingTop: 4.5,
   },
   iconContainer: {
-    height: 26,
-    width: 26,
+    height: 30,
+    width: 30,
   },
   icon: {
     position: 'absolute',
@@ -32,13 +32,13 @@ var myStyles = React.StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    color: '#0084ff',
+    color: '#58aa96',
   },
   outline: {
     color: '#939393',
   },
   label: {
-    fontSize: 10,
+    fontSize: 12,
     marginTop: 3,
     marginBottom: 1.5,
     backgroundColor: 'transparent',
@@ -75,13 +75,14 @@ var myStyles = React.StyleSheet.create({
         marginTop: 48,
       },
   btnimagecontainer: {
+        marginTop: 30,
         justifyContent:'center',
         alignItems:'center',
-        padding:30,
+        padding:50,
       },
   btnimage: {
-        height:50,
-        width:50,
+        height:100,
+        width:100,
       },
   header: {
         height:60,
@@ -95,6 +96,54 @@ var myStyles = React.StyleSheet.create({
         fontWeight:'bold',
         fontFamily:'Cochin',
       },
+  feelingText: {
+        fontSize: 40,
+        marginBottom: -25,
+        color:'black',
+        fontWeight: 'bold',
+        fontFamily: 'Cochin',
+  },
+  checkInContainer: {
+      marginTop: 30,
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
+  shareLocationSwitchContainer: {
+      borderRadius:10,
+      marginTop: 10,
+      backgroundColor: '#55ab98',
+      width: width - 50,
+      height: 60,
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'row',
+  },
+  shareLocationText: {
+      color: 'white',
+      fontWeight: 'bold',
+      fontFamily: 'Cochin',
+      fontSize: 30,
+      marginLeft: -30,
+      marginRight: 60,
+  },
+  checkbox: {
+      marginLeft: 30,
+  },
+  shareLocationCheckInContainer: {
+    borderRadius:10,
+    marginTop: 10,
+    backgroundColor: '#df555f',
+    width: width - 50,
+    height: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  checkInText: {
+      color: 'white',
+      fontWeight: 'bold',
+      fontFamily: 'Cochin',
+      fontSize: 40,
+  },
 });
 
 module.exports = myStyles;
