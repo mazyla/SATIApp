@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { View, Text, Image, StatusBar,
-  TouchableNativeFeedback, TouchableHighlight } from 'react-native';
+  TouchableNativeFeedback, TouchableOpacity } from 'react-native';
 import styles from '../styles/styles.js';
 // Phone Call and SMS messaging (Can also open web addresses and email)
 import Communications from 'react-native-communications';
@@ -40,13 +40,29 @@ export default class EmergencyCallView extends Component {
     this.setState({location: Math.random() % 5});
   }
 
+  /*
+  Share location
+
+  <TouchableOpacity
+    onPress={this._onPress}>
+    <View style={styles.btnimagecontainer}>
+      <Image
+        source = {require('../../images/location.jpg')}
+        style = {styles.btnimage}
+      />
+      <Text>Share Location to The Hub</Text>
+    </View>
+  </TouchableOpacity>
+  <Text>{this.state.location}</Text>
+  */
+
   render() {
     return (
       <View>
-      
+
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
 
-          <TouchableHighlight
+          <TouchableOpacity
             onPress={() => {Communications.phonecall('0803874355', false)}}>
             <View style={styles.btnimagecontainer}>
               <Image
@@ -55,9 +71,9 @@ export default class EmergencyCallView extends Component {
               />
               <Text>Call The Hub</Text>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
 
-          <TouchableHighlight
+          <TouchableOpacity
             onPress={() => {Communications.text('0803874355', null)}}>
             <View style={styles.btnimagecontainer}>
               <Image
@@ -66,19 +82,7 @@ export default class EmergencyCallView extends Component {
               />
               <Text>Text The Hub</Text>
             </View>
-          </TouchableHighlight>
-
-          <TouchableHighlight
-            onPress={this._onPress}>
-            <View style={styles.btnimagecontainer}>
-              <Image
-                source = {require('../../images/location.jpg')}
-                style = {styles.btnimage}
-              />
-              <Text>Share Location to The Hub</Text>
-            </View>
-          </TouchableHighlight>
-          <Text>{this.state.location}</Text>
+          </TouchableOpacity>
 
         </View>
       </View>

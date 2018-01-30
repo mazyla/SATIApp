@@ -13,11 +13,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import type { Route, NavigationState } from 'react-native-tab-view/types';
 
 // import the views from components folder
-import EmergencyCallView from './src/components/EmergencyCall.js';
 import CheckInView from './src/components/CheckIn.js';
 import NewsFeedView from './src/components/NewsFeed.js';
 import MoreView from './src/components/More.js';
 import ResourcesView from './src/components/Resources.js';
+import EmergencyCallView from './src/components/EmergencyCall.js';
 
 // import styles from styles folder
 import styles from './src/styles/styles.js'
