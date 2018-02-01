@@ -43,9 +43,7 @@ export default class Login extends Component {
             });
 
             setTimeout(() => {
-                this.props.navigator.push({
-                    name: "Home"
-                })
+                this.props.navigation.navigate('Tabs');
             }, 1500);
 
         } catch (error) {
@@ -68,9 +66,7 @@ export default class Login extends Component {
             });
 
             setTimeout(() => {
-                this.props.navigator.push({
-                    name: "Home"
-                })
+                this.props.navigation.navigate('Tabs');
             }, 1500);
 
         } catch (error) {

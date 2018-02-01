@@ -12,10 +12,6 @@ import NewsFeed from './screens/NewsFeed'
 import CheckIn from './screens/CheckIn'
 import More from './screens/More'
 import Login from './screens/Login'
-//import Home from './screens/Home'
-
-
-
 
 export const Tabs = TabNavigator({
 
@@ -87,19 +83,20 @@ export const Tabs = TabNavigator({
 });
 
 export const LoginStack = StackNavigator({
-  Tabs: {
-    screen: Tabs,
-   headerMode: 'screen',
-   navigationOptions: {
-     header: null,
-   },
-
-  },
   Login: {
     screen: Login,
     headerMode: 'screen',
     navigationOptions: {
       header: null,
     },
+  },
+
+  Tabs: {
+    screen: EmergencyCall,
+   headerMode: 'screen',
+   navigationOptions: {
+     header: null,
+   },
+
   },
 });

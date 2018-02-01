@@ -12,13 +12,13 @@ export default class MoreView extends Component {
 
   _logout() {
 
-    this.props.navigation.navigate('Login');
-        // try {
-        //     firebase.auth().signOut();
-        //
-        // } catch (error) {
-        //     console.log(error);
-        // }
+
+        try {
+            firebase.auth().signOut();
+            this.props.navigation.navigate('Login');
+        } catch (error) {
+            console.log(error);
+        }
     };
 
 
