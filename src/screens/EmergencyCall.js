@@ -42,8 +42,11 @@ export default class EmergencyCallView extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.singleTab}>
 
+        <View style={styles.topBar}>
+          <Text style={styles.topBarText}>Emergency</Text>
+        </View>
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
 
           <TouchableOpacity

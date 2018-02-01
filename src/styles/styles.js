@@ -72,7 +72,6 @@ var myStyles = React.StyleSheet.create({
         position: 'absolute',
         width: width,
         height: height - 48,
-        marginTop: 48,
       },
   btnimagecontainer: {
         marginTop: 30,
@@ -83,18 +82,6 @@ var myStyles = React.StyleSheet.create({
   btnimage: {
         height:100,
         width:100,
-      },
-  header: {
-        height:60,
-        backgroundColor:'blue',
-        justifyContent:'center',
-        alignItems:'center',
-      },
-  headertext: {
-        fontSize:20,
-        color:'white',
-        fontWeight:'bold',
-        fontFamily:'Cochin',
       },
   feelingText: {
         fontSize: 40,
@@ -144,6 +131,24 @@ var myStyles = React.StyleSheet.create({
       fontFamily: 'Cochin',
       fontSize: 40,
   },
+  singleTab: {
+    backgroundColor: '#fff',
+    height: height,
+  },
+  logoutButtonContainer: {
+    borderRadius:10,
+    marginTop: 570,
+    backgroundColor: '#df555f',
+    width: width - 50,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logoutText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 18,
+  }
 });
 
 module.exports = myStyles;
