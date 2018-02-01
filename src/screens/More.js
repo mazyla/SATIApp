@@ -11,8 +11,6 @@ export default class MoreView extends Component {
   }
 
   _logout() {
-
-
         try {
             firebase.auth().signOut();
             this.props.navigation.navigate('Login');

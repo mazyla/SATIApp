@@ -1,3 +1,8 @@
+/* This is deprecated, only here for code reference */
+/* do not use */
+
+
+
 import React, { Component } from 'react';
 import {
   Platform,

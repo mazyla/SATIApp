@@ -12,6 +12,7 @@ import NewsFeed from './screens/NewsFeed'
 import CheckIn from './screens/CheckIn'
 import More from './screens/More'
 import Login from './screens/Login'
+import SignUp from './screens/SignUp'
 
 export const Tabs = TabNavigator({
 
@@ -90,13 +91,14 @@ export const LoginStack = StackNavigator({
       header: null,
     },
   },
-
   Tabs: {
     screen: EmergencyCall,
    headerMode: 'screen',
    navigationOptions: {
      header: null,
    },
-
   },
+  SignUp: {
+    screen: SignUp,
+  }
 });

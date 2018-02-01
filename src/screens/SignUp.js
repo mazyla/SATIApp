@@ -5,7 +5,8 @@ import {
     View,
     StyleSheet,
     dismissKeyboard,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    ScrollView,
 } from "react-native";
 
 import React, {Component} from "react";
@@ -24,47 +25,26 @@ export default class Login extends Component {
         this.state = {
             email: "",
             password: "",
-            response: ""
+            response: "",
+            firstName: "",
+            lastName: "",
+            age: 0,
+            gender: "",
+
         };
 
         this.signup = this.signup.bind(this);
-        this.login = this.login.bind(this);
     }
 
-     signup() {
-
-        DismissKeyboard();
-
-        this.props.navigation.navigate('SignUp');
-
-        // try {
-        //     await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
-        //
-        //     this.setState({
-        //         response: "account created"
-        //     });
-        //
-        //     setTimeout(() => {
-        //         this.props.navigation.navigate('Tabs');
-        //     }, 1500);
-        //
-        // } catch (error) {
-        //     this.setState({
-        //         response: error.toString()
-        //     })
-        // }
-
-    }
-
-    async login() {
+    async signup() {
 
         DismissKeyboard();
 
         try {
-            await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
+            await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
 
             this.setState({
-                response: "Logged In!"
+                response: "account created"
             });
 
             setTimeout(() => {
@@ -77,19 +57,49 @@ export default class Login extends Component {
             })
         }
 
+        let userDetailsPath = "/users/" + 1 + "/details";
+
+        firebase.database().ref(userDetailsPath).set({
+          email: this.state.email,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          age: this.state.age,
+          gender: this.state.gender
+        });
+
+
+
     }
 
     render() {
 
         return (
             <TouchableWithoutFeedback onPress={() => {DismissKeyboard()}}>
-                <View style={CommonStyle.container}>
+                <ScrollView style={CommonStyle.container}>
                     <View style={styles.formGroup}>
-                        <Text style={styles.title}>Firebase Sample</Text>
+                        <Text style={styles.title}>Create an account</Text>
+                        <Sae
+                            label={"First Name"}
+                            iconClass={FontAwesomeIcon}
+                            iconName={"pencil"}
+                            iconColor={"white"}
+                            onChangeText={(firstName) => this.setState({firstName})}
+                            password={true}
+                            autoCapitalize="none"
+                        />
+                        <Sae
+                            label={"Last Name"}
+                            iconClass={FontAwesomeIcon}
+                            iconName={"pencil"}
+                            iconColor={"white"}
+                            onChangeText={(password) => this.setState({password})}
+                            password={true}
+                            autoCapitalize="none"
+                        />
                         <Sae
                             label={"Email Address"}
                             iconClass={FontAwesomeIcon}
-                            iconName={"pencil"}
+                            iconName={"envelope"}
                             iconColor={"white"}
                             onChangeText={(email) => this.setState({email})}
                             keyboardType="email-address"
@@ -104,11 +114,26 @@ export default class Login extends Component {
                             password={true}
                             autoCapitalize="none"
                         />
+                        <Sae
+                            label={"Gender"}
+                            iconClass={FontAwesomeIcon}
+                            iconName={"key"}
+                            iconColor={"white"}
+                            onChangeText={(gender) => this.setState({gender})}
+                            password={true}
+                            autoCapitalize="none"
+                        />
+                        <Sae
+                            label={"Age"}
+                            iconClass={FontAwesomeIcon}
+                            iconName={"key"}
+                            iconColor={"white"}
+                            onChangeText={(age) => this.setState({age})}
+                            password={true}
+                            autoCapitalize="none"
+                        />
 
                         <View style={styles.submit}>
-                          <Button onPress={this.login} style={styles.buttons} textStyle={{fontSize: 18}}>
-                              Login
-                          </Button>
                             <Button onPress={this.signup} style={CommonStyle.buttons} textStyle={{fontSize: 18}}>
                                 Sign up
                             </Button>
@@ -117,7 +142,7 @@ export default class Login extends Component {
                     <View>
                         <Text style={styles.response}>{this.state.response}</Text>
                     </View>
-                </View>
+                </ScrollView>
             </TouchableWithoutFeedback>
         );
     }
