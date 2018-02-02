@@ -1,7 +1,7 @@
 import React from 'react';
 import { TabNavigator, StackNavigator} from 'react-navigation';
 import {
-    Text,
+    Text, Platform
 } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 //import { Icon } from 'react-native-elements';
@@ -24,7 +24,7 @@ export const Tabs = TabNavigator({
         <Icon
           name={focused ? 'ios-call' : 'ios-call-outline'}
           size={26}
-          style={{marginBottom: 18, color: focused ? '#55ab98' : '#a09e9f'}}
+          style={{marginBottom: (Platform.OS === 'ios') ? 20 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
         />
       ),
     },
@@ -37,7 +37,7 @@ export const Tabs = TabNavigator({
        <Icon
          name={focused ? 'ios-compass' : 'ios-compass-outline'}
          size={26}
-         style={{marginBottom: 20, color: focused ? '#55ab98' : '#a09e9f'}}
+         style={{marginBottom: (Platform.OS === 'ios') ? 20 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
        />
      ),
    },
@@ -50,7 +50,7 @@ export const Tabs = TabNavigator({
        <Icon
          name={focused ? 'ios-navigate' : 'ios-navigate-outline'}
          size={26}
-         style={{marginBottom: 20, color: focused ? '#55ab98' : '#a09e9f'}}
+         style={{marginBottom: (Platform.OS === 'ios') ? 20 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
        />
      ),
    },
@@ -63,7 +63,7 @@ export const Tabs = TabNavigator({
        <Icon
          name={focused ? 'ios-checkmark' : 'ios-checkmark-outline'}
          size={32}
-         style={{marginBottom: 20, color: focused ? '#55ab98' : '#a09e9f'}}
+         style={{marginBottom: (Platform.OS === 'ios') ? 20 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
        />
      ),
    },
@@ -76,11 +76,27 @@ export const Tabs = TabNavigator({
        <Icon
          name={focused ? 'ios-more' : 'ios-more-outline'}
          size={26}
-         style={{marginBottom: 20, color: focused ? '#55ab98' : '#a09e9f'}}
+         style={{marginBottom: (Platform.OS === 'ios') ? 20 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
        />
      ),
    },
-  },
+ },
+}, {
+
+    tabBarPosition: 'bottom',  // So your Android tabs go bottom
+    tabBarOptions: {
+      inactiveTintColor: '#a09e9f', // Color of tab when not pressed
+      showIcon: 'true', // Shows an icon for both iOS and Android
+
+      labelStyle: {
+        fontSize: 12,
+      },
+
+      style: {
+        backgroundColor: '#fff', // Makes Android tab bar white instead of standard blue
+         height: (Platform.OS === 'ios') ? 49 : 54 // I didn't use this in my app, so the numbers may be off.
+      }
+    },
 });
 
 export const LoginStack = StackNavigator({
@@ -100,5 +116,23 @@ export const LoginStack = StackNavigator({
   },
   SignUp: {
     screen: SignUp,
-  }
+    navigationOptions: {
+          title: 'Create an account',
+    },
+  },
+// },
+  // {
+  //     tabBarPosition: 'bottom',  // So your Android tabs go bottom
+  //     tabBarOptions: {
+  //       activeTintColor: '55ab98',  // Color of tab when pressed
+  //       inactiveTintColor: '#a09e9f', // Color of tab when not pressed
+  //       showIcon: 'true', // Shows an icon for both iOS and Android
+  //
+  //       labelStyle: {
+  //         fontSize: 12,
+  //       },
+  //       style: {
+  //         backgroundColor: '#fff', // Makes Android tab bar white instead of standard blue
+  //       }
+  //     },
 });

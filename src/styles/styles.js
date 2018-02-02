@@ -132,17 +132,19 @@ var myStyles = React.StyleSheet.create({
       fontSize: 40,
   },
   singleTab: {
+    flex: 1,
     backgroundColor: '#fff',
     height: height,
   },
   logoutButtonContainer: {
     borderRadius:10,
-    marginTop: 570,
+    marginTop: 400,
     backgroundColor: '#df555f',
     width: width - 50,
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
+    marginLeft: '6%',
   },
   logoutText: {
     color: 'white',

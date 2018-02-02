@@ -27,8 +27,8 @@ export default class MoreView extends Component {
         <View style={styles.topBar}>
           <Text style={styles.topBarText}>Settings</Text>
         </View>
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        <TouchableOpacity style={styles.logoutButtonContainer}
+        <View style={styles.logoutButtonContainer}>
+        <TouchableOpacity
           onPress={this._logout}>
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>

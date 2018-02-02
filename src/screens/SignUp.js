@@ -77,7 +77,6 @@ export default class Login extends Component {
             <TouchableWithoutFeedback onPress={() => {DismissKeyboard()}}>
                 <ScrollView style={CommonStyle.container}>
                     <View style={styles.formGroup}>
-                        <Text style={styles.title}>Create an account</Text>
                         <Sae
                             label={"First Name"}
                             iconClass={FontAwesomeIcon}
