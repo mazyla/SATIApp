@@ -12,12 +12,32 @@ export default class CheckInView extends Component {
       lastcheckin: new Date(),
       statusMessage: "Happy",
       shareLocation: true,
+      location: '',
     }
 
     checkin = (now) => {
       this.setState({ lastcheckin: now });
-    }
+      setLoc();
+    };
 
+    setLoc = () => {
+      if (this.state.shareLocation === true) {
+        if (!("geolocation" in navigator)) {
+          alert("Geolocation not supported");
+          var locerr = "Geolocation not supported";
+          this.setState({ location: locerr });
+          return;
+        }
+        var geo = navigator.geolocation;
+        geo.getCurrentPosition((p) => {
+          console.log("Timestamp:" + p.timestamp);
+          var loc = ("Lat:" + p.coords.latitude + " Lon:" + p.coords.longitude);
+          this.setState({ location: loc });
+        }, (e) => {console.log("ERROR(" + e.code + "):" + e.message)}, {timeout: 5000});
+      } else {
+        this.setState({ location: '' });
+      }
+    };
 
   }
 
@@ -33,8 +53,6 @@ export default class CheckInView extends Component {
   _onChange = (checkbox) => {
     this.setState({ shareLocation: checkbox });
   }
-
-
 
   render() {
     return (
@@ -65,7 +83,7 @@ export default class CheckInView extends Component {
           <Text style= {styles.shareLocationText}> Share Location </Text>
           <CheckBox style={styles.checkbox}
             iconSize={40}
-            checked={this.state.checked}
+            checked={this.state.shareLocation}
             checkedColor='#ffffff'
             uncheckedColor='#ffffff'
             onChange={this._onChange}
@@ -78,6 +96,7 @@ export default class CheckInView extends Component {
         </TouchableOpacity>
 
           <Text style={{padding:20}}>{ this.formatDate(this.state.lastcheckin) }</Text>
+          <Text style={{padding:20}}>{this.state.location}</Text>
 
       </View>
     );
