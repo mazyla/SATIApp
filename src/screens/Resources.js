@@ -15,8 +15,10 @@ const ASPECT_RATIO = width/height;
 const LATITUDE = 13.73617;
 const LONGITUDE = 100.523186;
 
-const LATITUDE_DELTA = 0.01;
+const LATITUDE_DELTA = 0.12;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
+const markerIDs = ["The Hub", "Surat Clinic", "คลินิก สวท เวชกรรม ดินแดง"];
 
 
 export default class ResourcesView extends React.Component {
@@ -34,6 +36,7 @@ export default class ResourcesView extends React.Component {
       },
       markers: [
         {
+        key: "The Hub",
         coordinate: {
           latitude: 13.740331,
           longitude: 100.514245,
@@ -41,6 +44,7 @@ export default class ResourcesView extends React.Component {
         title: "The Hub",
       },
         {
+          key: "Surat Clinic",
           coordinate: {
             latitude: 13.759573,
             longitude: 100.497486,
@@ -48,6 +52,7 @@ export default class ResourcesView extends React.Component {
           title: "Surat Clinic",
         },
         {
+          key: "คลินิก สวท เวชกรรม ดินแดง",
           coordinate: {
             latitude: 13.760883,
             longitude: 100.555128,
@@ -100,6 +105,12 @@ export default class ResourcesView extends React.Component {
       (error) => this.setState({ error: error.message }),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
     );
+    // this shit does not work, so just manually change
+    // the deltas
+    // this.map.fitToSuppliedMarkers(
+    //   this.state.markers,
+    //   false, // not animated
+    // );
 
   }
 
@@ -107,24 +118,19 @@ export default class ResourcesView extends React.Component {
     return (
       <View>
       <MapView
+        ref={ref => { this.map = ref; }}
         style={styles.map}
         provider={ PROVIDER_GOOGLE }
         region={this.state.region}
         showsUserLocation={true}
         followUserLocation={true}
-        showsCompass={true}
-        showsBuildings={true} >
+        showsCompass={true}  >
         {this.state.markers.map(marker => (
            <Marker
-             key={marker.key}
+             identifier={marker.key}
              coordinate={marker.coordinate}
              pinColor={marker.color}
-             // title={marker.title}
-             // title={marker.title}
-             // onPress={() => this._openResourceDialog(marker.title)}
              onPress={this.showCallout}
-             //onCalloutPress={this._goTo(marker.title)}
-             //onPress={() => {this._goTo(marker.title)}}
            >
            <Callout tooltip={false}
             onPress={() => {this._goTo(marker.title)}}>
