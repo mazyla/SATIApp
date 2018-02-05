@@ -69,10 +69,15 @@ var myStyles = React.StyleSheet.create({
         width: 200,
   },
   map: {
-        position: 'absolute',
-        width: width,
-        height: height - 48,
+        width: '90%',
+        height: '80%',
+        marginTop: '10%',
       },
+  mapContainer: {
+        alignItems: 'center',
+        width: width,
+        height: height,
+  },
   btnimagecontainer: {
         marginTop: 30,
         justifyContent:'center',

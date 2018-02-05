@@ -81,7 +81,8 @@ export default class CheckInView extends Component {
 
         <View style={styles.shareLocationSwitchContainer}>
           <Text style= {styles.shareLocationText}> Share Location </Text>
-          <CheckBox style={styles.checkbox}
+          <CheckBox
+            style={styles.checkbox}
             iconSize={40}
             checked={this.state.shareLocation}
             checkedColor='#ffffff'
