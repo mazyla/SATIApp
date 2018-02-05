@@ -1,9 +1,11 @@
 import TouchableOpacity from 'TouchableOpacity';
+import * as firebase from 'firebase';
 import React, {Component} from 'react';
 import { View, Image, Dimensions, Text} from 'react-native';
 import styles from '../styles/styles.js';
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import openMap from 'react-native-open-maps';
+import { fb } from '../../App'
 
 
 const width = Dimensions.get('window').width
@@ -18,14 +20,16 @@ const LONGITUDE = 100.523186;
 const LATITUDE_DELTA = 0.12;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-const markerIDs = ["The Hub", "Surat Clinic", "คลินิก สวท เวชกรรม ดินแดง"];
+// const markerIDs = ["The Hub", "Surat Clinic", "คลินิก สวท เวชกรรม ดินแดง"];
 
 
 export default class ResourcesView extends React.Component {
   constructor(props) {
     super(props);
 
-    this.mapRef = null;
+    this.map = null;
+
+     this.resourcesRef = fb.database().ref().child('resources');
 
     this.state = {
       region: {
@@ -35,33 +39,34 @@ export default class ResourcesView extends React.Component {
         longitudeDelta: LONGITUDE_DELTA
       },
       markers: [
-        {
-        key: "The Hub",
-        coordinate: {
-          latitude: 13.740331,
-          longitude: 100.514245,
-        },
-        title: "The Hub",
-      },
-        {
-          key: "Surat Clinic",
-          coordinate: {
-            latitude: 13.759573,
-            longitude: 100.497486,
-          },
-          title: "Surat Clinic",
-        },
-        {
-          key: "คลินิก สวท เวชกรรม ดินแดง",
-          coordinate: {
-            latitude: 13.760883,
-            longitude: 100.555128,
-          },
-          title: "คลินิก สวท เวชกรรม ดินแดง",
-        }
       ],
 
     };
+  }
+
+  listenForItems(resourcesRef) {
+
+    resourcesRef.on('value', (snap) => {
+
+      // get children as an array
+      var resources = [];
+      snap.forEach((child) => {
+        resources.push({
+          key: child.key,
+          title: child.key,
+          coordinate: {
+            latitude: child.val().coordinate.latitude,
+            longitude: child.val().coordinate.longitude,
+        },
+          type: child.val().type,
+        });
+      });
+
+      this.setState({
+        markers: resources,
+      });
+
+    });
   }
 
   _goTo(title) {
@@ -105,6 +110,7 @@ export default class ResourcesView extends React.Component {
       (error) => this.setState({ error: error.message }),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
     );
+    this.listenForItems(this.resourcesRef);
     // this shit does not work, so just manually change
     // the deltas
     // this.map.fitToSuppliedMarkers(
@@ -127,6 +133,7 @@ export default class ResourcesView extends React.Component {
         showsCompass={true}  >
         {this.state.markers.map(marker => (
            <Marker
+             key = {marker.key}
              identifier={marker.key}
              coordinate={marker.coordinate}
              pinColor={marker.color}
