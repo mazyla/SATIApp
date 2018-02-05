@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Image, Dimensions} from 'react-native';
+import { View, Image, Dimensions } from 'react-native';
 import styles from '../styles/styles.js';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
@@ -7,13 +7,13 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
-const ASPECT_RATIO = width/height;
+const ASPECT_RATIO = width / height;
 
 // initial constant Bangkok location
 const LATITUDE = 13.73617;
 const LONGITUDE = 100.523186;
 
-const LATITUDE_DELTA = 0.01;
+const LATITUDE_DELTA = 0.1;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 
@@ -26,10 +26,10 @@ export default class ResourcesView extends React.Component {
 
     this.state = {
       region: {
-        longitude: LONGITUDE,
         latitude: LATITUDE,
+        longitude: LONGITUDE,
         latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA
+        longitudeDelta: LONGITUDE_DELTA,
       },
       marker: {
         coordinate: {
@@ -37,8 +37,7 @@ export default class ResourcesView extends React.Component {
           longitude: 100.514245,
         },
         title: "The Hub",
-      }
-
+      },
     };
   }
 
@@ -63,21 +62,22 @@ export default class ResourcesView extends React.Component {
 
   render() {
     return (
-      <MapView
-        style={styles.map}
-        provider={ PROVIDER_GOOGLE }
-        region={this.state.region}
-        showsUserLocation={true}
-        followUserLocation={true}
-        showsCompass={true}
-        showsBuildings={true} >
-
-
+      <View style={styles.mapContainer}>
+        <MapView
+          style={styles.map}
+          provider={ PROVIDER_GOOGLE }
+          region={this.state.region}
+          showsUserLocation={true}
+          followsUserLocation={true}
+          showsCompass={true}
+          showsBuildings={true}
+          loadingEnabled>
           <Marker
             coordinate={this.state.marker.coordinate}
             title={this.state.marker.title}
           />
         </MapView>
+      </View>
     );
   }
 }
