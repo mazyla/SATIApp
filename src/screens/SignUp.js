@@ -67,6 +67,11 @@ export default class Login extends Component {
           gender: this.state.gender
         });
 
+        var currentUser = firebase.auth().currentUser;
+        currentUser.updateProfile({
+          displayName: 'Bill Murray',
+        });
+
 
 
     }

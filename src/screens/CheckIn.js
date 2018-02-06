@@ -1,8 +1,11 @@
+import firebase from 'firebase';
 import React, {Component} from 'react';
 import { View, Text, Image, Picker, Switch, Button, TouchableOpacity } from 'react-native';
 import styles from '../styles/styles.js';
 import CheckBox from 'react-native-checkbox-heaven';
 import PropTypes from 'prop-types';
+import { fb } from '../../App'
+
 
 export default class CheckInView extends Component {
   constructor(props) {
@@ -14,31 +17,51 @@ export default class CheckInView extends Component {
       location: '',
     }
 
-    checkin = (now) => {
-      this.setState({ lastcheckin: now });
-      setLoc();
-    };
-
-    setLoc = () => {
-      if (this.state.shareLocation === true) {
-        if (!("geolocation" in navigator)) {
-          alert("Geolocation not supported");
-          var locerr = "Geolocation not supported";
-          this.setState({ location: locerr });
-          return;
-        }
-        var geo = navigator.geolocation;
-        geo.getCurrentPosition((p) => {
-          //console.log("Timestamp:" + p.timestamp);
-          var loc = ("Lat:" + p.coords.latitude + " Lon:" + p.coords.longitude);
-          this.setState({ location: loc });
-        }, (e) => {console.log("ERROR(" + e.code + "):" + e.message)}, {timeout: 5000});
-      } else {
-        this.setState({ location: '' });
-      }
-    };
+    this.checkInRef = fb.database().ref().child('users_checkIn');
 
   }
+
+  checkin = (now) => {
+    this.setState({ lastcheckin: now });
+    this.setLoc();
+  };
+
+  setLoc = () => {
+    if (this.state.shareLocation === true) {
+      if (!("geolocation" in navigator)) {
+        alert("Geolocation not supported");
+        var locerr = "Geolocation not supported";
+        this.setState({ location: locerr });
+        return;
+      }
+      var geo = navigator.geolocation;
+      geo.getCurrentPosition((p) => {
+        //console.log("Timestamp:" + p.timestamp);
+        var loc = ("Lat:" + p.coords.latitude + " Lon:" + p.coords.longitude);
+        this.setState({ location: loc });
+        this.storeInFirebase();
+      }, (e) => {console.log("ERROR(" + e.code + "):" + e.message)}, {timeout: 5000});
+    } else {
+      alert(this.state.location);
+      this.setState({ location: '' });
+      this.storeInFirebase();
+    }
+
+
+  };
+
+  storeInFirebase = () => {
+    var tempLoc;
+    if (this.state.shareLocation === true) {
+      tempLoc = this.state.location;
+    } else {
+      tempLoc = '';
+    }
+
+    this.checkInRef.push({name: fb.auth().currentUser.displayName,
+      time: this.state.lastcheckin.toString(), location: tempLoc,
+      email: fb.auth().currentUser.email});
+  };
 
   formatDate = (date) => {
     return date.toLocaleString();
@@ -46,7 +69,7 @@ export default class CheckInView extends Component {
 
   _onPress = () => {
     var now = new Date();
-    checkin(now);
+    this.checkin(now);
   }
 
   _onChange = (checkbox) => {
