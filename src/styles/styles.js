@@ -1,6 +1,6 @@
 'use strict';
 import { StyleSheet } from 'react-native';
-import { Constants, wp } from '../constants/constants.js';
+import { Constants, wp, lp } from '../constants/constants.js';
 
 var React = require('react-native');
 
@@ -87,18 +87,6 @@ var myStyles = React.StyleSheet.create({
         height:100,
         width:100,
       },
-  feelingText: {
-        fontSize: 40,
-        marginBottom: -25,
-        color:'black',
-        fontWeight: 'bold',
-        fontFamily: 'Cochin',
-  },
-  checkInContainer: {
-      marginTop: 30,
-      justifyContent: 'center',
-      alignItems: 'center',
-  },
   shareLocationSwitchContainer: {
       borderRadius:10,
       marginTop: 10,
@@ -120,21 +108,6 @@ var myStyles = React.StyleSheet.create({
   checkbox: {
       marginLeft: 30,
   },
-  shareLocationCheckInContainer: {
-    borderRadius:10,
-    marginTop: 10,
-    backgroundColor: '#df555f',
-    width: Constants.width - 50,
-    height: 80,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  checkInText: {
-      color: 'white',
-      fontWeight: 'bold',
-      fontFamily: 'Cochin',
-      fontSize: 40,
-  },
   singleTab: {
     flex: 1,
     backgroundColor: '#fff',
@@ -155,6 +128,119 @@ var myStyles = React.StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
   },
+  /*
+    Check In -start
+  */
+  // Top View for Check In
+  checkInContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+    paddingVertical: 24,
+    marginTop: 0,
+    alignItems: 'center',
+  },
+  // Check in button container
+  checkInUpdateButtonContainer: {
+    marginTop: lp(22),
+    alignItems: 'center',
+    width: '100%',
+    height: lp(8),
+  },
+  // Check in button
+  checkInUpdateButton: {
+    backgroundColor: "#324D5C",
+    width: wp(80),
+    height: lp(8),
+    borderRadius: wp(1.5),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  // Check in button text container
+  checkInUpdateButtonTextContainer: {
+    width: '90%',
+    height: lp(8),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  // Check in button text
+  checkInUpdateButtonText: {
+    color: 'white',
+    fontSize: lp(2.75),
+    fontWeight: 'bold',
+    letterSpacing: wp(0.25)
+  },
+  // Previous check in label text container
+  checkInPreviousLabelContainer: {
+    width: '100%',
+    height: wp(10),
+    marginTop: lp(5),
+    alignItems: 'center',
+  },
+  // Previous check in label text
+  checkInPreviousLabel: {
+    color: 'black',
+    fontSize: lp(2.75),
+    fontWeight: 'bold',
+    letterSpacing: wp(0.25),
+  },
+  // Previous check in date box container
+  checkInPreviousDateBoxContainer: {
+    alignItems: 'center',
+    width: '100%',
+    height: lp(8),
+  },
+  // Previous check in date box
+  checkInPreviousDateBox: {
+    borderWidth: 2,
+    width: wp(80),
+    height: lp(8),
+    borderRadius: wp(1.5),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  // Previous check in date text container
+  checkInPreviousDateTextContainer: {
+    width: '90%',
+    height: lp(8),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  // Previous check in date text
+  checkInPreviousDateText: {
+    color: 'black',
+    fontSize: lp(2.75),
+    letterSpacing: wp(0.25),
+  },
+  // See all container
+  checkInSeeAllContainer: {
+    alignItems: 'center',
+    width: '100%',
+    height: lp(8),
+  },
+  // See all
+  checkInSeeAll: {
+    width: wp(80),
+    height: lp(8),
+    borderRadius: wp(1.5),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  // See all text container
+  checkInSeeAllTextContainer: {
+    width: '90%',
+    height: lp(8),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  // See all text
+  checkInSeeAllText: {
+    color: 'blue',
+    fontSize: lp(2.75),
+    letterSpacing: wp(0.25)
+  },
+  /*
+    Check In -end
+  */
   /*
     News Feed -start
   */

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, Image, Picker, Switch, Button, StyleSheet,
-TouchableOpacity } from 'react-native';
+import { View, Text, Image, Picker, Switch, Button, TouchableOpacity } from 'react-native';
 import styles from '../styles/styles.js';
 import CheckBox from 'react-native-checkbox-heaven';
 import PropTypes from 'prop-types';
@@ -30,7 +29,7 @@ export default class CheckInView extends Component {
         }
         var geo = navigator.geolocation;
         geo.getCurrentPosition((p) => {
-          console.log("Timestamp:" + p.timestamp);
+          //console.log("Timestamp:" + p.timestamp);
           var loc = ("Lat:" + p.coords.latitude + " Lon:" + p.coords.longitude);
           this.setState({ location: loc });
         }, (e) => {console.log("ERROR(" + e.code + "):" + e.message)}, {timeout: 5000});
@@ -45,7 +44,7 @@ export default class CheckInView extends Component {
     return date.toLocaleString();
   }
 
-  _onPress() {
+  _onPress = () => {
     var now = new Date();
     checkin(now);
   }
@@ -57,7 +56,6 @@ export default class CheckInView extends Component {
   render() {
     return (
       <View style={styles.checkInContainer}>
-        <Text style={styles.feelingText}> How I feel today? </Text>
 
         <Picker
           style={{width:300}}
@@ -79,6 +77,18 @@ export default class CheckInView extends Component {
           <Picker.Item label="🤕 Hurt" value="hurt" />
         </Picker>
 
+        <View style={styles.checkInUpdateButtonContainer}>
+          <TouchableOpacity
+          activeOpacity={1}
+          onPress={this._onPress}>
+            <View style={styles.checkInUpdateButton}>
+              <View style={styles.checkInUpdateButtonTextContainer}>
+                <Text style={styles.checkInUpdateButtonText}>Safety Check</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>
+
         <View style={styles.shareLocationSwitchContainer}>
           <Text style= {styles.shareLocationText}> Share Location </Text>
           <CheckBox
@@ -91,13 +101,32 @@ export default class CheckInView extends Component {
           />
         </View>
 
-        <TouchableOpacity style={styles.shareLocationCheckInContainer}
-          onPress={this._onPress}>
-          <Text style= {styles.checkInText}> Check In </Text>
-        </TouchableOpacity>
+        <View style={styles.checkInPreviousLabelContainer}>
+          <Text style={styles.checkInPreviousLabel}>Previous Check In</Text>
+        </View>
 
-          <Text style={{padding:20}}>{ this.formatDate(this.state.lastcheckin) }</Text>
-          <Text style={{padding:20}}>{this.state.location}</Text>
+        <View style={styles.checkInPreviousDateBoxContainer}>
+          <View style={styles.checkInPreviousDateBox}>
+            <View style={styles.checkInPreviousDateTextContainer}>
+              <Text style={styles.checkInPreviousDateText}>Last Check In Goes Here</Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.checkInSeeAllContainer}>
+          <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => { alert(`You've clicked SEE ALL'`); }}>
+            <View style={styles.checkInSeeAll}>
+              <View style={styles.checkInSeeAllTextContainer}>
+                <Text style={styles.checkInSeeAllText}>See All ></Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <Text style={{padding:20}}>{ this.formatDate(this.state.lastcheckin) }</Text>
+        <Text style={{padding:20}}>{this.state.location}</Text>
 
       </View>
     );
