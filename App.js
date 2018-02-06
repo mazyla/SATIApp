@@ -186,3 +186,5 @@ export default class App extends Component {
         return <LoginStack />;
   }
 }
+
+export const fb = firebaseApp;
