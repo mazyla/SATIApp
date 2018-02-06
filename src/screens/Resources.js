@@ -11,7 +11,7 @@ import { fb } from '../../App'
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
-const ASPECT_RATIO = width/height;
+const ASPECT_RATIO = width / height;
 
 // initial constant Bangkok location
 const LATITUDE = 13.73617;
@@ -31,10 +31,10 @@ export default class ResourcesView extends React.Component {
 
     this.state = {
       region: {
-        longitude: LONGITUDE,
         latitude: LATITUDE,
+        longitude: LONGITUDE,
         latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA
+        longitudeDelta: LONGITUDE_DELTA,
       },
       markers: [
       ],
@@ -114,7 +114,7 @@ export default class ResourcesView extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.mapContainer}>
       <MapView
         ref={ref => { this.map = ref; }}
         style={styles.map}
