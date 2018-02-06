@@ -1,0 +1,13 @@
+import { Dimensions } from 'react-native';
+
+export const Constants = {
+  width : Dimensions.get('window').width,
+  height : Dimensions.get('window').height,
+  sliderWidth : Dimensions.get('window').width,
+  itemWidth : wp(75) + wp(2) * 2,
+};
+
+export function wp (percentage) {
+  const value = (percentage * Dimensions.get('window').width) / 100;
+  return Math.round(value);
+}

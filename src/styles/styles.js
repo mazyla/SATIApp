@@ -1,8 +1,7 @@
 'use strict';
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Constants, wp } from '../constants/constants.js';
 
-const width = Dimensions.get('window').width
-const height = Dimensions.get('window').height
 var React = require('react-native');
 
 var myStyles = React.StyleSheet.create({
@@ -75,8 +74,8 @@ var myStyles = React.StyleSheet.create({
       },
   mapContainer: {
         alignItems: 'center',
-        width: width,
-        height: height,
+        width: Constants.width,
+        height: Constants.height,
   },
   btnimagecontainer: {
         marginTop: 30,
@@ -104,7 +103,7 @@ var myStyles = React.StyleSheet.create({
       borderRadius:10,
       marginTop: 10,
       backgroundColor: '#55ab98',
-      width: width - 50,
+      width: Constants.width - 50,
       height: 60,
       justifyContent: 'center',
       alignItems: 'center',
@@ -125,7 +124,7 @@ var myStyles = React.StyleSheet.create({
     borderRadius:10,
     marginTop: 10,
     backgroundColor: '#df555f',
-    width: width - 50,
+    width: Constants.width - 50,
     height: 80,
     justifyContent: 'center',
     alignItems: 'center',
@@ -139,13 +138,13 @@ var myStyles = React.StyleSheet.create({
   singleTab: {
     flex: 1,
     backgroundColor: '#fff',
-    height: height,
+    height: Constants.height,
   },
   logoutButtonContainer: {
     borderRadius:10,
     marginTop: 400,
     backgroundColor: '#df555f',
-    width: width - 50,
+    width: Constants.width - 50,
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
@@ -155,7 +154,120 @@ var myStyles = React.StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 18,
-  }
+  },
+  /*
+    News Feed -start
+  */
+  // Top View for NewsFeed
+  newsFeedContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+    paddingVertical: 22,
+    marginTop: 0,
+  },
+  // Carousel slider
+  newsFeedSlider: {
+    overflow: 'visible',
+  },
+  // Carousel slider content container
+  newsFeedSliderContentContainer: {
+    paddingVertical: 10,
+  },
+  // Carousel container
+  newsFeedCarouselContainer: {
+    alignItems: 'center',
+    marginTop: 0,
+    width: '100%',
+  },
+  // Carousel slide container
+  newsFeedCarouselSlideContainer: {
+    width: '100%',
+    height: '100%',
+  },
+  // Carousel slide
+  newsFeedCarouselSlide: {
+    backgroundColor: '#324d5c',
+    width: Constants.itemWidth,
+    height: Constants.itemWidth,
+  },
+  // Carousel slide image
+  newsFeedCarouselSlideImage: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
+  // Carousel slide image title
+  newsFeedCarouselSlideImageTitle: {
+    marginTop: wp(1),
+    color: 'black',
+    fontSize: wp(6),
+    fontWeight: 'bold',
+    letterSpacing: wp(0.25),
+  },
+  // Carousel slide image subtitle
+  newsFeedCarouselSlideImageSubtitle: {
+    marginBottom: wp(0.25),
+    color: 'gray',
+    fontSize: wp(4),
+    fontStyle: 'italic',
+    paddingVertical: 3,
+  },
+  // Carousel slide text container
+  newsFeedCarouselSlideTextContainer: {
+    position: 'absolute',
+    alignItems: 'center',
+    opacity: 90,
+    width: '90%',
+    height: '100%',
+  },
+  // Carousel slide text container background
+  newsFeedCarouselSlideTextBackgroundContainer: {
+    alignItems: 'center',
+    width: '100%',
+    height: wp(16),
+    backgroundColor: 'white',
+    opacity: 0.8,
+  },
+  // Carousel slide text container background container
+  newsFeedCarouselSlideTextBackgroundContainerFlex: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    flexDirection: 'column',
+  },
+  // Pagination container
+  newsFeedPaginationContainer: {
+    paddingVertical: 8,
+  },
+  // Pagination dots
+  newsFeedPaginationDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    marginHorizontal: 0,
+  },
+  // See all
+  newsFeedSeeAll: {
+    marginTop: 5,
+    width: '20%',
+  },
+  // See all text
+  newsFeedSeeAllText: {
+    fontSize: wp(4),
+    color: 'blue',
+  },
+  // See all container
+  newsFeedSeeAllContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  // See all empty box
+  newsFeedSeeAllEmptyBox: {
+    width: '20%',
+  },
+  /*
+    News Feed -end
+  */
 });
 
 module.exports = myStyles;
