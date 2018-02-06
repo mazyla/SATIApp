@@ -20,8 +20,6 @@ const LONGITUDE = 100.523186;
 const LATITUDE_DELTA = 0.12;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-// const markerIDs = ["The Hub", "Surat Clinic", "คลินิก สวท เวชกรรม ดินแดง"];
-
 
 export default class ResourcesView extends React.Component {
   constructor(props) {
@@ -111,12 +109,6 @@ export default class ResourcesView extends React.Component {
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
     );
     this.listenForItems(this.resourcesRef);
-    // this shit does not work, so just manually change
-    // the deltas
-    // this.map.fitToSuppliedMarkers(
-    //   this.state.markers,
-    //   false, // not animated
-    // );
 
   }
 
