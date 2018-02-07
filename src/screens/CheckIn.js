@@ -69,7 +69,7 @@ export default class CheckInView extends Component {
           <Picker.Item label="😌 Relaxed" value="relaxed" />
           <Picker.Item label="😢 Sad" value="sad" />
           <Picker.Item label="😵 Confused" value="confused" />
-          <Picker.Item label="😊 Good" value="good" />
+          <Picker.Item label="😊 좋아" value="good" />
           <Picker.Item label="😟 Concerned" value="concerned" />
           <Picker.Item label="😴 Tired" value="tired" />
           <Picker.Item label="🆘 Need Help" value="help" />

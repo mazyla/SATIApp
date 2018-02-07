@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { View, Text, Image, StatusBar,
   TouchableNativeFeedback, TouchableHighlight, TouchableOpacity } from 'react-native';
 import styles from '../styles/styles.js';
-// Phone Call and SMS messaging (Can also open web addresses and email)
+import { Constants } from '../constants/constants.js';
 import Communications from 'react-native-communications';
 
 export default class EmergencyCallView extends Component {
@@ -12,33 +12,14 @@ export default class EmergencyCallView extends Component {
       location: null,
     }
   }
-/*
-  componentDidMount() {
-    this.geoCheck();
+
+  emergencyCall = () => {
+    Communications.phonecall(Constants.EMERGENCY_NUMBER, true);
   }
 
-  geoCheck = () => {
-    if("geolocation" in navigator) {
-      console.log("Geolocation supported");
-      this.getloc();
-    } else {
-      console.log("Geolocation not supported");
-      return "Geolocation not supported";
-    }
+  emergencySMS = () => {
+    Communications.text(Constants.EMERGENCY_NUMBER, null);
   }
-
-  getloc = () => {
-    geo = navigator.geolocation;
-    geo.getCurrentPosition((p) => {
-      console.log("Timestamp:" + p.timestamp);
-      console.log("Lat:" + p.coords.latitude + " Lon:" + p.coords.longitude);
-      return ("Lat:" + p.coords.latitude + " Lon:" + p.coords.longitude);
-    }, (e) => {console.log("ERROR(" + e.code + "):" + e.message)}, {timeout: 5000});
-  }
-*/
-  // _onPress = () => {
-  //   this.setState({location: Math.random() % 5});
-  // }
 
   render() {
     return (
@@ -50,7 +31,7 @@ export default class EmergencyCallView extends Component {
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
 
           <TouchableOpacity
-            onPress={() => {Communications.phonecall('0803874355', true)}}>
+            onPress={this.emergencyCall}>
             <View style={styles.btnimagecontainer}>
               <Image
                 source = {require('../../images/call.jpg')}
@@ -61,7 +42,7 @@ export default class EmergencyCallView extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => {Communications.text('0803874355', null)}}>
+            onPress={this.emergencySMS}>
             <View style={styles.btnimagecontainer}>
               <Image
                 source = {require('../../images/message.jpg')}
