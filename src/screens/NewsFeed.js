@@ -3,6 +3,7 @@ import { View, Image, Text, TouchableOpacity } from 'react-native';
 import styles from '../styles/styles.js';
 import { Constants } from '../constants/constants.js';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
+import { fb } from '../../App';
 
 const ENTRIES = [
   {
