@@ -20,6 +20,18 @@ const LONGITUDE = 100.523186;
 const LATITUDE_DELTA = 0.12;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
+var mark = (markertype) => {
+  var img;
+  switch(markertype) {
+    case 'hub': img = require('../../react-native/img/food.png'); break;
+    case 'clinic': img = require('../../react-native/img/clinic.png'); break;
+    case 'food': img = require('../../react-native/img/food.png'); break;
+    case 'shelter': img = require('../../react-native/img/shelter.png'); break;
+    default: img = require('../../react-native/img/clinic.png'); break;
+  }
+  return img;
+};
+
 
 export default class ResourcesView extends React.Component {
   constructor(props) {
@@ -92,6 +104,8 @@ export default class ResourcesView extends React.Component {
     }
 
 
+
+
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -130,13 +144,13 @@ export default class ResourcesView extends React.Component {
              coordinate={marker.coordinate}
              pinColor={marker.color}
              onPress={this.showCallout}
+             image={mark(marker.type)}
            >
            <Callout tooltip={false}
             onPress={() => {this._goTo(marker.title)}}>
             <Text>{marker.title}</Text>
             </Callout>
            </Marker>
-
          ))}
        </MapView>
        </View>
