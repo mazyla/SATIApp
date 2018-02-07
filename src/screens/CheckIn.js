@@ -46,8 +46,6 @@ export default class CheckInView extends Component {
       this.setState({ location: '' });
       this.storeInFirebase();
     }
-
-
   };
 
   storeInFirebase = () => {
@@ -57,7 +55,6 @@ export default class CheckInView extends Component {
     } else {
       tempLoc = '';
     }
-
     this.checkInRef.push({name: fb.auth().currentUser.displayName,
       time: this.state.lastcheckin.toString(), location: tempLoc,
       email: fb.auth().currentUser.email});

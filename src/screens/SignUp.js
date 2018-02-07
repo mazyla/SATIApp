@@ -69,7 +69,7 @@ export default class Login extends Component {
 
         var currentUser = firebase.auth().currentUser;
         currentUser.updateProfile({
-          displayName: 'Bill Murray',
+          displayName: this.state.displayName,
         });
 
 
