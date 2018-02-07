@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { View, Image, Text, TouchableOpacity, StatusBar } from 'react-native';
 import styles from '../styles/styles.js';
 import { Constants } from '../constants/constants.js';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
@@ -68,8 +68,11 @@ export default class NewsFeedView extends Component {
   render() {
     return (
       <View style={styles.newsFeedContainer}>
-        <View style={styles.topBar}>
-          <Text style={styles.topBarText}>Feed</Text>
+        <View style={styles.topBarContainer}>
+          <StatusBar hidden={false} />
+          <View style={styles.topBarTextContainer}>
+            <Text style={styles.topBarText}>News Feed</Text>
+          </View>
         </View>
         <View style={styles.newsFeedCarouselContainer}>
           <Carousel

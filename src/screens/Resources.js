@@ -1,7 +1,7 @@
 import TouchableOpacity from 'TouchableOpacity';
 import * as firebase from 'firebase';
 import React, {Component} from 'react';
-import { View, Image, Dimensions, Text} from 'react-native';
+import { View, Image, Dimensions, Text, StatusBar } from 'react-native';
 import styles from '../styles/styles.js';
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import openMap from 'react-native-open-maps';
@@ -115,6 +115,14 @@ export default class ResourcesView extends React.Component {
   render() {
     return (
       <View style={styles.mapContainer}>
+
+      <View style={styles.topBarContainer}>
+        <StatusBar hidden={false} />
+        <View style={styles.topBarTextContainer}>
+          <Text style={styles.topBarText}>Resources</Text>
+        </View>
+      </View>
+
       <MapView
         ref={ref => { this.map = ref; }}
         style={styles.map}

@@ -5,6 +5,7 @@ import { Constants, wp, lp } from '../constants/constants.js';
 var React = require('react-native');
 
 var myStyles = React.StyleSheet.create({
+  // home, sign up, login
   container: {
     flex: 1,
   },
@@ -42,72 +43,19 @@ var myStyles = React.StyleSheet.create({
     marginBottom: 1.5,
     backgroundColor: 'transparent',
   },
-  page: {
-    flex: 1,
-    backgroundColor: '#f9f9f9',
-  },
-  image: {
-    marginTop: 200,
-    height: 200,
-    width: 200,
-  },
-  topBar: {
-    height: 48,
-    backgroundColor: "#55ab98",
-  },
-  topBarText: {
-    color: 'white',
-    textAlign: 'center',
-    marginTop: 22,
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
-  satiImage: {
-        marginTop: 100,
-        height: 200,
-        width: 200,
-  },
+  //***
+  // resources
   map: {
         width: '90%',
-        height: '80%',
-        marginTop: '10%',
+        height: '70%',
+        marginTop: '5%',
       },
   mapContainer: {
         alignItems: 'center',
         width: Constants.width,
         height: Constants.height,
   },
-  btnimagecontainer: {
-        marginTop: 30,
-        justifyContent:'center',
-        alignItems:'center',
-        padding:50,
-      },
-  btnimage: {
-        height:100,
-        width:100,
-      },
-  shareLocationSwitchContainer: {
-      borderRadius:10,
-      marginTop: 10,
-      backgroundColor: '#55ab98',
-      width: Constants.width - 50,
-      height: 60,
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexDirection: 'row',
-  },
-  shareLocationText: {
-      color: 'white',
-      fontWeight: 'bold',
-      fontFamily: 'Cochin',
-      fontSize: 30,
-      marginLeft: -30,
-      marginRight: 60,
-  },
-  checkbox: {
-      marginLeft: 30,
-  },
+  //***
   singleTab: {
     flex: 1,
     backgroundColor: '#fff',
@@ -129,13 +77,77 @@ var myStyles = React.StyleSheet.create({
     fontSize: 18,
   },
   /*
+    Top bar -start
+  */
+  // Top view for the top bar
+  topBarContainer: {
+    height: lp(10),
+    backgroundColor: "#55ab98",
+    width: '100%',
+    alignItems: 'center',
+  },
+  // Text container for top bar
+  topBarTextContainer: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+  },
+  // Top bar text
+  topBarText: {
+    color: 'white',
+    textAlign: 'center',
+    width: '100%',
+    fontWeight: 'bold',
+    fontSize: lp(5),
+  },
+  /*
+    Top bar -end
+  */
+  /*
+    Emergency Call -start
+  */
+  // Emergency Call top view
+  emergencyCallContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+  },
+  // Buttons container
+  emergencyCallButtonContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+  },
+  // Button view container
+  emergencyCallButton: {
+    padding: wp(15),
+  },
+  // Button image container
+  emergencyCallButtonImageContainer: {
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+  // Button image
+  emergencyCallButtonImage: {
+    height: wp(30),
+    width: wp(30),
+  },
+  // Button text
+  emergencyCallButtonText: {
+    fontSize: lp(5),
+    textAlign: 'center',
+  },
+  /*
+    Emergency Call -end
+  */
+  /*
     Check In -start
   */
   // Top View for Check In
   checkInContainer: {
     flex: 1,
     backgroundColor: 'white',
-    paddingVertical: 24,
     marginTop: 0,
     alignItems: 'center',
   },
@@ -157,7 +169,7 @@ var myStyles = React.StyleSheet.create({
   },
   // Check in button text container
   checkInUpdateButtonTextContainer: {
-    width: '90%',
+    width: '80%',
     height: lp(8),
     alignItems: 'center',
     justifyContent: 'center',
@@ -168,6 +180,29 @@ var myStyles = React.StyleSheet.create({
     fontSize: lp(2.75),
     fontWeight: 'bold',
     letterSpacing: wp(0.25)
+  },
+  // Share location container
+  checkInShareLocationContainer: {
+      borderRadius: wp(3),
+      borderWidth: 1,
+      borderColor: 'black',
+      backgroundColor: '#fff',
+      width: '80%',
+      height: lp(15),
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'row',
+  },
+  // Share location text
+  checkInShareLocationText: {
+      color: 'black',
+      fontWeight: 'bold',
+      fontFamily: 'Cochin',
+      fontSize: lp(5),
+  },
+  // Share location check box
+  checkInShareLocationCheckBox: {
+    marginRight: lp(5),
   },
   // Previous check in label text container
   checkInPreviousLabelContainer: {
@@ -248,7 +283,6 @@ var myStyles = React.StyleSheet.create({
   newsFeedContainer: {
     flex: 1,
     backgroundColor: 'white',
-    paddingVertical: 22,
     marginTop: 0,
   },
   // Carousel slider

@@ -23,36 +23,40 @@ export default class EmergencyCallView extends Component {
 
   render() {
     return (
-      <View style={styles.singleTab}>
+      <View style={styles.emergencyCallContainer}>
 
-        <View style={styles.topBar}>
-          <Text style={styles.topBarText}>Emergency</Text>
+        <View style={styles.topBarContainer}>
+          <StatusBar hidden={false} />
+          <View style={styles.topBarTextContainer}>
+            <Text style={styles.topBarText}>Emergency</Text>
+          </View>
         </View>
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
 
-          <TouchableOpacity
-            onPress={this.emergencyCall}>
-            <View style={styles.btnimagecontainer}>
-              <Image
-                source = {require('../../images/call.jpg')}
-                style = {styles.btnimage}
-              />
-              <Text>Call The Hub</Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={this.emergencySMS}>
-            <View style={styles.btnimagecontainer}>
-              <Image
-                source = {require('../../images/message.jpg')}
-                style = {styles.btnimage}
-              />
-              <Text>Text The Hub</Text>
-            </View>
-          </TouchableOpacity>
-
+        <View style={styles.emergencyCallButtonContainer}>
+          <View style={styles.emergencyCallButton}>
+            <TouchableOpacity onPress={this.emergencySMS}>
+              <View style={styles.emergencyCallButtonImageContainer}>
+                <Image
+                  source = {require('../../images/message.jpg')}
+                  style = {styles.emergencyCallButtonImage}
+                />
+                <Text style={styles.emergencyCallButtonText}>Text The Hub</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.emergencyCallButton}>
+            <TouchableOpacity onPress={this.emergencyCall}>
+              <View style={styles.emergencyCallButtonImageContainer}>
+                <Image
+                  source = {require('../../images/call.jpg')}
+                  style = {styles.emergencyCallButtonImage}
+                />
+                <Text style={styles.emergencyCallButtonText}>Call The Hub</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
+
       </View>
     );
   }

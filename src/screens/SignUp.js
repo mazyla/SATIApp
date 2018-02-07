@@ -96,7 +96,7 @@ export default class Login extends Component {
                             iconClass={FontAwesomeIcon}
                             iconName={"pencil"}
                             iconColor={"white"}
-                            onChangeText={(password) => this.setState({password})}
+                            onChangeText={(lastName) => this.setState({lastName})}
                             password={true}
                             autoCapitalize="none"
                         />

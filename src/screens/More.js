@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import React, {Component} from 'react';
-import { View, Text, Button, TouchableOpacity } from 'react-native';
+import { View, Text, Button, TouchableOpacity, StatusBar } from 'react-native';
 import styles from '../styles/styles.js';
 
 export default class MoreView extends Component {
@@ -24,9 +24,14 @@ export default class MoreView extends Component {
   render() {
     return (
       <View style={styles.singleTab}>
-        <View style={styles.topBar}>
+
+      <View style={styles.topBarContainer}>
+        <StatusBar hidden={false} />
+        <View style={styles.topBarTextContainer}>
           <Text style={styles.topBarText}>Settings</Text>
         </View>
+      </View>
+
         <View style={styles.logoutButtonContainer}>
         <TouchableOpacity
           onPress={this._logout}>
