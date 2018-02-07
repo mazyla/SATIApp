@@ -103,9 +103,6 @@ export default class ResourcesView extends React.Component {
       openMap({ latitude: lat, longitude: long, provider: PROVIDER_GOOGLE, zoom: 18 });
     }
 
-
-
-
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -128,41 +125,41 @@ export default class ResourcesView extends React.Component {
 
   render() {
     return (
-      <View style={styles.mapContainer}>
+      <View style={styles.resourcesContainer}>
 
-      <View style={styles.topBarContainer}>
-        <StatusBar hidden={false} />
-        <View style={styles.topBarTextContainer}>
-          <Text style={styles.topBarText}>Resources</Text>
+        <View style={styles.topBarContainer}>
+          <StatusBar hidden={false} />
+          <View style={styles.topBarTextContainer}>
+            <Text style={styles.topBarText}>Resources</Text>
+          </View>
         </View>
+
+        <MapView
+          ref={ref => { this.map = ref; }}
+          style={styles.resourcesMap}
+          provider={PROVIDER_GOOGLE}
+          region={this.state.region}
+          showsUserLocation={true}
+          followUserLocation={true}
+          showsCompass={true}>
+          {this.state.markers.map(marker => (
+             <Marker
+               key={marker.key}
+               identifier={marker.key}
+               coordinate={marker.coordinate}
+               pinColor={marker.color}
+               onPress={this.showCallout}
+               image={mark(marker.type)}
+             >
+             <Callout tooltip={false}
+              onPress={() => {this._goTo(marker.title)}}>
+                <Text>{marker.title}</Text>
+              </Callout>
+             </Marker>
+           ))}
+        </MapView>
+
       </View>
-
-      <MapView
-        ref={ref => { this.map = ref; }}
-        style={styles.map}
-        provider={ PROVIDER_GOOGLE }
-        region={this.state.region}
-        showsUserLocation={true}
-        followUserLocation={true}
-        showsCompass={true}  >
-        {this.state.markers.map(marker => (
-           <Marker
-             key = {marker.key}
-             identifier={marker.key}
-             coordinate={marker.coordinate}
-             pinColor={marker.color}
-             onPress={this.showCallout}
-             image={mark(marker.type)}
-           >
-           <Callout tooltip={false}
-            onPress={() => {this._goTo(marker.title)}}>
-            <Text>{marker.title}</Text>
-            </Callout>
-           </Marker>
-         ))}
-       </MapView>
-       </View>
-);
-
+   );
   }
 }

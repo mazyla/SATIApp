@@ -44,18 +44,6 @@ var myStyles = React.StyleSheet.create({
     backgroundColor: 'transparent',
   },
   //***
-  // resources
-  map: {
-        width: '90%',
-        height: '70%',
-        marginTop: '5%',
-      },
-  mapContainer: {
-        alignItems: 'center',
-        width: Constants.width,
-        height: Constants.height,
-  },
-  //***
   singleTab: {
     flex: 1,
     backgroundColor: '#fff',
@@ -81,7 +69,7 @@ var myStyles = React.StyleSheet.create({
   */
   // Top view for the top bar
   topBarContainer: {
-    height: lp(10),
+    height: lp(7),
     backgroundColor: "#55ab98",
     width: '100%',
     alignItems: 'center',
@@ -98,10 +86,27 @@ var myStyles = React.StyleSheet.create({
     textAlign: 'center',
     width: '100%',
     fontWeight: 'bold',
-    fontSize: lp(5),
+    fontSize: lp(3),
   },
   /*
     Top bar -end
+  */
+  /*
+    Resources -start
+  */
+  // Resources top view
+  resourcesContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+  },
+  // Map
+  resourcesMap: {
+    width: '100%',
+    height: lp(80),
+  },
+  /*
+    Resources -end
   */
   /*
     Emergency Call -start
@@ -135,7 +140,7 @@ var myStyles = React.StyleSheet.create({
   },
   // Button text
   emergencyCallButtonText: {
-    fontSize: lp(5),
+    fontSize: lp(3),
     textAlign: 'center',
   },
   /*
@@ -148,7 +153,6 @@ var myStyles = React.StyleSheet.create({
   checkInContainer: {
     flex: 1,
     backgroundColor: 'white',
-    marginTop: 0,
     alignItems: 'center',
   },
   // Check in button container
@@ -283,7 +287,6 @@ var myStyles = React.StyleSheet.create({
   newsFeedContainer: {
     flex: 1,
     backgroundColor: 'white',
-    marginTop: 0,
   },
   // Carousel slider
   newsFeedSlider: {

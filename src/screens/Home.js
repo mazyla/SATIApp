@@ -10,7 +10,6 @@ import {
   Text, Image,
   View, Animated, Dimensions,
   TouchableWithoutFeedback,
-  StatusBar,
 } from 'react-native';
 import * as firebase from 'firebase';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
@@ -114,8 +113,7 @@ export default class App extends Component<*, State> {
         return (
           <TouchableWithoutFeedback
             key={route.key}
-            onPress={() => props.jumpToIndex(index)}
-          >
+            onPress={() => props.jumpToIndex(index)}>
             <Animated.View style={styles.tab}>
               {this._renderIcon(props)({ route, index })}
               {this._renderLabel(props)({ route, index })}
@@ -131,52 +129,30 @@ export default class App extends Component<*, State> {
       case '1':
         return (
           <View>
-            <StatusBar
-              barStyle="light-content" />
-            <View style={ styles.topBar } >
-              <Text style={ styles.topBarText }>
-                Emergency </Text>
-            </View>
             <EmergencyCallView />
           </View>
         );
       case '2':
         return (
           <View>
-            <View style={ styles.topBar } >
-              <Text style={ styles.topBarText }>
-                Resources </Text>
-            </View>
             <ResourcesView/>
           </View>
         );
       case '3':
         return (
           <View>
-            <View style={ styles.topBar } >
-              <Text style={ styles.topBarText }>
-                All Feeds </Text>
-            </View>
             <NewsFeedView/>
           </View>
         );
       case '4':
         return (
           <View>
-            <View style={ styles.topBar } >
-              <Text style={ styles.topBarText }>
-                Check-In </Text>
-            </View>
             <CheckInView />
           </View>
         );
       case '5':
         return (
           <View>
-            <View style={ styles.topBar } >
-              <Text style={ styles.topBarText }>
-                Settings </Text>
-            </View>
             <MoreView />
           </View>
         );

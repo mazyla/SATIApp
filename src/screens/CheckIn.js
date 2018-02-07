@@ -79,12 +79,12 @@ export default class CheckInView extends Component {
     return (
       <View style={styles.checkInContainer}>
 
-      <View style={styles.topBarContainer}>
-        <StatusBar hidden={false} />
-        <View style={styles.topBarTextContainer}>
-          <Text style={styles.topBarText}>Update Status</Text>
+        <View style={styles.topBarContainer}>
+          <StatusBar hidden={false} />
+          <View style={styles.topBarTextContainer}>
+            <Text style={styles.topBarText}>Update Status</Text>
+          </View>
         </View>
-      </View>
 
         <View style={styles.checkInUpdateButtonContainer}>
           <TouchableOpacity

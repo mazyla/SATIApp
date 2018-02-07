@@ -18,6 +18,6 @@ export function wp (percentage) {
 //takes a number representing the percentage of the height of the screen and
 //returns the number of pixels that would fill that percentage
 export function lp (percentage) {
-    const value = (percentage * Dimensions.get('window').width) / 100;
+    const value = (percentage * Dimensions.get('window').height) / 100;
     return Math.round(value);
 }
