@@ -12,7 +12,7 @@ export default class CheckInView extends Component {
     super(props);
     this.state = {
       lastcheckin: new Date(),
-      statusMessage: "Happy",
+      statusMessage: "None",
       shareLocation: true,
       location: '',
     }
@@ -24,6 +24,7 @@ export default class CheckInView extends Component {
   checkin = (now) => {
     this.setState({ lastcheckin: now });
     this.setLoc();
+    alert("Checked in!");
   };
 
   setLoc = () => {
@@ -36,13 +37,11 @@ export default class CheckInView extends Component {
       }
       var geo = navigator.geolocation;
       geo.getCurrentPosition((p) => {
-        //console.log("Timestamp:" + p.timestamp);
         var loc = ("Lat:" + p.coords.latitude + " Lon:" + p.coords.longitude);
         this.setState({ location: loc });
         this.storeInFirebase();
       }, (e) => {console.log("ERROR(" + e.code + "):" + e.message)});
     } else {
-      alert(this.state.location);
       this.setState({ location: '' });
       this.storeInFirebase();
     }
@@ -57,7 +56,7 @@ export default class CheckInView extends Component {
     }
     this.checkInRef.push({
       name: fb.auth().currentUser.displayName,
-      time: this.state.lastcheckin.toString(), location: tempLoc,
+      time: this.formatDate(this.state.lastcheckin), location: tempLoc,
       email: fb.auth().currentUser.email
     });
   };
@@ -86,50 +85,6 @@ export default class CheckInView extends Component {
           </View>
         </View>
 
-        <View style={styles.checkInUpdateButtonContainer}>
-          <TouchableOpacity
-          activeOpacity={1}
-          onPress={this._onPress}>
-            <View style={styles.checkInUpdateButton}>
-              <View style={styles.checkInUpdateButtonTextContainer}>
-                <Text style={styles.checkInUpdateButtonText}>Safety Check</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.checkInShareLocationContainer}>
-          <CheckBox
-            style={styles.checkInShareLocationCheckBox}
-            iconName='iosCircleMix'
-            checked={this.state.shareLocation}
-            checkedColor='#000'
-            uncheckedColor='#000'
-            onChange={this._onChange}
-          />
-          <Text style= {styles.checkInShareLocationText}>Share Location</Text>
-        </View>
-
-        <Picker
-          style={{width:300}}
-          selectedValue={this.state.statusMessage}
-          onValueChange={(itemValue, itemIndex) => this.setState({statusMessage: itemValue})}>
-          <Picker.Item label="🙂 Happy" value="happy" />
-          <Picker.Item label="🌷 Hopeful" value="hopeful" />
-          <Picker.Item label="😍 Loved" value="loved" />
-          <Picker.Item label="😀 Thankful" value="thankful" />
-          <Picker.Item label="😁 Awesome" value="awesome" />
-          <Picker.Item label="😌 Relaxed" value="relaxed" />
-          <Picker.Item label="😢 Sad" value="sad" />
-          <Picker.Item label="😵 Confused" value="confused" />
-          <Picker.Item label="😊 좋아" value="good" />
-          <Picker.Item label="😟 Concerned" value="concerned" />
-          <Picker.Item label="😴 Tired" value="tired" />
-          <Picker.Item label="🆘 Need Help" value="help" />
-          <Picker.Item label="😷 Sick" value="sick" />
-          <Picker.Item label="🤕 Hurt" value="hurt" />
-        </Picker>
-
         <View style={styles.checkInPreviousLabelContainer}>
           <Text style={styles.checkInPreviousLabel}>Previous Check In</Text>
         </View>
@@ -154,8 +109,50 @@ export default class CheckInView extends Component {
           </TouchableOpacity>
         </View>
 
-        <Text style={{padding:20}}>{ this.formatDate(this.state.lastcheckin) }</Text>
-        <Text style={{padding:20}}>{this.state.location}</Text>
+        <View style={styles.checkInUpdateButtonContainer}>
+          <TouchableOpacity
+          activeOpacity={1}
+          onPress={this._onPress}>
+            <View style={styles.checkInUpdateButtonTextContainer}>
+              <Text style={styles.checkInUpdateButtonText}>Safety Check</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.checkInShareLocationContainer}>
+          <CheckBox
+            style={styles.checkInShareLocationCheckBox}
+            iconName='iosCircleMix'
+            checked={this.state.shareLocation}
+            checkedColor='#000'
+            uncheckedColor='#000'
+            onChange={this._onChange}
+          />
+          <Text style={styles.checkInShareLocationText}>Share Location</Text>
+        </View>
+
+        <View style={styles.checkInStatusPickerContainer}>
+          <Picker
+            style={styles.checkInStatusPicker}
+            selectedValue={this.state.statusMessage}
+            onValueChange={(itemValue, itemIndex) => this.setState({statusMessage: itemValue})}>
+            <Picker.Item label="None" value="none" />
+            <Picker.Item label="🙂 Happy" value="happy" />
+            <Picker.Item label="🌷 Hopeful" value="hopeful" />
+            <Picker.Item label="😍 Loved" value="loved" />
+            <Picker.Item label="😀 Thankful" value="thankful" />
+            <Picker.Item label="😁 Awesome" value="awesome" />
+            <Picker.Item label="😌 Relaxed" value="relaxed" />
+            <Picker.Item label="😢 슬퍼" value="sad" />
+            <Picker.Item label="😵 Confused" value="confused" />
+            <Picker.Item label="😊 좋아" value="good" />
+            <Picker.Item label="😟 Concerned" value="concerned" />
+            <Picker.Item label="😴 Tired" value="tired" />
+            <Picker.Item label="🆘 Need Help" value="help" />
+            <Picker.Item label="😷 Sick" value="sick" />
+            <Picker.Item label="🤕 Hurt" value="hurt" />
+          </Picker>
+        </View>
 
       </View>
     );
