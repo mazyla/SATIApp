@@ -157,12 +157,59 @@ var myStyles = React.StyleSheet.create({
     backgroundColor: 'white',
     alignItems: 'center',
   },
+  // Check in stats container
+  checkInStatsContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: lp(30),
+  },
+  // Total check ins container
+  checkInTotalCheckInsContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: lp(10),
+    margin: wp(3),
+  },
+  // Total check ins
+  checkInTotalCheckIns: {
+    fontSize: lp(7),
+  },
+  // Total check ins label
+  checkInTotalCheckInsLabel: {
+    fontSize: lp(3),
+  },
+  // Other stats containers container
+  checkInOtherStatsContainerContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    height: lp(10),
+    margin: wp(3),
+  },
+  // Other stats container
+  checkInOtherStatsContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '50%',
+    height: '100%',
+    margin: lp(2),
+  },
+  // Other stats
+  checkInOtherStats: {
+    fontSize: lp(5),
+  },
+  // Other stats label
+  checkInOtherStatsLabel: {
+    fontSize: lp(2),
+  },
   // Check in container
   checkInUpdateContainer: {
-    borderWidth: wp(0.25),
-    borderRadius: wp(3),
-    margin: wp(5),
+    margin: wp(10),
     alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    height: lp(40),
   },
   // Check in button
   checkInUpdateButton: {
@@ -174,30 +221,27 @@ var myStyles = React.StyleSheet.create({
   checkInUpdateButtonContainer: {
     alignItems: 'center',
     width: '100%',
-    padding: wp(3),
   },
   // Check in button text container
   checkInUpdateButtonTextContainer: {
     backgroundColor: "#324D5C",
     width: wp(30),
     height: wp(30),
-    borderRadius: wp(15),
+    borderRadius: wp(30),
     justifyContent: 'center',
     alignItems: 'center',
   },
   // Check in button text
   checkInUpdateButtonText: {
     color: 'white',
-    fontSize: lp(2.75),
+    fontSize: lp(2.5),
     fontWeight: 'bold',
-    letterSpacing: wp(0.25),
   },
   // Share location container
   checkInShareLocationContainer: {
-      padding: wp(3),
       backgroundColor: '#fff',
-      width: '80%',
-      height: lp(15),
+      width: '50%',
+      height: lp(7),
       justifyContent: 'center',
       alignItems: 'center',
       flexDirection: 'row',
@@ -207,18 +251,17 @@ var myStyles = React.StyleSheet.create({
       color: 'black',
       fontWeight: 'bold',
       fontFamily: 'Cochin',
-      fontSize: lp(2.75),
+      fontSize: lp(2.25),
   },
   // Share location check box
   checkInShareLocationCheckBox: {
-    marginRight: lp(2.75),
+    marginRight: lp(2.25),
   },
   // Status picker container
   checkInStatusPickerContainer: {
-    width: wp(60),
+    width: wp(26),
     borderWidth: wp(0.25),
     borderRadius: wp(3),
-    margin: wp(3),
   },
   // Status picker
   checkInStatusPicker: {

@@ -85,19 +85,23 @@ export default class CheckInView extends Component {
           </View>
         </View>
 
-        <View>
-          <Text>198</Text>
-          <Text>Total check ins</Text>
-        </View>
+        <View style={{height: '100%', justifyContent: 'center'}}>
 
-        <View>
-          <View>
-            <Text>15</Text>
-            <Text>Total check ins this month</Text>
+        <View style={styles.checkInStatsContainer}>
+          <View style={styles.checkInTotalCheckInsContainer}>
+            <Text style={styles.checkInTotalCheckIns}>198</Text>
+            <Text style={styles.checkInTotalCheckInsLabel}>Total check ins</Text>
           </View>
-          <View>
-            <Text>?</Text>
-            <Text>Average emoji</Text>
+
+          <View style={styles.checkInOtherStatsContainerContainer}>
+            <View style={styles.checkInOtherStatsContainer}>
+              <Text style={styles.checkInOtherStats}>15</Text>
+              <Text style={styles.checkInOtherStatsLabel}>Consecutive days</Text>
+            </View>
+            <View style={styles.checkInOtherStatsContainer}>
+              <Text style={styles.checkInOtherStats}>🙂</Text>
+              <Text style={styles.checkInOtherStatsLabel}>Average emoji</Text>
+            </View>
           </View>
         </View>
 
@@ -109,20 +113,20 @@ export default class CheckInView extends Component {
               selectedValue={this.state.statusMessage}
               onValueChange={(itemValue, itemIndex) => this.setState({statusMessage: itemValue})}>
               <Picker.Item label="None" value="none" />
-              <Picker.Item label="🙂 Happy" value="happy" />
-              <Picker.Item label="🌷 Hopeful" value="hopeful" />
-              <Picker.Item label="😍 Loved" value="loved" />
-              <Picker.Item label="😀 Thankful" value="thankful" />
-              <Picker.Item label="😁 Awesome" value="awesome" />
-              <Picker.Item label="😌 Relaxed" value="relaxed" />
-              <Picker.Item label="😢 슬퍼" value="sad" />
-              <Picker.Item label="😵 Confused" value="confused" />
-              <Picker.Item label="😊 좋아" value="good" />
-              <Picker.Item label="😟 Concerned" value="concerned" />
-              <Picker.Item label="😴 Tired" value="tired" />
-              <Picker.Item label="🆘 Need Help" value="help" />
-              <Picker.Item label="😷 Sick" value="sick" />
-              <Picker.Item label="🤕 Hurt" value="hurt" />
+              <Picker.Item label="🙂  Happy" value="happy" />
+              <Picker.Item label="🌷  Hopeful" value="hopeful" />
+              <Picker.Item label="😍  Loved" value="loved" />
+              <Picker.Item label="😀  Thankful" value="thankful" />
+              <Picker.Item label="😁  Awesome" value="awesome" />
+              <Picker.Item label="😌  Relaxed" value="relaxed" />
+              <Picker.Item label="😢  슬퍼" value="sad" />
+              <Picker.Item label="😵  Confused" value="confused" />
+              <Picker.Item label="😊  좋아" value="good" />
+              <Picker.Item label="😟  Concerned" value="concerned" />
+              <Picker.Item label="😴  Tired" value="tired" />
+              <Picker.Item label="🆘  Need Help" value="help" />
+              <Picker.Item label="😷  Sick" value="sick" />
+              <Picker.Item label="🤕  Hurt" value="hurt" />
             </Picker>
           </View>
 
@@ -148,6 +152,8 @@ export default class CheckInView extends Component {
               </View>
             </TouchableOpacity>
           </View>
+
+        </View>
 
         </View>
 
