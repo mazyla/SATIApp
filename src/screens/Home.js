@@ -60,20 +60,14 @@ export default class App extends Component<*, State> {
     ],
   };
 
-  _handleIndexChange = index =>
-    this.setState({
-      index,
-    });
+  _handleIndexChange = index => this.setState({ index });
 
   _renderLabel = ({ position, navigationState }) => ({ route, index }) => {
     const inputRange = navigationState.routes.map((x, i) => i);
     const outputRange = inputRange.map(
       inputIndex => (inputIndex === index ? '#58aa96' : '#939393')
     );
-    const color = position.interpolate({
-      inputRange,
-      outputRange,
-    });
+    const color = position.interpolate({ inputRange, outputRange });
     return (
       <Animated.Text style={[styles.label, { color }]}>
         {route.title}
@@ -108,7 +102,7 @@ export default class App extends Component<*, State> {
   };
 
   _renderFooter = props => (
-    <View style={styles.tabbar}>
+    <View styles={{borderWidth: 5, padding: 3}}>
       {props.navigationState.routes.map((route, index) => {
         return (
           <TouchableWithoutFeedback

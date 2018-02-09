@@ -85,73 +85,70 @@ export default class CheckInView extends Component {
           </View>
         </View>
 
-        <View style={styles.checkInPreviousLabelContainer}>
-          <Text style={styles.checkInPreviousLabel}>Previous Check In</Text>
+        <View>
+          <Text>198</Text>
+          <Text>Total check ins</Text>
         </View>
 
-        <View style={styles.checkInPreviousDateBoxContainer}>
-          <View style={styles.checkInPreviousDateBox}>
-            <View style={styles.checkInPreviousDateTextContainer}>
-              <Text style={styles.checkInPreviousDateText}>Last Check In Goes Here</Text>
-            </View>
+        <View>
+          <View>
+            <Text>15</Text>
+            <Text>Total check ins this month</Text>
+          </View>
+          <View>
+            <Text>?</Text>
+            <Text>Average emoji</Text>
           </View>
         </View>
 
-        <View style={styles.checkInSeeAllContainer}>
-          <TouchableOpacity
-          activeOpacity={1}
-          onPress={() => { alert(`You've clicked SEE ALL'`); }}>
-            <View style={styles.checkInSeeAll}>
-              <View style={styles.checkInSeeAllTextContainer}>
-                <Text style={styles.checkInSeeAllText}>See All ></Text>
+        <View style={styles.checkInUpdateContainer}>
+
+          <View style={styles.checkInStatusPickerContainer}>
+            <Picker
+              style={styles.checkInStatusPicker}
+              selectedValue={this.state.statusMessage}
+              onValueChange={(itemValue, itemIndex) => this.setState({statusMessage: itemValue})}>
+              <Picker.Item label="None" value="none" />
+              <Picker.Item label="🙂 Happy" value="happy" />
+              <Picker.Item label="🌷 Hopeful" value="hopeful" />
+              <Picker.Item label="😍 Loved" value="loved" />
+              <Picker.Item label="😀 Thankful" value="thankful" />
+              <Picker.Item label="😁 Awesome" value="awesome" />
+              <Picker.Item label="😌 Relaxed" value="relaxed" />
+              <Picker.Item label="😢 슬퍼" value="sad" />
+              <Picker.Item label="😵 Confused" value="confused" />
+              <Picker.Item label="😊 좋아" value="good" />
+              <Picker.Item label="😟 Concerned" value="concerned" />
+              <Picker.Item label="😴 Tired" value="tired" />
+              <Picker.Item label="🆘 Need Help" value="help" />
+              <Picker.Item label="😷 Sick" value="sick" />
+              <Picker.Item label="🤕 Hurt" value="hurt" />
+            </Picker>
+          </View>
+
+          <View style={styles.checkInShareLocationContainer}>
+            <CheckBox
+              style={styles.checkInShareLocationCheckBox}
+              iconName='iosCircleMix'
+              checked={this.state.shareLocation}
+              checkedColor='#000'
+              uncheckedColor='#000'
+              onChange={this._onChange}
+            />
+            <Text style={styles.checkInShareLocationText}>Share Location</Text>
+          </View>
+
+          <View style={styles.checkInUpdateButtonContainer}>
+            <TouchableOpacity
+            style={styles.checkInUpdateButton}
+            activeOpacity={1}
+            onPress={this._onPress}>
+              <View style={styles.checkInUpdateButtonTextContainer}>
+                <Text style={styles.checkInUpdateButtonText}>Safety Check</Text>
               </View>
-            </View>
-          </TouchableOpacity>
-        </View>
+            </TouchableOpacity>
+          </View>
 
-        <View style={styles.checkInUpdateButtonContainer}>
-          <TouchableOpacity
-          activeOpacity={1}
-          onPress={this._onPress}>
-            <View style={styles.checkInUpdateButtonTextContainer}>
-              <Text style={styles.checkInUpdateButtonText}>Safety Check</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.checkInShareLocationContainer}>
-          <CheckBox
-            style={styles.checkInShareLocationCheckBox}
-            iconName='iosCircleMix'
-            checked={this.state.shareLocation}
-            checkedColor='#000'
-            uncheckedColor='#000'
-            onChange={this._onChange}
-          />
-          <Text style={styles.checkInShareLocationText}>Share Location</Text>
-        </View>
-
-        <View style={styles.checkInStatusPickerContainer}>
-          <Picker
-            style={styles.checkInStatusPicker}
-            selectedValue={this.state.statusMessage}
-            onValueChange={(itemValue, itemIndex) => this.setState({statusMessage: itemValue})}>
-            <Picker.Item label="None" value="none" />
-            <Picker.Item label="🙂 Happy" value="happy" />
-            <Picker.Item label="🌷 Hopeful" value="hopeful" />
-            <Picker.Item label="😍 Loved" value="loved" />
-            <Picker.Item label="😀 Thankful" value="thankful" />
-            <Picker.Item label="😁 Awesome" value="awesome" />
-            <Picker.Item label="😌 Relaxed" value="relaxed" />
-            <Picker.Item label="😢 슬퍼" value="sad" />
-            <Picker.Item label="😵 Confused" value="confused" />
-            <Picker.Item label="😊 좋아" value="good" />
-            <Picker.Item label="😟 Concerned" value="concerned" />
-            <Picker.Item label="😴 Tired" value="tired" />
-            <Picker.Item label="🆘 Need Help" value="help" />
-            <Picker.Item label="😷 Sick" value="sick" />
-            <Picker.Item label="🤕 Hurt" value="hurt" />
-          </Picker>
         </View>
 
       </View>

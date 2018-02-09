@@ -8,19 +8,20 @@ var myStyles = React.StyleSheet.create({
   // home, sign up, login
   container: {
     flex: 1,
+    // height: lp(13),
   },
   tabbar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: '#f4f4f4',
-    height: lp(13),
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
+    // backgroundColor: '#f4f4f4',
+    // height: lp(13),
   },
   tab: {
-    flex: 1,
-    alignItems: 'center',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: 'rgba(0, 0, 0, .2)',
-    paddingTop: 4.5,
+    // flex: 1,
+    // alignItems: 'center',
+    // borderTopWidth: StyleSheet.hairlineWidth,
+    // borderTopColor: 'rgba(0, 0, 0, .2)',
+    // paddingTop: 4.5,
   },
   iconContainer: {
     //height: 30,
@@ -36,13 +37,13 @@ var myStyles = React.StyleSheet.create({
     // color: '#58aa96',
   },
   outline: {
-    color: '#939393',
+    // color: '#939393',
   },
   label: {
-    fontSize: 1,
-    marginTop: 3,
-    marginBottom: 1.5,
-    backgroundColor: 'transparent',
+    //fontSize: wp(2),
+    //marginTop: wp(3),
+    //marginBottom: 1.5,
+    // backgroundColor: 'transparent',
   },
   //***
   singleTab: {
@@ -156,6 +157,19 @@ var myStyles = React.StyleSheet.create({
     backgroundColor: 'white',
     alignItems: 'center',
   },
+  // Check in container
+  checkInUpdateContainer: {
+    borderWidth: wp(0.25),
+    borderRadius: wp(3),
+    margin: wp(5),
+    alignItems: 'center',
+  },
+  // Check in button
+  checkInUpdateButton: {
+    width: wp(30),
+    height: wp(30),
+    borderRadius: wp(15),
+  },
   // Check in button container
   checkInUpdateButtonContainer: {
     alignItems: 'center',
@@ -165,9 +179,9 @@ var myStyles = React.StyleSheet.create({
   // Check in button text container
   checkInUpdateButtonTextContainer: {
     backgroundColor: "#324D5C",
-    width: wp(60),
-    height: lp(10),
-    borderRadius: wp(2),
+    width: wp(30),
+    height: wp(30),
+    borderRadius: wp(15),
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -176,7 +190,7 @@ var myStyles = React.StyleSheet.create({
     color: 'white',
     fontSize: lp(2.75),
     fontWeight: 'bold',
-    letterSpacing: wp(0.25)
+    letterSpacing: wp(0.25),
   },
   // Share location container
   checkInShareLocationContainer: {
@@ -204,79 +218,11 @@ var myStyles = React.StyleSheet.create({
     width: wp(60),
     borderWidth: wp(0.25),
     borderRadius: wp(3),
+    margin: wp(3),
   },
   // Status picker
   checkInStatusPicker: {
     width: '100%',
-  },
-  // Previous check in label text container
-  checkInPreviousLabelContainer: {
-    width: '100%',
-    height: wp(10),
-    marginTop: lp(5),
-    alignItems: 'center',
-  },
-  // Previous check in label text
-  checkInPreviousLabel: {
-    color: 'black',
-    fontSize: lp(2.75),
-    fontWeight: 'bold',
-    letterSpacing: wp(0.25),
-  },
-  // Previous check in date box container
-  checkInPreviousDateBoxContainer: {
-    alignItems: 'center',
-    width: '100%',
-    height: lp(8),
-  },
-  // Previous check in date box
-  checkInPreviousDateBox: {
-    borderWidth: wp(0.25),
-    width: wp(80),
-    height: lp(8),
-    borderRadius: wp(1.5),
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  // Previous check in date text container
-  checkInPreviousDateTextContainer: {
-    width: '90%',
-    height: lp(8),
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  // Previous check in date text
-  checkInPreviousDateText: {
-    color: 'black',
-    fontSize: lp(2.75),
-    letterSpacing: wp(0.25),
-  },
-  // See all container
-  checkInSeeAllContainer: {
-    alignItems: 'center',
-    width: '100%',
-    height: lp(8),
-  },
-  // See all
-  checkInSeeAll: {
-    width: wp(80),
-    height: lp(8),
-    borderRadius: wp(1.5),
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  // See all text container
-  checkInSeeAllTextContainer: {
-    width: '90%',
-    height: lp(8),
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  // See all text
-  checkInSeeAllText: {
-    color: 'blue',
-    fontSize: lp(2.75),
-    letterSpacing: wp(0.25)
   },
   /*
     Check In -end
