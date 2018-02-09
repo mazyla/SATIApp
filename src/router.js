@@ -81,7 +81,6 @@ export const Tabs = TabNavigator({
    },
  },
 },
-}
  {
     tabBarPosition: 'bottom',  // So your Android tabs go bottom
     tabBarOptions: {
