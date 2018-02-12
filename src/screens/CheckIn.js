@@ -11,16 +11,17 @@ import { fb } from '../../App'
 export default class CheckInView extends Component {
   constructor(props) {
     super(props);
+
+    this.checkInRef = fb.database().ref().child('users_checkIn');
+
     this.state = {
       lastcheckin: new Date(),
       statusMessage: "None",
       shareLocation: true,
       location: '',
-      totalCheckIns: 0,
+      totalCheckIns: this.getTotalCheckIns(),
     }
-
-    this.checkInRef = fb.database().ref().child('users_checkIn');
-
+    
   }
 
   getTotalCheckIns = () => {
