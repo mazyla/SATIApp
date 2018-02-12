@@ -21,7 +21,7 @@ export default class CheckInView extends Component {
       location: '',
       totalCheckIns: this.getTotalCheckIns(),
     }
-    
+
   }
 
   getTotalCheckIns = () => {
@@ -39,14 +39,14 @@ export default class CheckInView extends Component {
     this.setLocation();
 
     //this.storeInFirebase();
-    // Alert.alert(
-    //   'Checked in!',
-    //   (this.state.shareLocation ? 'With' : 'Without') + ' location' + '\n' + (this.state.statusMessage === 'None' ? '' : this.state.statusMessage),
-    //   [
-    //     {text: 'OK', onPress: () => {}},
-    //   ],
-    //   { cancelable: false },
-    // );
+    Alert.alert(
+      'Checked in!',
+      (this.state.shareLocation ? 'With' : 'Without') + ' location' + '\n' + (this.state.statusMessage === 'None' ? '' : this.state.statusMessage),
+      [
+        {text: 'OK', onPress: () => {}},
+      ],
+      { cancelable: false },
+    );
   };
 
   setStatus = (itemValue, itemIndex) => {
@@ -80,7 +80,7 @@ export default class CheckInView extends Component {
   };
 
   storeInFirebase = (test) => {
-    alert(test);
+    //alert(test);
     var tempLoc = this.state.shareLocation ? this.state.location : '';
     //alert(tempLoc + ' ' + this.state.shareLocation);
     this.checkInRef.push({
@@ -160,10 +160,8 @@ export default class CheckInView extends Component {
               style={styles.checkInShareLocationCheckBox}
               checked={this.state.shareLocation}
               onPress={() => this.setState({ shareLocation: !this.state.shareLocation })}
-              checkedIcon='dot-circle-o'
-              uncheckedIcon='circle-o'
+              title='Share Location'
             />
-            <Text style={styles.checkInShareLocationText}>Share Location</Text>
           </View>
 
           <View style={styles.checkInUpdateButtonContainer}>

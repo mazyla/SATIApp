@@ -51,7 +51,7 @@ export default class EmergencyCallView extends Component {
                   source = {require('../../images/call.jpg')}
                   style = {styles.emergencyCallButtonImage}
                 />
-                <Text style={styles.emergencyCallButtonText}>Call The Hub</Text>
+                <Text style={styles.emergencyCallButtonText}>Call The Childline</Text>
               </View>
             </TouchableOpacity>
           </View>

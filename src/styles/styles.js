@@ -242,6 +242,7 @@ var myStyles = React.StyleSheet.create({
       backgroundColor: '#fff',
       width: '50%',
       height: lp(7),
+      margin: lp(2),
       justifyContent: 'center',
       alignItems: 'center',
       flexDirection: 'row',
@@ -254,20 +255,21 @@ var myStyles = React.StyleSheet.create({
       fontSize: lp(2.25),
   },
   // Share location check box
-  checkInShareLocationCheckBox: {
-    marginRight: lp(2.25),
-  },
+  // checkInShareLocationCheckBox: {
+  //   //marginRight: lp(2.25),
+  //   //**********
+  // },
   // Status picker container
   checkInStatusPickerContainer: {
     width: '40%',
     borderWidth: wp(0.25),
     borderRadius: wp(3),
-    height: lp(10),
+    height: lp(7),
   },
   // Status picker
   checkInStatusPicker: {
     width: '100%',
-    height: lp(10),
+    height: lp(7),
   },
   /*
     Check In -end
