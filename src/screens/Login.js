@@ -37,23 +37,6 @@ export default class Login extends Component {
 
         this.props.navigation.navigate('SignUp');
 
-        // try {
-        //     await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
-        //
-        //     this.setState({
-        //         response: "account created"
-        //     });
-        //
-        //     setTimeout(() => {
-        //         this.props.navigation.navigate('Tabs');
-        //     }, 1500);
-        //
-        // } catch (error) {
-        //     this.setState({
-        //         response: error.toString()
-        //     })
-        // }
-
     }
 
     async login() {

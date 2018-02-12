@@ -27,6 +27,10 @@ export default class CheckInView extends Component {
     alert("Checked in!");
   };
 
+  componentWillMount() {
+    this.setState({shareLocation: true});
+  };
+
   setLoc = () => {
     if (this.state.shareLocation === true) {
       if (!("geolocation" in navigator)) {
@@ -72,7 +76,7 @@ export default class CheckInView extends Component {
 
   _onChange = (checkbox) => {
     this.setState({ shareLocation: checkbox });
-  }
+  };
 
   render() {
     return (
