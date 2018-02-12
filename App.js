@@ -18,17 +18,25 @@ export default class App extends Component {
     this.state = {
       loading: true,
     };
-  }
+
+    _setLoadingUser = (user) => {
+        this.setState ({
+          loading: false,
+          user: user,
+        })
+      };
+
+      console.ignoredYellowBox = [
+        'Setting a timer'
+];
+    }
 
   componentDidMount() {
     this.authSubscription = firebase.auth().onAuthStateChanged((user) => {
-      this.setState({
-        loading: false,
-        user: user,
-      });
+      _setLoadingUser(user);
     });
   }
-
+  
   componentWillUnmount() {
     this.authSubscription();
   }
