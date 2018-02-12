@@ -259,14 +259,15 @@ var myStyles = React.StyleSheet.create({
   },
   // Status picker container
   checkInStatusPickerContainer: {
-    width: wp(26),
+    width: '40%',
     borderWidth: wp(0.25),
     borderRadius: wp(3),
+    height: lp(10),
   },
   // Status picker
   checkInStatusPicker: {
     width: '100%',
-    height: lp(20),
+    height: lp(10),
   },
   /*
     Check In -end

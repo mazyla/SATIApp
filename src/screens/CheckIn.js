@@ -1,8 +1,9 @@
 import firebase from 'firebase';
 import React, {Component} from 'react';
-import { View, Text, Image, Picker, Switch, Button, TouchableOpacity, StatusBar } from 'react-native';
+import { View, Text, Image, Picker, Switch, Button, TouchableOpacity, StatusBar, Alert } from 'react-native';
 import styles from '../styles/styles.js';
-import CheckBox from 'react-native-checkbox-heaven';
+//import CheckBox from 'react-native-checkbox-heaven';
+import { CheckBox } from 'react-native-elements';
 import PropTypes from 'prop-types';
 import { fb } from '../../App'
 
@@ -15,49 +16,77 @@ export default class CheckInView extends Component {
       statusMessage: "None",
       shareLocation: true,
       location: '',
+      totalCheckIns: 0,
     }
 
     this.checkInRef = fb.database().ref().child('users_checkIn');
 
   }
 
-  checkin = (now) => {
-    this.setState({ lastcheckin: now });
-    this.setLoc();
-    alert("Checked in!");
+  getTotalCheckIns = () => {
+    var user = fb.auth().currentUser.email;
+    var count = 0;
+    var userCheckIn = this.checkInRef.orderByChild("email").equalTo(user);
+    userCheckIn.on("child_added", function(snapshot) {
+      count++;
+    });
+    return count;
   };
 
-  setLoc = () => {
+  checkIn = () => {
+    this.setState({ lastcheckin: new Date() });
+    this.setLocation();
+
+    //this.storeInFirebase();
+    // Alert.alert(
+    //   'Checked in!',
+    //   (this.state.shareLocation ? 'With' : 'Without') + ' location' + '\n' + (this.state.statusMessage === 'None' ? '' : this.state.statusMessage),
+    //   [
+    //     {text: 'OK', onPress: () => {}},
+    //   ],
+    //   { cancelable: false },
+    // );
+  };
+
+  setStatus = (itemValue, itemIndex) => {
+    this.setState({statusMessage: itemValue});
+  };
+
+  setLocation = () => {
+    //alert(this.state.shareLocation);
     if (this.state.shareLocation === true) {
-      if (!("geolocation" in navigator)) {
-        alert("Geolocation not supported");
-        var locerr = "Geolocation not supported";
-        this.setState({ location: locerr });
-        return;
-      }
-      var geo = navigator.geolocation;
-      geo.getCurrentPosition((p) => {
-        var loc = ("Lat:" + p.coords.latitude + " Lon:" + p.coords.longitude);
+      // if (!("geolocation" in navigator)) {
+      //   alert("Geolocation not supported");
+      //   var locerr = "Geolocation not supported";
+      //   this.setState({ location: locerr });
+      //   return;
+      // }
+      var test = 0;
+      navigator.geolocation.getCurrentPosition((position) => {
+        var lat = position.coords.latitude;
+        var lon = position.coords.longitude;
+        var loc = ("Lat:" + lat + " Lon:" + lon);
+        //alert(loc);
         this.setState({ location: loc });
-        this.storeInFirebase();
+        test++;
+        //this.storeInFirebase();
       }, (e) => {console.log("ERROR(" + e.code + "):" + e.message)});
+      this.storeInFirebase(test);
     } else {
       this.setState({ location: '' });
       this.storeInFirebase();
     }
   };
 
-  storeInFirebase = () => {
-    var tempLoc;
-    if (this.state.shareLocation === true) {
-      tempLoc = this.state.location;
-    } else {
-      tempLoc = '';
-    }
+  storeInFirebase = (test) => {
+    alert(test);
+    var tempLoc = this.state.shareLocation ? this.state.location : '';
+    //alert(tempLoc + ' ' + this.state.shareLocation);
     this.checkInRef.push({
       name: fb.auth().currentUser.displayName,
-      time: this.formatDate(this.state.lastcheckin), location: tempLoc,
-      email: fb.auth().currentUser.email
+      time: this.formatDate(this.state.lastcheckin),
+      location: tempLoc,
+      email: fb.auth().currentUser.email,
     });
   };
 
@@ -66,12 +95,7 @@ export default class CheckInView extends Component {
   }
 
   _onPress = () => {
-    var now = new Date();
-    this.checkin(now);
-  }
-
-  _onChange = (checkbox) => {
-    this.setState({ shareLocation: checkbox });
+    this.checkIn();
   }
 
   render() {
@@ -89,8 +113,8 @@ export default class CheckInView extends Component {
 
         <View style={styles.checkInStatsContainer}>
           <View style={styles.checkInTotalCheckInsContainer}>
-            <Text style={styles.checkInTotalCheckIns}>198</Text>
-            <Text style={styles.checkInTotalCheckInsLabel}>Total check ins</Text>
+            <Text style={styles.checkInTotalCheckIns}>{this.getTotalCheckIns()}</Text>
+            <Text style={styles.checkInTotalCheckInsLabel}>Total check-ins</Text>
           </View>
 
           <View style={styles.checkInOtherStatsContainerContainer}>
@@ -111,33 +135,32 @@ export default class CheckInView extends Component {
             <Picker
               style={styles.checkInStatusPicker}
               selectedValue={this.state.statusMessage}
-              onValueChange={(itemValue, itemIndex) => this.setState({statusMessage: itemValue})}>
-              <Picker.Item label="None" value="none" />
-              <Picker.Item label="🙂  Happy" value="happy" />
-              <Picker.Item label="🌷  Hopeful" value="hopeful" />
-              <Picker.Item label="😍  Loved" value="loved" />
-              <Picker.Item label="😀  Thankful" value="thankful" />
-              <Picker.Item label="😁  Awesome" value="awesome" />
-              <Picker.Item label="😌  Relaxed" value="relaxed" />
-              <Picker.Item label="😢  슬퍼" value="sad" />
-              <Picker.Item label="😵  Confused" value="confused" />
-              <Picker.Item label="😊  좋아" value="good" />
-              <Picker.Item label="😟  Concerned" value="concerned" />
-              <Picker.Item label="😴  Tired" value="tired" />
-              <Picker.Item label="🆘  Need Help" value="help" />
-              <Picker.Item label="😷  Sick" value="sick" />
-              <Picker.Item label="🤕  Hurt" value="hurt" />
+              onValueChange={this.setStatus}>
+              <Picker.Item label="None" value="None" />
+              <Picker.Item label="🙂 Happy" value="🙂 Happy" />
+              <Picker.Item label="🌷 Hopeful" value="🌷 Hopeful" />
+              <Picker.Item label="😍 Loved" value="😍 Loved" />
+              <Picker.Item label="😀 Thankful" value="😀 Thankful" />
+              <Picker.Item label="😁 Awesome" value="😁 Awesome" />
+              <Picker.Item label="😌 Relaxed" value="😌 Relaxed" />
+              <Picker.Item label="😢 Sad" value="😢 Sad" />
+              <Picker.Item label="😵 Confused" value="😵 Confused" />
+              <Picker.Item label="😊 Good" value="😊 Good" />
+              <Picker.Item label="😟 Concerned" value="😟 Concerned" />
+              <Picker.Item label="😴 Tired" value="😴 Tired" />
+              <Picker.Item label="🆘 Need Help" value="🆘 Need Help" />
+              <Picker.Item label="😷 Sick" value="😷 Sick" />
+              <Picker.Item label="🤕 Hurt" value="🤕 Hurt" />
             </Picker>
           </View>
 
           <View style={styles.checkInShareLocationContainer}>
             <CheckBox
               style={styles.checkInShareLocationCheckBox}
-              iconName='iosCircleMix'
               checked={this.state.shareLocation}
-              checkedColor='#000'
-              uncheckedColor='#000'
-              onChange={this._onChange}
+              onPress={() => this.setState({ shareLocation: !this.state.shareLocation })}
+              checkedIcon='dot-circle-o'
+              uncheckedIcon='circle-o'
             />
             <Text style={styles.checkInShareLocationText}>Share Location</Text>
           </View>
