@@ -105,7 +105,7 @@ var myStyles = React.StyleSheet.create({
   // Map
   resourcesMap: {
     width: '100%',
-    height: lp(80), //*** depends on the tabbar height
+    height: lp(82), //*** depends on the tabbar height
   },
   /*
     Resources -end
@@ -266,6 +266,7 @@ var myStyles = React.StyleSheet.create({
   // Status picker
   checkInStatusPicker: {
     width: '100%',
+    height: lp(20),
   },
   /*
     Check In -end
