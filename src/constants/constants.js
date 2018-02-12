@@ -5,7 +5,7 @@ export const Constants = {
   height : Dimensions.get('window').height,
   sliderWidth : Dimensions.get('window').width,
   itemWidth : wp(75) + wp(2) * 2,
-  EMERGENCY_NUMBER: '0803874355',
+  EMERGENCY_NUMBER: '1387',
 };
 
 //takes a number representing the percentage of the width of the screen and
