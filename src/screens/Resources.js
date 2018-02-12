@@ -23,7 +23,7 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 var mark = (markertype) => {
   var img;
   switch(markertype) {
-    case 'hub': img = require('../../react-native/img/food.png'); break;
+    case 'hub': img = require('../../react-native/img/hub.png'); break;
     case 'clinic': img = require('../../react-native/img/clinic.png'); break;
     case 'food': img = require('../../react-native/img/food.png'); break;
     case 'shelter': img = require('../../react-native/img/shelter.png'); break;
@@ -79,27 +79,30 @@ export default class ResourcesView extends React.Component {
     });
   }
 
-  _goTo(title) {
-    var lat;
-    var long;
-    switch(title) {
-      case 'The Hub':
-        lat = 13.740331;
-        long = 100.514245;
-        break;
-      case 'Surat Clinic':
-        lat = 13.759573;
-        long = 100.497486;
-        break;
-      case 'คลินิก สวท เวชกรรม ดินแดง':
-        lat = 13.760883;
-        long = 100.555128;
-        break;
-      default:
-        lat = LATITUDE;
-        long = LONGITUDE;
-        break;
-    }
+  _goTo(title, coordinate) {
+    var lat = coordinate.latitude;
+    var long = coordinate.longitude;
+    // switch(title) {
+    //   case 'The Hub':
+    //     lat = 13.740331;
+    //     long = 100.514245;
+    //     break;
+    //   case 'Surat Clinic':
+    //     lat = 13.759573;
+    //     long = 100.497486;
+    //     break;
+    //   case 'คลินิก สวท เวชกรรม ดินแดง':
+    //     lat = 13.760883;
+    //     long = 100.555128;
+    //     break;
+    //   case 'Free Chinese Clinic':
+    //     lat = ;
+    //     long = ;
+    //   default:
+    //     lat = LATITUDE;
+    //     long = LONGITUDE;
+    //     break;
+    // }
       openMap({ latitude: lat, longitude: long, provider: PROVIDER_GOOGLE, zoom: 18 });
     }
 
@@ -152,7 +155,7 @@ export default class ResourcesView extends React.Component {
                image={mark(marker.type)}
              >
              <Callout tooltip={false}
-              onPress={() => {this._goTo(marker.title)}}>
+              onPress={() => {this._goTo(marker.title, marker.coordinate)}}>
                 <Text>{marker.title}</Text>
               </Callout>
              </Marker>
