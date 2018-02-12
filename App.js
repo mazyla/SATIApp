@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { LoginStack, Tabs, Login } from './src/router'
-// import  { Login } from './src/screens/Login';
 import * as firebase from 'firebase';
 
 // Initialize Firebase
@@ -30,9 +29,9 @@ export default class App extends Component {
     });
   }
 
-  // componentWillUnmount() {
-  //   this.authSubscription();
-  // }
+  componentWillUnmount() {
+    this.authSubscription();
+  }
 
 
   render() {

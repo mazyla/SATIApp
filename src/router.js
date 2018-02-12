@@ -4,7 +4,6 @@ import {
     Text, Platform
 } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
-//import { Icon } from 'react-native-elements';
 
 import EmergencyCall from './screens/EmergencyCall'
 import Resources from './screens/Resources'
@@ -81,8 +80,8 @@ export const Tabs = TabNavigator({
      ),
    },
  },
-}, {
-
+},
+ {
     tabBarPosition: 'bottom',  // So your Android tabs go bottom
     tabBarOptions: {
       inactiveTintColor: '#a09e9f', // Color of tab when not pressed
@@ -120,19 +119,4 @@ export const LoginStack = StackNavigator({
           title: 'Create an account',
     },
   },
-// },
-  // {
-  //     tabBarPosition: 'bottom',  // So your Android tabs go bottom
-  //     tabBarOptions: {
-  //       activeTintColor: '55ab98',  // Color of tab when pressed
-  //       inactiveTintColor: '#a09e9f', // Color of tab when not pressed
-  //       showIcon: 'true', // Shows an icon for both iOS and Android
-  //
-  //       labelStyle: {
-  //         fontSize: 12,
-  //       },
-  //       style: {
-  //         backgroundColor: '#fff', // Makes Android tab bar white instead of standard blue
-  //       }
-  //     },
 });
