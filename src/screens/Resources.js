@@ -36,11 +36,8 @@ var mark = (markertype) => {
 export default class ResourcesView extends React.Component {
   constructor(props) {
     super(props);
-
+    this.resourcesRef = fb.database().ref().child('resources');
     this.map = null;
-
-     this.resourcesRef = fb.database().ref().child('resources');
-
     this.state = {
       region: {
         latitude: LATITUDE,
@@ -48,16 +45,12 @@ export default class ResourcesView extends React.Component {
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
       },
-      markers: [
-      ],
-
+      markers: [],
     };
   }
 
   listenForItems(resourcesRef) {
-
     resourcesRef.on('value', (snap) => {
-
       // get children as an array
       var resources = [];
       snap.forEach((child) => {
@@ -67,14 +60,12 @@ export default class ResourcesView extends React.Component {
           coordinate: {
             latitude: child.val().coordinate.latitude,
             longitude: child.val().coordinate.longitude,
-        },
+          },
           type: child.val().type,
         });
       });
 
-      this.setState({
-        markers: resources,
-      });
+      this.setState({ markers: resources });
 
     });
   }
@@ -82,48 +73,21 @@ export default class ResourcesView extends React.Component {
   _goTo(title, coordinate) {
     var lat = coordinate.latitude;
     var long = coordinate.longitude;
-    // switch(title) {
-    //   case 'The Hub':
-    //     lat = 13.740331;
-    //     long = 100.514245;
-    //     break;
-    //   case 'Surat Clinic':
-    //     lat = 13.759573;
-    //     long = 100.497486;
-    //     break;
-    //   case 'คลินิก สวท เวชกรรม ดินแดง':
-    //     lat = 13.760883;
-    //     long = 100.555128;
-    //     break;
-    //   case 'Free Chinese Clinic':
-    //     lat = ;
-    //     long = ;
-    //   default:
-    //     lat = LATITUDE;
-    //     long = LONGITUDE;
-    //     break;
-    // }
-      openMap({ latitude: lat, longitude: long, provider: PROVIDER_GOOGLE, zoom: 18 });
-    }
+    openMap({ latitude: lat, longitude: long, provider: PROVIDER_GOOGLE, zoom: 18 });
+  }
 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.setState({
-          region: {
-            longitude: position.coords.longitude,
-            latitude: position.coords.latitude,
-            latitudeDelta: LATITUDE_DELTA,
-            longitudeDelta: LONGITUDE_DELTA
-          },
-
-        });
-      },
-      (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
-    );
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.setState({
+        region: {
+          longitude: position.coords.longitude,
+          latitude: position.coords.latitude,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGITUDE_DELTA
+        },
+      });
+    }, (error) => this.setState({ error: error.message }), { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 });
     this.listenForItems(this.resourcesRef);
-
   }
 
   render() {

@@ -105,7 +105,7 @@ var myStyles = React.StyleSheet.create({
   // Map
   resourcesMap: {
     width: '100%',
-    height: lp(82), //*** depends on the tabbar height
+    height: '100%', //*** depends on the tabbar height
   },
   /*
     Resources -end

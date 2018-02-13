@@ -4,6 +4,7 @@ import {
     Text, Platform
 } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
+import { Constants, lp, wp } from './constants/constants.js';
 
 import EmergencyCall from './screens/EmergencyCall'
 import Resources from './screens/Resources'
@@ -93,7 +94,7 @@ export const Tabs = TabNavigator({
 
       style: {
         backgroundColor: '#fff', // Makes Android tab bar white instead of standard blue
-         height: (Platform.OS === 'ios') ? 49 : 54 // I didn't use this in my app, so the numbers may be off.
+         height: (Platform.OS === 'ios') ? 49 : lp(8) // I didn't use this in my app, so the numbers may be off.
       }
     },
 });
