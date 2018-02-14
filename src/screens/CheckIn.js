@@ -24,33 +24,25 @@ export default class CheckInView extends Component {
         lat: null,
         long: null,
       },
-      totalCheckIns: this.getTotalCheckIns(),
+      totalCheckIns: this.setTotalCheckIns(),
     }
 
   }
 
-  getTotalCheckIns = () => {
+
+  setTotalCheckIns = () => {
     var user = fb.auth().currentUser.email;
     var count = 0;
     var userCheckIn = this.checkInRef.orderByChild("email").equalTo(user);
-    userCheckIn.on("child_added", function(snapshot) {
-      count++;
-    });
-    return count;
-  };
+    userCheckIn.on("value", function(snapshot) {
+      count = Object.keys(snapshot.val()).length;
+      this.setState({totalCheckIns: count});
+    }, this);
+}
 
   checkIn = () => {
     this.setState({ lastcheckin: new Date() });
     this.setLocation();
-
-    // Alert.alert(
-    //   'Checked in!',
-    //   (this.state.shareLocation ? 'With' : 'Without') + ' location' + '\n' + (this.state.statusMessage === 'None' ? '' : this.state.statusMessage),
-    //   [
-    //     {text: 'OK', onPress: () => {}},
-    //   ],
-    //   { cancelable: false },
-    // );
   };
 
   setStatus = (itemValue, itemIndex) => {
@@ -86,6 +78,8 @@ export default class CheckInView extends Component {
       status: this.state.statusMessage,
       email: fb.auth().currentUser.email,
     });
+
+    this.setState({totalCheckIns: this.getTotalCheckIns()});
   };
 
   formatDate = (date) => {
@@ -107,7 +101,7 @@ export default class CheckInView extends Component {
 
         <View style={styles.checkInStatsContainer}>
           <View style={styles.checkInTotalCheckInsContainer}>
-            <Text style={styles.checkInTotalCheckIns}>{this.getTotalCheckIns()}</Text>
+            <Text style={styles.checkInTotalCheckIns}>{this.state.totalCheckIns}</Text>
             <Text style={styles.checkInTotalCheckInsLabel}>Total check-ins</Text>
           </View>
 
