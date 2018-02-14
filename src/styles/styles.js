@@ -175,10 +175,12 @@ var myStyles = React.StyleSheet.create({
   // Total check ins
   checkInTotalCheckIns: {
     fontSize: lp(7),
+    color: 'black',
   },
   // Total check ins label
   checkInTotalCheckInsLabel: {
     fontSize: lp(3),
+    color: 'black',
   },
   // Other stats containers container
   checkInOtherStatsContainerContainer: {
@@ -198,10 +200,12 @@ var myStyles = React.StyleSheet.create({
   // Other stats
   checkInOtherStats: {
     fontSize: lp(5),
+    color: 'black',
   },
   // Other stats label
   checkInOtherStatsLabel: {
     fontSize: lp(2),
+    color: 'black',
   },
   // Check in container
   checkInUpdateContainer: {

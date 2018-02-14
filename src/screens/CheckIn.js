@@ -26,7 +26,6 @@ export default class CheckInView extends Component {
       },
       totalCheckIns: this.setTotalCheckIns(),
     }
-
   }
 
   setTotalCheckIns = () => {
@@ -84,8 +83,6 @@ export default class CheckInView extends Component {
       status: this.state.statusMessage,
       email: fb.auth().currentUser.email,
     });
-
-    //this.setState({totalCheckIns: this.getTotalCheckIns()});
   };
 
   formatDate = (date) => {
