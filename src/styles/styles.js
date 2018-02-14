@@ -1,5 +1,5 @@
 'use strict';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { Constants, wp, lp } from '../constants/constants.js';
 
 var React = require('react-native');
@@ -265,12 +265,14 @@ var myStyles = React.StyleSheet.create({
     borderWidth: wp(0.25),
     borderRadius: wp(3),
     height: lp(7),
+    justifyContent: Platform.OS === 'ios' ? 'center' : 'space-between',
   },
   // Status picker
   checkInStatusPicker: {
     width: '100%',
-    height: lp(7),
+    height: lp(10),
   },
+
   /*
     Check In -end
   */

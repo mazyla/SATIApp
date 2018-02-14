@@ -1,10 +1,13 @@
 import firebase from 'firebase';
 import React, {Component} from 'react';
-import { View, Text, Image, Picker, Switch, Button, TouchableOpacity, StatusBar, Alert } from 'react-native';
+import { View, Text, Image, Switch, Button, TouchableOpacity, StatusBar, Alert } from 'react-native';
 import styles from '../styles/styles.js';
 import { CheckBox } from 'react-native-elements';
 import PropTypes from 'prop-types';
 import { fb } from '../../App'
+import { Picker } from 'react-native-picker-dropdown'
+
+
 
 
 export default class CheckInView extends Component {
@@ -40,15 +43,14 @@ export default class CheckInView extends Component {
     this.setState({ lastcheckin: new Date() });
     this.setLocation();
 
-    // this.storeInFirebase();
-    Alert.alert(
-      'Checked in!',
-      (this.state.shareLocation ? 'With' : 'Without') + ' location' + '\n' + (this.state.statusMessage === 'None' ? '' : this.state.statusMessage),
-      [
-        {text: 'OK', onPress: () => {}},
-      ],
-      { cancelable: false },
-    );
+    // Alert.alert(
+    //   'Checked in!',
+    //   (this.state.shareLocation ? 'With' : 'Without') + ' location' + '\n' + (this.state.statusMessage === 'None' ? '' : this.state.statusMessage),
+    //   [
+    //     {text: 'OK', onPress: () => {}},
+    //   ],
+    //   { cancelable: false },
+    // );
   };
 
   setStatus = (itemValue, itemIndex) => {
