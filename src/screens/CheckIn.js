@@ -33,11 +33,13 @@ export default class CheckInView extends Component {
     var count = 0;
     var userCheckIn = this.checkInRef.orderByChild("email").equalTo(user);
     userCheckIn.on("value", function(snapshot) {
-      var temp = snapshot.val();
-      if (temp != null) {
-        count = Object.keys(snapshot.val()).length;
-      } 
-      this.setState({totalCheckIns: count});
+      var snapVal = snapshot.val();
+      if (snapVal != undefined && snapVal != null) {
+        count = Object.keys(snapVal).length;
+        this.setState({totalCheckIns: count});
+      } else {
+        this.setState({totalCheckIns: 0});
+      }
     }, this);
 }
 
@@ -79,8 +81,6 @@ export default class CheckInView extends Component {
       status: this.state.statusMessage,
       email: fb.auth().currentUser.email,
     });
-
-    this.setState({totalCheckIns: this.getTotalCheckIns()});
   };
 
   formatDate = (date) => {
