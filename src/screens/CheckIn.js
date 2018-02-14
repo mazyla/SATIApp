@@ -26,16 +26,17 @@ export default class CheckInView extends Component {
       },
       totalCheckIns: this.setTotalCheckIns(),
     }
-
   }
-
 
   setTotalCheckIns = () => {
     var user = fb.auth().currentUser.email;
     var count = 0;
     var userCheckIn = this.checkInRef.orderByChild("email").equalTo(user);
     userCheckIn.on("value", function(snapshot) {
-      count = Object.keys(snapshot.val()).length;
+      var temp = snapshot.val();
+      if (temp != null) {
+        count = Object.keys(snapshot.val()).length;
+      } 
       this.setState({totalCheckIns: count});
     }, this);
 }
