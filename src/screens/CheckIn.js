@@ -17,7 +17,10 @@ export default class CheckInView extends Component {
       lastcheckin: new Date(),
       statusMessage: "None",
       shareLocation: true,
-      location: '',
+      location: {
+        lat: null,
+        long: null,
+      },
       totalCheckIns: this.getTotalCheckIns(),
     }
 
@@ -36,7 +39,8 @@ export default class CheckInView extends Component {
   checkIn = () => {
     this.setState({ lastcheckin: new Date() });
     this.setLocation();
-    //this.storeInFirebase();
+
+    // this.storeInFirebase();
     Alert.alert(
       'Checked in!',
       (this.state.shareLocation ? 'With' : 'Without') + ' location' + '\n' + (this.state.statusMessage === 'None' ? '' : this.state.statusMessage),
@@ -53,20 +57,18 @@ export default class CheckInView extends Component {
 
   setLocation = () => { // *** TODO: NEEDS FIXIN' ***
     if (this.state.shareLocation === true) {
-      // if (!("geolocation" in navigator)) {
-      //   alert("Geolocation not supported");
-      //   var locerr = "Geolocation not supported";
-      //   this.setState({ location: locerr });
-      //   return;
-      // }
       navigator.geolocation.getCurrentPosition((position) => {
-        var lat = position.coords.latitude;
-        var lon = position.coords.longitude;
-        var loc = ("Lat:" + lat + " Lon:" + lon);
-        this.setState({ location: loc });
-        //this.storeInFirebase();
-      }, (e) => {console.log("ERROR(" + e.code + "):" + e.message)});
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+
+        this.setState({ location: {
+          lat: latitude,
+          long: longitude
+        }
+      });
       this.storeInFirebase();
+      }, (e) => {console.log("ERROR(" + e.code + "):" + e.message)});
+
     } else {
       this.setState({ location: '' });
       this.storeInFirebase();
@@ -78,7 +80,7 @@ export default class CheckInView extends Component {
     this.checkInRef.push({
       name: fb.auth().currentUser.displayName,
       time: this.formatDate(this.state.lastcheckin),
-      location: loc,
+      location: this.state.location,
       status: this.state.statusMessage,
       email: fb.auth().currentUser.email,
     });
