@@ -47,6 +47,7 @@ export default class CheckInView extends Component {
   checkIn = () => {
     this.setState({ lastcheckin: new Date() });
     this.setLocation();
+    Alert.alert("checked in");
   };
 
   setStatus = (itemValue, itemIndex) => {
@@ -59,12 +60,13 @@ export default class CheckInView extends Component {
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
 
-        this.setState({ location: {
-          lat: latitude,
-          long: longitude
-        }
-      });
-      this.storeInFirebase();
+        this.setState({
+          location: {
+            lat: latitude,
+            long: longitude
+          }
+        });
+        this.storeInFirebase();
       }, (e) => {console.log("ERROR(" + e.code + "):" + e.message)});
 
     } else {
@@ -83,7 +85,7 @@ export default class CheckInView extends Component {
       email: fb.auth().currentUser.email,
     });
 
-    this.setState({totalCheckIns: this.getTotalCheckIns()});
+    //this.setState({totalCheckIns: this.getTotalCheckIns()});
   };
 
   formatDate = (date) => {
