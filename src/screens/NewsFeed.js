@@ -40,29 +40,62 @@ export default class NewsFeedView extends Component {
   constructor(props) {
     super(props);
 
-    this.newsFeedRef = fb.database().ref().child('newsFeed');
-    this.lostRef = fb.database().ref().child('lost');
+    this.newsFeedRef = fb.database().ref('newsFeed');
+    this.lostRef = fb.database().ref('lost');
+    this.lostMotivationalQuoteRef = fb.database().ref('lost_motivationalQuote');
 
     this.state = {
       activeSlide: SLIDER_FIRST_ITEM,
       lost: [],
     }
+
+  }
+
+  getRandomMotivationalQuote = (num, callback) => {
+    if (num <= 0) return;
+    var keyList = [];
+    var quoteList = [];
+    this.lostMotivationalQuoteRef.once('value').then(snapshot => {
+      var quotes = snapshot.val();
+      Object.keys(quotes).forEach((key) => {keyList.push(key)});
+      for (let i = 0; i < num; i++) {
+        let randIndex = Math.floor(Math.random() * keyList.length);
+        quoteList.push(quotes[keyList[randIndex]].eng);
+      }
+      callback(quoteList, num);
+    });
+  }
+
+  setLost = (quoteList, num) => {
+    var currentLost = this.state.lost;
+    for (let i = 0; i < num; i++) {
+      var noLost = { name: quoteList[i], picture: require('../../images/sati.png') };
+      currentLost.push(noLost);
+      //alert(quoteList[i]);
+    }
+    this.setState({ lost: currentLost });
   }
 
   componentWillMount() {
-    this.lostRef.orderByKey().equalTo('0').on("value", function(snapshot) {
-      if(snapshot != undefined && snapshot != null) {
+    // TODO: fix this for when we have actual kids in the database
+    this.lostRef.orderByChild('rank').on("value", function(snapshot) {
+      if (snapshot.val() != undefined && snapshot.val() != null) {
         // TODO: make this better, but it works
-        var tempLost = snapshot.val()[0];
-        tempLost.name = "Random motivational quote here";
-        if (tempLost.picture === "None") {
-          tempLost.picture = require('../../images/sati.png');
+        var lostDisplay = [];
+        var lostList = snapshot.val();
+        //alert(JSON.stringify(tempLost));
+        for (let i = 0; i < ((lostList.length < 3) ? lostList.length : 3); i++) {
+          var tempLost = lostList[i];
+          if (tempLost.picture === "None") {
+            tempLost.picture = require('../../images/sati.png');
+          }
+          lostDisplay.push(tempLost);
         }
-        var lostList = [];
-        lostList.push(tempLost);
-        lostList.push(tempLost);
-        lostList.push(tempLost);
-        this.setState({ lost: lostList });
+        this.getRandomMotivationalQuote((3 - lostList.length), this.setLost);
+        this.setState({ lost: lostDisplay });
+      } else {
+        // TODO: this else statement is pretty much done
+        var quotes = this.getRandomMotivationalQuote(3, this.setLost);
       }
     }, this);
   }
