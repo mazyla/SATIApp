@@ -60,6 +60,8 @@ export default class NewsFeedView extends Component {
         }
         var lostList = [];
         lostList.push(tempLost);
+        lostList.push(tempLost);
+        lostList.push(tempLost);
         this.setState({ lost: lostList });
       }
     }, this);
