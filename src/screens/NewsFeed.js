@@ -62,28 +62,25 @@ export default class NewsFeedView extends Component {
         let randIndex = Math.floor(Math.random() * keyList.length);
         quoteList.push(quotes[keyList[randIndex]].eng);
       }
-      callback(quoteList, num);
+      if (typeof callback === "function") {callback(quoteList, num);}
     });
   }
 
   setLost = (quoteList, num) => {
     var currentLost = this.state.lost;
     for (let i = 0; i < num; i++) {
-      var noLost = { name: quoteList[i], picture: require('../../images/sati.png') };
+      var noLost = { name: quoteList[i], picture: require('../../images/sati.png'), rank: 0 };
       currentLost.push(noLost);
-      //alert(quoteList[i]);
     }
     this.setState({ lost: currentLost });
   }
 
-  componentWillMount() {
+  displayLost = () => {
     // TODO: fix this for when we have actual kids in the database
-    this.lostRef.orderByChild('rank').on("value", function(snapshot) {
+    this.lostRef.on("value", function(snapshot) {
       if (snapshot.val() != undefined && snapshot.val() != null) {
-        // TODO: make this better, but it works
         var lostDisplay = [];
         var lostList = snapshot.val();
-        //alert(JSON.stringify(tempLost));
         for (let i = 0; i < ((lostList.length < 3) ? lostList.length : 3); i++) {
           var tempLost = lostList[i];
           if (tempLost.picture === "None") {
@@ -91,13 +88,25 @@ export default class NewsFeedView extends Component {
           }
           lostDisplay.push(tempLost);
         }
+        this.setState({ lost: [] });
         this.getRandomMotivationalQuote((3 - lostList.length), this.setLost);
+        lostDisplay.sort((a, b) => {
+          // Sort by rank
+          if (a.rank < b.rank) return 1;
+          else return -1;
+        });
+        lostDisplay.concat(this.state.lost);
+        alert(JSON.stringify(lostDisplay));
         this.setState({ lost: lostDisplay });
       } else {
-        // TODO: this else statement is pretty much done
+        this.setState({ lost: [] });
         var quotes = this.getRandomMotivationalQuote(3, this.setLost);
       }
     }, this);
+  }
+
+  componentWillMount() {
+    this.displayLost();
   }
 
   _renderItem({item, index}) {
