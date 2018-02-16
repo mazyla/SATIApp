@@ -3,6 +3,7 @@ import { View, Image, Text, TouchableOpacity, StatusBar } from 'react-native';
 import styles from '../styles/styles.js';
 import { Constants } from '../constants/constants.js';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
+import { Card, ListItem } from 'react-native-elements';
 import { fb } from '../../App';
 
 const ENTRIES = [
@@ -38,9 +39,30 @@ const SLIDER_FIRST_ITEM = 0;
 export default class NewsFeedView extends Component {
   constructor(props) {
     super(props);
+
+    this.newsFeedRef = fb.database().ref().child('newsFeed');
+    this.lostRef = fb.database().ref().child('lost');
+
     this.state = {
       activeSlide: SLIDER_FIRST_ITEM,
+      lost: [],
     }
+  }
+
+  componentWillMount() {
+    this.lostRef.orderByKey().equalTo('0').on("value", function(snapshot) {
+      if(snapshot != undefined && snapshot != null) {
+        // TODO: make this better, but it works
+        var tempLost = snapshot.val()[0];
+        tempLost.name = "Random motivational quote here";
+        if (tempLost.picture === "None") {
+          tempLost.picture = require('../../images/sati.png');
+        }
+        var lostList = [];
+        lostList.push(tempLost);
+        this.setState({ lost: lostList });
+      }
+    }, this);
   }
 
   _renderItem({item, index}) {
@@ -68,12 +90,14 @@ export default class NewsFeedView extends Component {
   render() {
     return (
       <View style={styles.newsFeedContainer}>
+
         <View style={styles.topBarContainer}>
           <StatusBar hidden={false} />
           <View style={styles.topBarTextContainer}>
             <Text style={styles.topBarText}>News Feed</Text>
           </View>
         </View>
+
         <View style={styles.newsFeedCarouselContainer}>
           <Carousel
               ref={(c) => { this._carousel = c; }}
@@ -116,6 +140,24 @@ export default class NewsFeedView extends Component {
               <Text style={styles.newsFeedSeeAllText}>See All</Text>
           </TouchableOpacity>
         </View>
+
+        <View style={{marginBottom:20}}>
+          <Card title="Lost">
+            {
+              this.state.lost.map((u, i) => {
+                return (
+                  <ListItem
+                    key={i}
+                    roundAvatar
+                    title={u.name}
+                    avatar={u.picture}
+                  />
+                );
+              })
+            }
+          </Card>
+        </View>
+
       </View>
     );
   }

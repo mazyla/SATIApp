@@ -301,6 +301,7 @@ var myStyles = React.StyleSheet.create({
     alignItems: 'center',
     marginTop: 0,
     width: '100%',
+    //height: lp(20), // TODO: need to fix slide heights
   },
   // Carousel slide container
   newsFeedCarouselSlideContainer: {
