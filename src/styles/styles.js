@@ -221,6 +221,11 @@ var myStyles = React.StyleSheet.create({
     height: wp(30),
     borderRadius: wp(15),
   },
+  checkInUpdateButtonDisabled: {
+    width: wp(30),
+    height: wp(30),
+    borderRadius: wp(15),
+  },
   // Check in button container
   checkInUpdateButtonContainer: {
     alignItems: 'center',
@@ -228,7 +233,7 @@ var myStyles = React.StyleSheet.create({
   },
   // Check in button text container
   checkInUpdateButtonTextContainer: {
-    backgroundColor: "#324D5C",
+
     width: wp(30),
     height: wp(30),
     borderRadius: wp(30),

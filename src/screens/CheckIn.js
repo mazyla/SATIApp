@@ -28,6 +28,8 @@ export default class CheckInView extends Component {
       totalCheckIns: this.getTotalCheckIns(),
       lastCheckIn: this.getLastCheckIn(),
       streak: 0,
+      shouldDisableCheckIn: false,
+
 
     }
   }
@@ -81,6 +83,12 @@ getLastCheckIn = () => {
             }, this);
           }
         }
+        // disable check in if less than 4 hours till last
+        if ((today.getTime() - lastCheckIn) < 14400000) {
+          this.setState({shouldDisableCheckIn: true});
+        } else {
+          this.setState({shouldDisableCheckIn: false});
+        }
       });
     }, this);
   }
@@ -88,7 +96,6 @@ getLastCheckIn = () => {
   checkIn = () => {
     this.setState({ lastcheckin: new Date() });
     this.setLocation();
-<<<<<<< HEAD
     var now = new Date();
     var lastCheckIn = parseInt(this.state.lastCheckIn);
     var temp = now.getTime() - lastCheckIn;
@@ -107,9 +114,6 @@ getLastCheckIn = () => {
     userDetails.once("child_added", function(snapshot) {
       snapshot.ref.update({ streak: tempStreak});
     });
-=======
-    Alert.alert("checked in");
->>>>>>> ad121ebe8a2a60eb6bd40516d0ac2ff81fecaeaf
   };
 
   resetUserStreak = () => {
@@ -228,9 +232,12 @@ getLastCheckIn = () => {
 
           <View style={styles.checkInUpdateButtonContainer}>
             <TouchableOpacity
-            style={styles.checkInUpdateButton}
+            style={[styles.checkInUpdateButton, {
+            backgroundColor: this.state.shouldDisableCheckIn ? "#ebebed" : "#324D5C"}]}
             activeOpacity={1}
-            onPress={this.checkIn}>
+            onPress={this.checkIn}
+            disabled={this.state.shouldDisableCheckIn}
+            styleDisabled={styles.checkInUpdateButtonDisabled}>
               <View style={styles.checkInUpdateButtonTextContainer}>
                 <Text style={styles.checkInUpdateButtonText}>Safety Check</Text>
               </View>
