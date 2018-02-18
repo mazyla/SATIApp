@@ -301,6 +301,7 @@ var myStyles = React.StyleSheet.create({
     alignItems: 'center',
     marginTop: 0,
     width: '100%',
+    height: lp(40), // TODO: need to fix slide heights
   },
   // Carousel slide container
   newsFeedCarouselSlideContainer: {
@@ -311,13 +312,13 @@ var myStyles = React.StyleSheet.create({
   newsFeedCarouselSlide: {
     backgroundColor: '#324d5c',
     width: Constants.itemWidth,
-    height: Constants.itemWidth,
+    height: lp(40),
   },
   // Carousel slide image
   newsFeedCarouselSlideImage: {
     position: 'absolute',
     width: '100%',
-    height: '100%',
+    height: '80%',
   },
   // Carousel slide image title
   newsFeedCarouselSlideImageTitle: {

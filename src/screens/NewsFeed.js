@@ -3,6 +3,7 @@ import { View, Image, Text, TouchableOpacity, StatusBar } from 'react-native';
 import styles from '../styles/styles.js';
 import { Constants } from '../constants/constants.js';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
+import { Card, ListItem } from 'react-native-elements';
 import { fb } from '../../App';
 
 const ENTRIES = [
@@ -38,9 +39,74 @@ const SLIDER_FIRST_ITEM = 0;
 export default class NewsFeedView extends Component {
   constructor(props) {
     super(props);
+
+    this.newsFeedRef = fb.database().ref('newsFeed');
+    this.lostRef = fb.database().ref('lost');
+    this.lostMotivationalQuoteRef = fb.database().ref('lost_motivationalQuote');
+
     this.state = {
       activeSlide: SLIDER_FIRST_ITEM,
+      lost: [],
     }
+
+  }
+
+  getRandomMotivationalQuote = (num, callback) => {
+    if (num <= 0) return;
+    var keyList = [];
+    var quoteList = [];
+    this.lostMotivationalQuoteRef.once('value').then(snapshot => {
+      var quotes = snapshot.val();
+      Object.keys(quotes).forEach((key) => {keyList.push(key)});
+      for (let i = 0; i < num; i++) {
+        let randIndex = Math.floor(Math.random() * keyList.length);
+        quoteList.push(quotes[keyList[randIndex]].eng);
+      }
+      if (typeof callback === "function") {callback(quoteList, num);}
+    });
+  }
+
+  setLost = (quoteList, num) => {
+    var currentLost = this.state.lost;
+    for (let i = 0; i < num; i++) {
+      var noLost = { name: quoteList[i], picture: require('../../images/sati.png'), rank: 0 };
+      currentLost.push(noLost);
+    }
+    this.setState({ lost: currentLost });
+  }
+
+  displayLost = () => {
+    // TODO: fix this for when we have actual kids in the database
+    this.lostRef.on("value", function(snapshot) {
+      if (snapshot.val() != undefined && snapshot.val() != null) {
+        var lostDisplay = [];
+        var lostList = snapshot.val();
+        for (let i = 0; i < ((lostList.length < 3) ? lostList.length : 3); i++) {
+          var tempLost = lostList[i];
+          if (tempLost.picture === "None") {
+            tempLost.picture = require('../../images/sati.png');
+          }
+          lostDisplay.push(tempLost);
+        }
+        this.setState({ lost: [] });
+        this.getRandomMotivationalQuote((3 - lostList.length), this.setLost);
+        lostDisplay.sort((a, b) => {
+          // Sort by rank
+          if (a.rank < b.rank) return 1;
+          else return -1;
+        });
+        lostDisplay.concat(this.state.lost);
+        alert(JSON.stringify(lostDisplay));
+        this.setState({ lost: lostDisplay });
+      } else {
+        this.setState({ lost: [] });
+        var quotes = this.getRandomMotivationalQuote(3, this.setLost);
+      }
+    }, this);
+  }
+
+  componentWillMount() {
+    this.displayLost();
   }
 
   _renderItem({item, index}) {
@@ -68,12 +134,14 @@ export default class NewsFeedView extends Component {
   render() {
     return (
       <View style={styles.newsFeedContainer}>
+
         <View style={styles.topBarContainer}>
           <StatusBar hidden={false} />
           <View style={styles.topBarTextContainer}>
             <Text style={styles.topBarText}>News Feed</Text>
           </View>
         </View>
+
         <View style={styles.newsFeedCarouselContainer}>
           <Carousel
               ref={(c) => { this._carousel = c; }}
@@ -116,6 +184,24 @@ export default class NewsFeedView extends Component {
               <Text style={styles.newsFeedSeeAllText}>See All</Text>
           </TouchableOpacity>
         </View>
+
+        <View style={{marginBottom:20}}>
+          <Card title="Lost">
+            {
+              this.state.lost.map((u, i) => {
+                return (
+                  <ListItem
+                    key={i}
+                    roundAvatar
+                    title={u.name}
+                    avatar={u.picture}
+                  />
+                );
+              })
+            }
+          </Card>
+        </View>
+
       </View>
     );
   }

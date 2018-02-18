@@ -88,6 +88,7 @@ getLastCheckIn = () => {
   checkIn = () => {
     this.setState({ lastcheckin: new Date() });
     this.setLocation();
+<<<<<<< HEAD
     var now = new Date();
     var lastCheckIn = parseInt(this.state.lastCheckIn);
     var temp = now.getTime() - lastCheckIn;
@@ -106,6 +107,9 @@ getLastCheckIn = () => {
     userDetails.once("child_added", function(snapshot) {
       snapshot.ref.update({ streak: tempStreak});
     });
+=======
+    Alert.alert("checked in");
+>>>>>>> ad121ebe8a2a60eb6bd40516d0ac2ff81fecaeaf
   };
 
   resetUserStreak = () => {
@@ -127,12 +131,13 @@ getLastCheckIn = () => {
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
 
-        this.setState({ location: {
-          lat: latitude,
-          long: longitude
-        }
-      });
-      this.storeInFirebase();
+        this.setState({
+          location: {
+            lat: latitude,
+            long: longitude
+          }
+        });
+        this.storeInFirebase();
       }, (e) => {console.log("ERROR(" + e.code + "):" + e.message)});
 
     } else {
