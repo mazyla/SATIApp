@@ -57,14 +57,15 @@ export default class Login extends Component {
             })
         }
 
-        let userDetailsPath = "/users/" + 1 + "/details";
+        let userDetailsPath = "/users/" + 1;
 
-        firebase.database().ref(userDetailsPath).set({
+        firebase.database().ref("users").push({
           email: this.state.email,
           firstName: this.state.firstName,
           lastName: this.state.lastName,
           age: this.state.age,
-          gender: this.state.gender
+          gender: this.state.gender,
+          streak: 0
         });
 
         var currentUser = firebase.auth().currentUser;

@@ -15,6 +15,7 @@ export default class CheckInView extends Component {
     super(props);
 
     this.checkInRef = fb.database().ref().child('users_checkIn');
+    this.userRef = fb.database().ref().child('users');
 
     this.state = {
       lastcheckin: new Date(),
@@ -24,11 +25,14 @@ export default class CheckInView extends Component {
         lat: null,
         long: null,
       },
-      totalCheckIns: this.setTotalCheckIns(),
+      totalCheckIns: this.getTotalCheckIns(),
+      lastCheckIn: this.getLastCheckIn(),
+      streak: 0,
+
     }
   }
 
-  setTotalCheckIns = () => {
+  getTotalCheckIns = () => {
     var user = fb.auth().currentUser.email;
     var count = 0;
     var userCheckIn = this.checkInRef.orderByChild("email").equalTo(user);
@@ -43,10 +47,74 @@ export default class CheckInView extends Component {
     }, this);
 }
 
+getLastCheckIn = () => {
+  var user = fb.auth().currentUser.email;
+
+  /* Get last day of check in */
+  var lastCheckInArr = [];
+  var userCheckIn = this.checkInRef.orderByChild("email").equalTo(user).limitToLast(1);
+  userCheckIn.on("value", function(snapshot) {
+    snapshot.forEach(childSnapshot => {
+        let item = childSnapshot.val();
+        item.key = childSnapshot.key;
+        lastCheckInArr.push(item);
+
+        if (lastCheckInArr.length > 0) {
+          var lastCheckIn = lastCheckInArr[lastCheckInArr.length - 1].time;
+          this.setState({lastCheckIn: lastCheckIn});
+          var today = new Date();
+          if ((today.getTime() - lastCheckIn) > 86400000) {
+            // more than a day since last check in // reset
+            this.setState({streak: 0})
+            this.resetUserStreak();
+          } else {
+            var streakTemp = 0;
+            var array = [];
+            var userDetails = this.userRef.orderByChild("email").equalTo(user);
+            userDetails.on("value", function(snapshot) {
+              snapshot.forEach(childSnapshot => {
+                  let item = childSnapshot.val();
+                  item.key = childSnapshot.key;
+                  array.push(item);
+              });
+              this.setState({streak: array[0].streak.toString()});
+            }, this);
+          }
+        }
+      });
+    }, this);
+  }
+
   checkIn = () => {
     this.setState({ lastcheckin: new Date() });
     this.setLocation();
+    var now = new Date();
+    var lastCheckIn = parseInt(this.state.lastCheckIn);
+    var temp = now.getTime() - lastCheckIn;
+    if ((now.getTime() - lastCheckIn) > 64800000) {
+      // needs to not have checked in for more than 18 hours
+      // so that you can increase streak
+      this.increaseStreak();
+    }
+    this.getLastCheckIn();
   };
+
+  increaseStreak = () => {
+    var tempStreak = parseInt(this.state.streak) + 1;
+    var user = fb.auth().currentUser.email;
+    var userDetails = this.userRef.orderByChild("email").equalTo(user);
+    userDetails.once("child_added", function(snapshot) {
+      snapshot.ref.update({ streak: tempStreak});
+    });
+  };
+
+  resetUserStreak = () => {
+    var user = fb.auth().currentUser.email;
+    var userDetails = this.userRef.orderByChild("email").equalTo(user);
+    userDetails.once("value", function(snapshot) {
+      snapshot.ref.update({ streak: 0});
+    });
+  }
 
   setStatus = (itemValue, itemIndex) => {
     this.setState({statusMessage: itemValue});
@@ -54,6 +122,7 @@ export default class CheckInView extends Component {
 
   setLocation = () => { // *** TODO: NEEDS FIXIN' ***
     if (this.state.shareLocation === true) {
+
       navigator.geolocation.getCurrentPosition((position) => {
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
@@ -84,7 +153,7 @@ export default class CheckInView extends Component {
   };
 
   formatDate = (date) => {
-    return date.toLocaleString();
+    return date.getTime();
   }
 
   render() {
@@ -108,7 +177,7 @@ export default class CheckInView extends Component {
 
           <View style={styles.checkInOtherStatsContainerContainer}>
             <View style={styles.checkInOtherStatsContainer}>
-              <Text style={styles.checkInOtherStats}>15</Text>
+              <Text style={styles.checkInOtherStats}>{this.state.streak}</Text>
               <Text style={styles.checkInOtherStatsLabel}>Consecutive days</Text>
             </View>
             <View style={styles.checkInOtherStatsContainer}>
