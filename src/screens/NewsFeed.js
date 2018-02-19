@@ -96,7 +96,7 @@ export default class NewsFeedView extends Component {
           else return -1;
         });
         lostDisplay.concat(this.state.lost);
-        alert(JSON.stringify(lostDisplay));
+        //alert(JSON.stringify(lostDisplay));
         this.setState({ lost: lostDisplay });
       } else {
         this.setState({ lost: [] });

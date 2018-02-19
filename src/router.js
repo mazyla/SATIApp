@@ -10,7 +10,7 @@ import EmergencyCall from './screens/EmergencyCall'
 import Resources from './screens/Resources'
 import NewsFeed from './screens/NewsFeed'
 import CheckIn from './screens/CheckIn'
-import More from './screens/More'
+import Education from './screens/Education'
 import Login from './screens/Login'
 import SignUp from './screens/SignUp'
 
@@ -68,10 +68,10 @@ export const Tabs = TabNavigator({
      ),
    },
   },
-  More: {
-    screen: More,
+  Education: {
+    screen: Education,
     navigationOptions: {
-      tabBarLabel: ({tintColor, focused}) => (<Text style={{marginBottom: 3, textAlign: 'center', fontSize: 12, color: focused ? '#55ab98' : '#a09e9f'}}>More</Text>),
+      tabBarLabel: ({tintColor, focused}) => (<Text style={{marginBottom: 3, textAlign: 'center', fontSize: 12, color: focused ? '#55ab98' : '#a09e9f'}}>Education</Text>),
       tabBarIcon: ({ tintColor, focused }) => (
        <Icon
          name={focused ? 'ios-more' : 'ios-more-outline'}
