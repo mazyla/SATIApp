@@ -13,6 +13,7 @@ export default class EducationView extends Component {
 
     this.state = {
       resources: [],
+      displayedResources: [],
     }
     this.getResources();
     //this._logout = this._logout.bind(this);
@@ -39,13 +40,18 @@ export default class EducationView extends Component {
   getResources = () => {
     this.educationRef.on("value", function(snapshot) {
       var resourceList = snapshot.val();
-      this.setState({ resources: resourceList });
+      this.setState({ resources: resourceList, displayedResources: resourceList });
     }, this);
   }
 
-  // componentDidMount() {
-  //   this.getResources();
-  // }
+  searchResources = (search) => {
+    var filteredResources = this.state.resources.filter((resource) => {
+      // Case insensitive
+      return resource.name.toLowerCase().includes(search.toLowerCase());
+      // TODO: add filters
+    });
+    this.setState({ displayedResources: filteredResources });
+  }
 
   render() {
     return (
@@ -63,7 +69,7 @@ export default class EducationView extends Component {
             placeholder='Type Here...'
             showLoading
             lightTheme
-            onChangeText={()=>{}}
+            onChangeText={this.searchResources}
             onClearText={()=>{}}
             clearIcon={{color: '#86939e', name: 'close'}}
           />
@@ -71,10 +77,11 @@ export default class EducationView extends Component {
 
         <View style={{flex: 1}}>
           <FlatList
-            data={this.state.resources}
+            data={this.state.displayedResources}
             renderItem={({item}) =>
-              <View>
-                <Text style={{padding: 10, fontSize: 18, height: 44}}>{item.name}</Text>
+              <View style={{borderWidth: 1}}>
+                <Text style={{padding: 10, fontSize: 18, height: 44, fontWeight: 'bold'}}>{item.name}</Text>
+                <Text style={{padding: 10}}>Location: {item.location}</Text>
               </View>
             }
           />
