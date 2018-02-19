@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import React, {Component} from 'react';
-import { View, Text, Button, TouchableOpacity, FlatList, StatusBar } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StatusBar } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import styles from '../styles/styles.js';
 import { fb } from '../../App'
@@ -8,14 +8,6 @@ import { fb } from '../../App'
 export default class EducationView extends Component {
   constructor(props) {
     super(props);
-
-    this.educationRef = fb.database().ref('education');
-
-    this.state = {
-      resources: [],
-      displayedResources: [],
-    }
-    this.getResources();
     //this._logout = this._logout.bind(this);
   }
 
@@ -37,21 +29,6 @@ export default class EducationView extends Component {
     </View>
 
 */
-  getResources = () => {
-    this.educationRef.on("value", function(snapshot) {
-      var resourceList = snapshot.val();
-      this.setState({ resources: resourceList, displayedResources: resourceList });
-    }, this);
-  }
-
-  searchResources = (search) => {
-    var filteredResources = this.state.resources.filter((resource) => {
-      // Case insensitive
-      return resource.name.toLowerCase().includes(search.toLowerCase());
-      // TODO: add filters
-    });
-    this.setState({ displayedResources: filteredResources });
-  }
 
   render() {
     return (
@@ -64,26 +41,20 @@ export default class EducationView extends Component {
           </View>
         </View>
 
-        <View>
-          <SearchBar
-            placeholder='Type Here...'
-            showLoading
-            lightTheme
-            onChangeText={this.searchResources}
-            clearIcon={{color: '#86939e', name: 'close'}}
-          />
+        <View style={{alignItems:'center'}}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate("EducationSearch", { type: "Conflict Management" })}>
+            <View style={{width: '70%', alignItems: 'center', margin: 10, padding: 10, borderWidth: 1, borderRadius: 5}}>
+              <Text style={{fontSize: 18, textAlign: 'center'}}>Conflict Management</Text>
+            </View>
+          </TouchableOpacity>
         </View>
 
-        <View style={{flex: 1}}>
-          <FlatList
-            data={this.state.displayedResources}
-            renderItem={({item}) =>
-              <View style={{borderWidth: 1}}>
-                <Text style={{padding: 10, fontSize: 18, height: 44, fontWeight: 'bold'}}>{item.name}</Text>
-                <Text style={{padding: 10}}>Location: {item.location}</Text>
-              </View>
-            }
-          />
+        <View style={{alignItems:'center'}}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate("EducationSearch", { type: "First Aid" })}>
+            <View style={{width: '70%', alignItems: 'center', margin: 10, padding: 10, borderWidth: 1, borderRadius: 5}}>
+              <Text style={{fontSize: 18, textAlign: 'center'}}>First Aid</Text>
+            </View>
+          </TouchableOpacity>
         </View>
 
 

@@ -78,9 +78,10 @@ var myStyles = React.StyleSheet.create({
   },
   // Text container for top bar
   topBarTextContainer: {
-    width: '100%',
+    width: '80%',
     height: '100%',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   // Top bar text
   topBarText: {

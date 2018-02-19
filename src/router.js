@@ -1,10 +1,11 @@
 import React from 'react';
-import { TabNavigator, StackNavigator} from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import {
-    Text, Platform
+    Text, Platform, View, StatusBar, Button
 } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Constants, lp, wp } from './constants/constants.js';
+import styles from './styles/styles.js';
 
 import EmergencyCall from './screens/EmergencyCall'
 import Resources from './screens/Resources'
@@ -13,6 +14,45 @@ import CheckIn from './screens/CheckIn'
 import Education from './screens/Education'
 import Login from './screens/Login'
 import SignUp from './screens/SignUp'
+import EducationSearch from './screens/EducationSearch'
+
+export const LoginStack = StackNavigator({
+  Login: {
+    screen: Login,
+    headerMode: 'screen',
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Tabs: {
+    screen: EmergencyCall,
+   headerMode: 'screen',
+   navigationOptions: {
+     header: null,
+   },
+  },
+  SignUp: {
+    screen: SignUp,
+    navigationOptions: {
+          title: 'Create an account',
+    },
+  },
+});
+
+const EducationSearchStack = StackNavigator({
+  Education: {
+    screen: Education,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  EducationSearch: {
+    screen: EducationSearch,
+    navigationOptions: {
+      header: null,
+    },
+  },
+});
 
 export const Tabs = TabNavigator({
 
@@ -69,7 +109,7 @@ export const Tabs = TabNavigator({
    },
   },
   Education: {
-    screen: Education,
+    screen: EducationSearchStack,
     navigationOptions: {
       tabBarLabel: ({tintColor, focused}) => (<Text style={{marginBottom: 3, textAlign: 'center', fontSize: 12, color: focused ? '#55ab98' : '#a09e9f'}}>Education</Text>),
       tabBarIcon: ({ tintColor, focused }) => (
@@ -97,27 +137,4 @@ export const Tabs = TabNavigator({
          height: (Platform.OS === 'ios') ? 49 : lp(8) // I didn't use this in my app, so the numbers may be off.
       }
     },
-});
-
-export const LoginStack = StackNavigator({
-  Login: {
-    screen: Login,
-    headerMode: 'screen',
-    navigationOptions: {
-      header: null,
-    },
-  },
-  Tabs: {
-    screen: EmergencyCall,
-   headerMode: 'screen',
-   navigationOptions: {
-     header: null,
-   },
-  },
-  SignUp: {
-    screen: SignUp,
-    navigationOptions: {
-          title: 'Create an account',
-    },
-  },
 });
