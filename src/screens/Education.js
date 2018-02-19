@@ -70,7 +70,6 @@ export default class EducationView extends Component {
             showLoading
             lightTheme
             onChangeText={this.searchResources}
-            onClearText={()=>{}}
             clearIcon={{color: '#86939e', name: 'close'}}
           />
         </View>
