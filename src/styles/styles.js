@@ -293,6 +293,7 @@ var myStyles = React.StyleSheet.create({
   newsFeedContainer: {
     flex: 1,
     backgroundColor: 'white',
+    height: '100%',
   },
   // Carousel slider
   newsFeedSlider: {
@@ -364,6 +365,10 @@ var myStyles = React.StyleSheet.create({
     justifyContent: 'flex-end',
     flexDirection: 'column',
   },
+  // Pagination container container
+  newsFeedPaginationContainerContainer: {
+    height: lp(5),
+  },
   // Pagination container
   newsFeedPaginationContainer: {
     paddingVertical: 8,
@@ -379,6 +384,7 @@ var myStyles = React.StyleSheet.create({
   newsFeedSeeAll: {
     marginTop: 5,
     width: '20%',
+    height: lp(5),
   },
   // See all text
   newsFeedSeeAllText: {
@@ -387,13 +393,14 @@ var myStyles = React.StyleSheet.create({
   },
   // See all container
   newsFeedSeeAllContainer: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    height: lp(6),
   },
   // See all empty box
   newsFeedSeeAllEmptyBox: {
     width: '20%',
+    height: 0,
   },
   /*
     News Feed -end

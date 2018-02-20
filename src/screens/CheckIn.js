@@ -61,9 +61,9 @@ export default class CheckInView extends Component {
 getLastCheckIn = () => {
 
   var user = fb.auth().currentUser.email;
+  var today = new Date();
   if (this.state.checkIns.length > 0) {
     this.setState({lastCheckIn: this.state.checkIns[this.state.checkIns.length - 1].time});
-    var today = new Date();
     if ((today.getTime() - this.state.lastCheckIn) > 86400000) {
       // more than a day since last check in // reset
       this.setState({streak: 0})

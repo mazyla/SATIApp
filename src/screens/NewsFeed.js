@@ -163,7 +163,7 @@ export default class NewsFeedView extends Component {
         </View>
         <View style={styles.newsFeedSeeAllContainer}>
           <View style={styles.newsFeedSeeAllEmptyBox}></View>
-          <View>
+          <View style={styles.newsFeedPaginationContainerContainer}>
             <Pagination
               dotsLength={ENTRIES.length}
               activeDotIndex={this.state.activeSlide}
@@ -185,16 +185,21 @@ export default class NewsFeedView extends Component {
           </TouchableOpacity>
         </View>
 
-        <View style={{marginBottom:20}}>
-          <Card title="Lost">
+        <View style={{height: '35%'}}>
+          <Card title="Lost" containerStyle={{height: '100%'}}>
             {
               this.state.lost.map((u, i) => {
                 return (
                   <ListItem
                     key={i}
                     roundAvatar
+                    titleStyle={{fontSize: 12}}
+                    hideChevron={true}
+                    avatarStyle={{height:20,width:20}}
+                    avatarContainerStyle={{height:20, width:20}}
                     title={u.name}
                     avatar={u.picture}
+                    onPress={() => {alert(u.name)}}
                   />
                 );
               })
