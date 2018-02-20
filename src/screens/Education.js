@@ -41,22 +41,39 @@ export default class EducationView extends Component {
           </View>
         </View>
 
-        <View style={{alignItems:'center'}}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate("EducationSearch", { type: "Conflict Management" })}>
-            <View style={{width: '70%', alignItems: 'center', margin: 10, padding: 10, borderWidth: 1, borderRadius: 5}}>
-              <Text style={{fontSize: 18, textAlign: 'center'}}>Conflict Management</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        <View style={{alignItems:'center', justifyContent: 'center', height: '100%', width: '100%'}}>
 
-        <View style={{alignItems:'center'}}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate("EducationSearch", { type: "First Aid" })}>
-            <View style={{width: '70%', alignItems: 'center', margin: 10, padding: 10, borderWidth: 1, borderRadius: 5}}>
-              <Text style={{fontSize: 18, textAlign: 'center'}}>First Aid</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+          <View style={{alignItems:'center', width: '100%'}}>
+            <TouchableOpacity
+              style={{width:'100%'}}
+              onPress={() => this.props.navigation.navigate("EducationSearch", { type: "Conflict Management" })}>
+              <View style={{width: '100%', alignItems: 'center', paddingVertical: 30, borderWidth: 1, marginTop: 20, marginBottom: 20}}>
+                <Text style={{fontSize: 18, textAlign: 'center'}}>Conflict Management</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
 
+          <View style={{alignItems:'center', width: '100%'}}>
+            <TouchableOpacity
+              style={{width: '100%'}}
+              onPress={() => this.props.navigation.navigate("EducationSearch", { type: "First Aid" })}>
+              <View style={{width: '100%', alignItems: 'center', paddingVertical: 30, borderWidth: 1, marginTop: 20, marginBottom: 20}}>
+                <Text style={{fontSize: 18, textAlign: 'center'}}>First Aid</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          <View style={{alignItems:'center', width: '100%'}}>
+            <TouchableOpacity
+              style={{width: '100%'}}
+              onPress={() => this.props.navigation.navigate("EducationSearch", { type: "Health Issues" })}>
+              <View style={{width: '100%', alignItems: 'center', paddingVertical: 30, borderWidth: 1, marginTop: 20, marginBottom: 20}}>
+                <Text style={{fontSize: 18, textAlign: 'center'}}>Health Issues</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+        </View>
 
       </View>
     );
