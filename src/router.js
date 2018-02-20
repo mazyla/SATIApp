@@ -54,6 +54,27 @@ const EducationSearchStack = StackNavigator({
   },
 });
 
+// const NewsFeedStack = StackNavigator({
+//   NewsFeed: {
+//     screen: NewsFeed,
+//     navigationOptions: {
+//       header: null,
+//     },
+//   },
+//   NewsFeedSeeAll: {
+//     screen: NewsFeedSeeAll,
+//     navigationOptions: {
+//       header: null,
+//     },
+//   },
+//   LostSeeAll: {
+//     screen: LostSeeAll,
+//     navigationOptions: {
+//       header: null,
+//     },
+//   },
+// });
+
 export const Tabs = TabNavigator({
 
   EmergencyCall: {
