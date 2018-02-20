@@ -25,8 +25,10 @@ export default class CheckInView extends Component {
         lat: null,
         long: null,
       },
-      totalCheckIns: this.getTotalCheckIns(),
-      lastCheckIn: this.getLastCheckIn(),
+      // totalCheckIns: this.getTotalCheckIns(),
+      checkIns: this.getAllCheckInsForCurrentUser(),
+      totalCheckIns: 0,
+      lastCheckIn: 0,
       streak: 0,
       shouldDisableCheckIn: false,
 
@@ -34,64 +36,102 @@ export default class CheckInView extends Component {
     }
   }
 
-  getTotalCheckIns = () => {
+  getAllCheckInsForCurrentUser = () => {
     var user = fb.auth().currentUser.email;
-    var count = 0;
+    var tempCheckIns = [];
     var userCheckIn = this.checkInRef.orderByChild("email").equalTo(user);
     userCheckIn.on("value", function(snapshot) {
-      var snapVal = snapshot.val();
-      if (snapVal != undefined && snapVal != null) {
-        count = Object.keys(snapVal).length;
-        this.setState({totalCheckIns: count});
-      } else {
-        this.setState({totalCheckIns: 0});
-      }
-    }, this);
+      snapshot.forEach(childSnapshot => {
+          let item = childSnapshot.val();
+          item.key = childSnapshot.key;
+          tempCheckIns.push(item);
+        });
+      this.setState({checkIns: tempCheckIns});
+      this.getTotalCheckIns();
+      this.getLastCheckIn();
+      },this);
+
+
+  }
+
+  getTotalCheckIns = () => {
+    this.setState({totalCheckIns: this.state.checkIns.length});
 }
 
 getLastCheckIn = () => {
+
   var user = fb.auth().currentUser.email;
-
-  /* Get last day of check in */
-  var lastCheckInArr = [];
-  var userCheckIn = this.checkInRef.orderByChild("email").equalTo(user).limitToLast(1);
-  userCheckIn.on("value", function(snapshot) {
-    snapshot.forEach(childSnapshot => {
-        let item = childSnapshot.val();
-        item.key = childSnapshot.key;
-        lastCheckInArr.push(item);
-
-        if (lastCheckInArr.length > 0) {
-          var lastCheckIn = lastCheckInArr[lastCheckInArr.length - 1].time;
-          this.setState({lastCheckIn: lastCheckIn});
-          var today = new Date();
-          if ((today.getTime() - lastCheckIn) > 86400000) {
-            // more than a day since last check in // reset
-            this.setState({streak: 0})
-            this.resetUserStreak();
-          } else {
-            var streakTemp = 0;
-            var array = [];
-            var userDetails = this.userRef.orderByChild("email").equalTo(user);
-            userDetails.on("value", function(snapshot) {
-              snapshot.forEach(childSnapshot => {
-                  let item = childSnapshot.val();
-                  item.key = childSnapshot.key;
-                  array.push(item);
-              });
-              this.setState({streak: array[0].streak.toString()});
-            }, this);
-          }
-        }
-        // disable check in if less than 4 hours till last
-        if ((today.getTime() - lastCheckIn) < 14400000) {
-          this.setState({shouldDisableCheckIn: true});
-        } else {
-          this.setState({shouldDisableCheckIn: false});
-        }
-      });
-    }, this);
+  if (this.state.checkIns.length > 0) {
+    this.setState({lastCheckIn: this.state.checkIns[this.state.checkIns.length - 1].time});
+    var today = new Date();
+    if ((today.getTime() - this.state.lastCheckIn) > 86400000) {
+      // more than a day since last check in // reset
+      this.setState({streak: 0})
+      this.resetUserStreak();
+    } else {
+      var array = [];
+      var userDetails = this.userRef.orderByChild("email").equalTo(user);
+      userDetails.on("value", function(snapshot) {
+        snapshot.forEach(childSnapshot => {
+            let item = childSnapshot.val();
+            item.key = childSnapshot.key;
+            array.push(item);
+        });
+        this.setState({streak: array[0].streak.toString()});
+      }, this);
+    }
   }
+  // disable check in if less than 4 hours till last
+  if ((today.getTime() - this.state.lastCheckIn) < 14400000) {
+    this.setState({shouldDisableCheckIn: true});
+  } else {
+    this.setState({shouldDisableCheckIn: false});
+  }
+}
+
+
+
+  //
+  // /* Get last day of check in */
+  // var lastCheckInArr = [];
+  // var userCheckIn = this.checkInRef.orderByChild("email").equalTo(user).limitToLast(1);
+  // userCheckIn.on("value", function(snapshot) {
+  //   snapshot.forEach(childSnapshot => {
+  //       let item = childSnapshot.val();
+  //       item.key = childSnapshot.key;
+  //       lastCheckInArr.push(item);
+  //
+  //       if (lastCheckInArr.length > 0) {
+  //         var lastCheckIn = lastCheckInArr[lastCheckInArr.length - 1].time;
+  //         this.setState({lastCheckIn: lastCheckIn});
+  //         var today = new Date();
+  //         if ((today.getTime() - lastCheckIn) > 86400000) {
+  //           // more than a day since last check in // reset
+  //           this.setState({streak: 0})
+  //           this.resetUserStreak();
+  //         } else {
+  //           var streakTemp = 0;
+  //           var array = [];
+  //           var userDetails = this.userRef.orderByChild("email").equalTo(user);
+  //           userDetails.on("value", function(snapshot) {
+  //             snapshot.forEach(childSnapshot => {
+  //                 let item = childSnapshot.val();
+  //                 item.key = childSnapshot.key;
+  //                 array.push(item);
+  //             });
+  //             this.setState({streak: array[0].streak.toString()});
+  //           }, this);
+  //         }
+  //       }
+  //       // disable check in if less than 4 hours till last
+  //       if ((today.getTime() - lastCheckIn) < 14400000) {
+  //         this.setState({shouldDisableCheckIn: true});
+  //       } else {
+  //         this.setState({shouldDisableCheckIn: false});
+  //       }
+  //     });
+  //   }, this);
+  // }
 
   checkIn = () => {
     this.setState({ lastcheckin: new Date() });
@@ -203,21 +243,15 @@ getLastCheckIn = () => {
               style={styles.checkInStatusPicker}
               selectedValue={this.state.statusMessage}
               onValueChange={this.setStatus}>
-              <Picker.Item label="None" value="None" />
-              <Picker.Item label="🙂 Happy" value="🙂 Happy" />
-              <Picker.Item label="🌷 Hopeful" value="🌷 Hopeful" />
-              <Picker.Item label="😍 Loved" value="😍 Loved" />
-              <Picker.Item label="😀 Thankful" value="😀 Thankful" />
-              <Picker.Item label="😁 Awesome" value="😁 Awesome" />
-              <Picker.Item label="😌 Relaxed" value="😌 Relaxed" />
-              <Picker.Item label="😢 Sad" value="😢 Sad" />
-              <Picker.Item label="😵 Confused" value="😵 Confused" />
-              <Picker.Item label="😊 Good" value="😊 Good" />
-              <Picker.Item label="😟 Concerned" value="😟 Concerned" />
-              <Picker.Item label="😴 Tired" value="😴 Tired" />
+              <Picker.Item label="None" value="0" />
+              <Picker.Item label="🙂 Happy" value="60" />
+              <Picker.Item label="🌷 Hopeful" value="50" />
+              <Picker.Item label="😁 Awesome" value="70" />
+              <Picker.Item label="😌 Relaxed" value="40" />
+              <Picker.Item label="😢 Sad" value="20" />
+              <Picker.Item label="😟 Concerned" value="30" />
+              <Picker.Item label="😷 Sick" value="10" />
               <Picker.Item label="🆘 Need Help" value="🆘 Need Help" />
-              <Picker.Item label="😷 Sick" value="😷 Sick" />
-              <Picker.Item label="🤕 Hurt" value="🤕 Hurt" />
             </Picker>
           </View>
 

@@ -114,7 +114,7 @@ export const Tabs = TabNavigator({
       tabBarLabel: ({tintColor, focused}) => (<Text style={{marginBottom: 3, textAlign: 'center', fontSize: 12, color: focused ? '#55ab98' : '#a09e9f'}}>Education</Text>),
       tabBarIcon: ({ tintColor, focused }) => (
        <Icon
-         name={focused ? 'ios-more' : 'ios-more-outline'}
+         name={focused ? 'ios-clipboard' : 'ios-clipboard-outline'}
          size={26}
          style={{marginBottom: (Platform.OS === 'ios') ? 20 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
        />
