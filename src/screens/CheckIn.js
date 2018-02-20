@@ -31,6 +31,7 @@ export default class CheckInView extends Component {
       lastCheckIn: 0,
       streak: 0,
       shouldDisableCheckIn: false,
+      averageFeeling: "😐",
 
 
     }
@@ -49,6 +50,8 @@ export default class CheckInView extends Component {
       this.setState({checkIns: tempCheckIns});
       this.getTotalCheckIns();
       this.getLastCheckIn();
+      this.getAverageFeeling();
+      tempCheckIns = [];
       },this);
 
 
@@ -77,7 +80,12 @@ getLastCheckIn = () => {
             item.key = childSnapshot.key;
             array.push(item);
         });
-        this.setState({streak: array[0].streak.toString()});
+        if (array[0].streak >= 3) {
+          this.setState({streak: (array[0].streak.toString() + "🔥")});
+        } else {
+          this.setState({streak: array[0].streak.toString()});
+        }
+
       }, this);
     }
   }
@@ -89,49 +97,26 @@ getLastCheckIn = () => {
   }
 }
 
-
-
-  //
-  // /* Get last day of check in */
-  // var lastCheckInArr = [];
-  // var userCheckIn = this.checkInRef.orderByChild("email").equalTo(user).limitToLast(1);
-  // userCheckIn.on("value", function(snapshot) {
-  //   snapshot.forEach(childSnapshot => {
-  //       let item = childSnapshot.val();
-  //       item.key = childSnapshot.key;
-  //       lastCheckInArr.push(item);
-  //
-  //       if (lastCheckInArr.length > 0) {
-  //         var lastCheckIn = lastCheckInArr[lastCheckInArr.length - 1].time;
-  //         this.setState({lastCheckIn: lastCheckIn});
-  //         var today = new Date();
-  //         if ((today.getTime() - lastCheckIn) > 86400000) {
-  //           // more than a day since last check in // reset
-  //           this.setState({streak: 0})
-  //           this.resetUserStreak();
-  //         } else {
-  //           var streakTemp = 0;
-  //           var array = [];
-  //           var userDetails = this.userRef.orderByChild("email").equalTo(user);
-  //           userDetails.on("value", function(snapshot) {
-  //             snapshot.forEach(childSnapshot => {
-  //                 let item = childSnapshot.val();
-  //                 item.key = childSnapshot.key;
-  //                 array.push(item);
-  //             });
-  //             this.setState({streak: array[0].streak.toString()});
-  //           }, this);
-  //         }
-  //       }
-  //       // disable check in if less than 4 hours till last
-  //       if ((today.getTime() - lastCheckIn) < 14400000) {
-  //         this.setState({shouldDisableCheckIn: true});
-  //       } else {
-  //         this.setState({shouldDisableCheckIn: false});
-  //       }
-  //     });
-  //   }, this);
-  // }
+getAverageFeeling = () => {
+  var feelingScores = [];
+  for (i = 0; i < this.state.checkIns.length; i++) {
+    if (this.state.checkIns[i].status !== "None") {
+      feelingScores.push(parseInt(this.state.checkIns[i].status));
+    }
+  }
+  var score = 0;
+  for (i = 0; i < feelingScores.length; i++) {
+    score += parseInt(feelingScores[i]);
+  }
+  score = score / feelingScores.length;
+  if (score > 48) {
+    this.setState({averageFeeling: "😀"});
+  } else if (score > 30) {
+    this.setState({averageFeeling: "😐"});
+  } else {
+    this.setState({averageFeeling: "😔"});
+  }
+}
 
   checkIn = () => {
     this.setState({ lastcheckin: new Date() });
@@ -230,8 +215,8 @@ getLastCheckIn = () => {
               <Text style={styles.checkInOtherStatsLabel}>Consecutive days</Text>
             </View>
             <View style={styles.checkInOtherStatsContainer}>
-              <Text style={styles.checkInOtherStats}>🙂</Text>
-              <Text style={styles.checkInOtherStatsLabel}>Average emoji</Text>
+              <Text style={styles.checkInOtherStats}>{this.state.averageFeeling}</Text>
+              <Text style={styles.checkInOtherStatsLabel}>Average Feeling</Text>
             </View>
           </View>
         </View>
