@@ -37,7 +37,7 @@ export default class EmergencyCallView extends Component {
             <TouchableOpacity onPress={this.emergencySMS}>
               <View style={styles.emergencyCallButtonImageContainer}>
                 <Image
-                  source = {require('../../images/message.jpg')}
+                  source = {require('../../images/message-icon.png')}
                   style = {styles.emergencyCallButtonImage}
                 />
                 <Text style={styles.emergencyCallButtonText}>Text The Hub</Text>
@@ -48,7 +48,7 @@ export default class EmergencyCallView extends Component {
             <TouchableOpacity onPress={this.emergencyCall}>
               <View style={styles.emergencyCallButtonImageContainer}>
                 <Image
-                  source = {require('../../images/call.jpg')}
+                  source = {require('../../images/call_center.png')}
                   style = {styles.emergencyCallButtonImage}
                 />
                 <Text style={styles.emergencyCallButtonText}>Call The Childline</Text>
