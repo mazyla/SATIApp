@@ -37,8 +37,8 @@ export default class LostSeeAll extends Component {
   }
 
   _goBack = () => {
-    this.props.navigation.navigate('NewsFeed');
     Keyboard.dismiss();
+    this.props.navigation.navigate('NewsFeed');
   }
 
   render() {

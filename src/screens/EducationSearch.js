@@ -43,8 +43,8 @@ export default class EducationSearchView extends Component {
   }
 
   _goBack = () => {
-    this.props.navigation.navigate('Education');
     Keyboard.dismiss();
+    this.props.navigation.navigate('Education');
   }
 
   render() {
