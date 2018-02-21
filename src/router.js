@@ -15,6 +15,7 @@ import Education from './screens/Education'
 import Login from './screens/Login'
 import SignUp from './screens/SignUp'
 import EducationSearch from './screens/EducationSearch'
+import NewsFeedSeeAll from './screens/NewsFeedSeeAll'
 
 export const LoginStack = StackNavigator({
   Login: {
@@ -54,26 +55,26 @@ const EducationSearchStack = StackNavigator({
   },
 });
 
-// const NewsFeedStack = StackNavigator({
-//   NewsFeed: {
-//     screen: NewsFeed,
-//     navigationOptions: {
-//       header: null,
-//     },
-//   },
-//   NewsFeedSeeAll: {
-//     screen: NewsFeedSeeAll,
-//     navigationOptions: {
-//       header: null,
-//     },
-//   },
-//   LostSeeAll: {
-//     screen: LostSeeAll,
-//     navigationOptions: {
-//       header: null,
-//     },
-//   },
-// });
+const NewsFeedStack = StackNavigator({
+  NewsFeed: {
+    screen: NewsFeed,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  NewsFeedSeeAll: {
+    screen: NewsFeedSeeAll,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  // LostSeeAll: {
+  //   screen: LostSeeAll,
+  //   navigationOptions: {
+  //     header: null,
+  //   },
+  // },
+});
 
 export const Tabs = TabNavigator({
 
@@ -104,7 +105,7 @@ export const Tabs = TabNavigator({
    },
   },
   NewsFeed: {
-    screen: NewsFeed,
+    screen: NewsFeedStack,
     navigationOptions: {
       tabBarLabel: ({tintColor, focused}) => (<Text style={{marginBottom: 3, textAlign: 'center', fontSize: 12, color: focused ? '#55ab98' : '#a09e9f'}}>NewsFeed</Text>),
       tabBarIcon: ({ tintColor, focused }) => (
