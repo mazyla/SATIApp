@@ -195,6 +195,7 @@ export const AdminTabs = TabNavigator({
 
   Resources: {
     screen: AdminResources,
+    headerMode: 'screen',
     navigationOptions: {
       tabBarLabel: ({tintColor, focused}) => (<Text style={{marginBottom: 3, textAlign: 'center', fontSize: 12, color: focused ? '#55ab98' : '#a09e9f'}}>Resources</Text>),
       tabBarIcon: ({ tintColor, focused }) => (
