@@ -67,6 +67,51 @@ var myStyles = React.StyleSheet.create({
     fontSize: 18,
   },
   /*
+    Login -start
+  */
+  loginContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  loginBackgroundImage: {
+    flex: 1,
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
+  loginFormGroup: {
+    padding: wp(10),
+  },
+  loginTitle: {
+    paddingBottom: 16,
+    textAlign: "center",
+    color: "#000",
+    fontSize: 35,
+    fontWeight: "bold",
+    opacity: 0.8,
+  },
+  loginSubmitGroup: {
+    paddingTop: lp(5),
+  },
+  loginSubmitText: {
+    fontSize: lp(3),
+  },
+  loginSignUpButton: {
+    backgroundColor: 'whitesmoke',
+    borderColor: 'whitesmoke',
+  },
+  loginResponseContainer: {
+    alignItems: 'center',
+    padding: lp(1),
+  },
+  loginResponse: {
+    textAlign: "center",
+    fontSize: lp(2.5),
+  },
+  /*
+    Login -end
+  */
+  /*
     Top bar -start
   */
   // Top view for the top bar
