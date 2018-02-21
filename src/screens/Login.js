@@ -3,6 +3,7 @@ import {
     TextInput,
     Text,
     View,
+    ImageBackground,
     StyleSheet,
     dismissKeyboard,
     TouchableWithoutFeedback
@@ -63,12 +64,14 @@ export default class Login extends Component {
     }
 
     render() {
-
         return (
             <TouchableWithoutFeedback onPress={() => {DismissKeyboard()}}>
-                <View style={CommonStyle.container}>
+              <ImageBackground
+                style={{flex: 1, position: 'absolute', width: '100%', height: '100%'}}
+                source={require('../../images/loginBG.png')}>
+                <View style={{flex:1}}>
                     <View style={styles.formGroup}>
-                        <Text style={styles.title}>Firebase Sample</Text>
+                        <Text style={styles.title}>satiapp</Text>
                         <Sae
                             label={"Email Address"}
                             iconClass={FontAwesomeIcon}
@@ -89,7 +92,7 @@ export default class Login extends Component {
                         />
 
                         <View style={styles.submit}>
-                          <Button onPress={this.login} style={styles.buttons} textStyle={{fontSize: 18}}>
+                          <Button onPress={this.login} style={{}} textStyle={{fontSize: 18}}>
                               Login
                           </Button>
                             <Button onPress={this.signup} style={CommonStyle.buttons} textStyle={{fontSize: 18}}>
@@ -101,6 +104,7 @@ export default class Login extends Component {
                         <Text style={styles.response}>{this.state.response}</Text>
                     </View>
                 </View>
+              </ImageBackground>
             </TouchableWithoutFeedback>
         );
     }
