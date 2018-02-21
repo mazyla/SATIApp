@@ -45,10 +45,10 @@ export default class EducationView extends Component {
 
           <View style={{alignItems:'center', width: '100%'}}>
             <TouchableOpacity
-              style={{width:'100%'}}
-              onPress={() => this.props.navigation.navigate("EducationSearch", { type: "Conflict Management" })}>
+              style={{width: '100%'}}
+              onPress={() => this.props.navigation.navigate("EducationSearch", { type: "Health Issues" })}>
               <View style={{width: '100%', alignItems: 'center', paddingVertical: 30, borderWidth: 1, marginTop: 20, marginBottom: 20}}>
-                <Text style={{fontSize: 18, textAlign: 'center'}}>Conflict Management</Text>
+                <Text style={{fontSize: 18, textAlign: 'center'}}>Health Issues</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -65,10 +65,10 @@ export default class EducationView extends Component {
 
           <View style={{alignItems:'center', width: '100%'}}>
             <TouchableOpacity
-              style={{width: '100%'}}
-              onPress={() => this.props.navigation.navigate("EducationSearch", { type: "Health Issues" })}>
+              style={{width:'100%'}}
+              onPress={() => this.props.navigation.navigate("EducationSearch", { type: "Conflict Management" })}>
               <View style={{width: '100%', alignItems: 'center', paddingVertical: 30, borderWidth: 1, marginTop: 20, marginBottom: 20}}>
-                <Text style={{fontSize: 18, textAlign: 'center'}}>Health Issues</Text>
+                <Text style={{fontSize: 18, textAlign: 'center'}}>Conflict Management</Text>
               </View>
             </TouchableOpacity>
           </View>
