@@ -16,6 +16,7 @@ import Login from './screens/Login'
 import SignUp from './screens/SignUp'
 import EducationSearch from './screens/EducationSearch'
 import NewsFeedSeeAll from './screens/NewsFeedSeeAll'
+import LostSeeAll from './screens/LostSeeAll'
 
 export const LoginStack = StackNavigator({
   Login: {
@@ -68,12 +69,12 @@ const NewsFeedStack = StackNavigator({
       header: null,
     },
   },
-  // LostSeeAll: {
-  //   screen: LostSeeAll,
-  //   navigationOptions: {
-  //     header: null,
-  //   },
-  // },
+  LostSeeAll: {
+    screen: LostSeeAll,
+    navigationOptions: {
+      header: null,
+    },
+  },
 });
 
 export const Tabs = TabNavigator({
