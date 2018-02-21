@@ -11,24 +11,7 @@ export default class EducationView extends Component {
     //this._logout = this._logout.bind(this);
   }
 
-/* TODO: move this logout to top right button
-  _logout() {
-        try {
-            firebase.auth().signOut();
-            this.props.navigation.navigate('Login');
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
-    <View style={styles.logoutButtonContainer}>
-    <TouchableOpacity
-      onPress={this._logout}>
-      <Text style={styles.logoutText}>Logout</Text>
-    </TouchableOpacity>
-    </View>
-
-*/
 
   render() {
     return (

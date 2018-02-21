@@ -15,8 +15,11 @@ import Education from './screens/Education'
 import Login from './screens/Login'
 import SignUp from './screens/SignUp'
 import EducationSearch from './screens/EducationSearch'
+
+import Profile from './screens/Profile'
 import NewsFeedSeeAll from './screens/NewsFeedSeeAll'
 import LostSeeAll from './screens/LostSeeAll'
+
 
 export const LoginStack = StackNavigator({
   Login: {
@@ -41,7 +44,7 @@ export const LoginStack = StackNavigator({
   },
 });
 
-const EducationSearchStack = StackNavigator({
+export const EducationSearchStack = StackNavigator({
   Education: {
     screen: Education,
     navigationOptions: {
@@ -56,25 +59,41 @@ const EducationSearchStack = StackNavigator({
   },
 });
 
-const NewsFeedStack = StackNavigator({
+export const CheckInProfileStack = StackNavigator({
+  CheckIn: {
+    screen: CheckIn,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Profile: {
+    screen: Profile,
+    headerMode: 'screen',
+    navigationOptions: {
+      headerTitle: "Your Profile",
+    },
+  },
+});
+
+export const NewsFeedStack = StackNavigator({
   NewsFeed: {
     screen: NewsFeed,
     navigationOptions: {
       header: null,
     },
   },
-  NewsFeedSeeAll: {
-    screen: NewsFeedSeeAll,
-    navigationOptions: {
-      header: null,
-    },
+NewsFeedSeeAll: {
+  screen: NewsFeedSeeAll,
+  navigationOptions: {
+    header: null,
   },
-  LostSeeAll: {
-    screen: LostSeeAll,
-    navigationOptions: {
-      header: null,
-    },
+},
+LostSeeAll: {
+  screen: LostSeeAll,
+  navigationOptions: {
+    header: null,
   },
+},
 });
 
 export const Tabs = TabNavigator({
@@ -119,7 +138,7 @@ export const Tabs = TabNavigator({
    },
   },
   CheckIn: {
-    screen: CheckIn,
+    screen: CheckInProfileStack,
     navigationOptions: {
       tabBarLabel: ({tintColor, focused}) => (<Text style={{marginBottom: 3, textAlign: 'center', fontSize: 12, color: focused ? '#55ab98' : '#a09e9f'}}>Check In</Text>),
       tabBarIcon: ({ tintColor, focused }) => (
