@@ -60,6 +60,7 @@ export const EducationSearchStack = StackNavigator({
     screen: EducationSearch,
     navigationOptions: {
       header: null,
+      tabBarVisible: false,
     },
   },
 });
@@ -76,6 +77,7 @@ export const CheckInProfileStack = StackNavigator({
     headerMode: 'screen',
     navigationOptions: {
       headerTitle: "Your Profile",
+      tabBarVisible: false,
     },
   },
 });
@@ -91,12 +93,14 @@ NewsFeedSeeAll: {
   screen: NewsFeedSeeAll,
   navigationOptions: {
     header: null,
+    tabBarVisible: false,
   },
 },
 LostSeeAll: {
   screen: LostSeeAll,
   navigationOptions: {
     header: null,
+    tabBarVisible: false,
   },
 },
 });

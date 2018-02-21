@@ -38,8 +38,6 @@ export default class App extends Component {
     this.authSubscription = firebase.auth().onAuthStateChanged((user) => {
       _setLoadingUser(user);
       var userRef = firebaseApp.database().ref().child('users');
-    //  Alert.alert(user.email.toString());
-      // var thisUser = firebaseApp.auth().user.email;
       var tempIsAdmin;
       var userDetails = userRef.orderByChild("email").equalTo(user.email);
       userDetails.once("value", function(snapshot) {

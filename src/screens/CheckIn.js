@@ -42,6 +42,7 @@ export default class CheckInView extends Component {
           let item = childSnapshot.val();
           item.key = childSnapshot.key;
           tempCheckIns.push(item);
+          Alert.alert(item);
         });
       this.setState({checkIns: tempCheckIns});
       this.getTotalCheckIns();

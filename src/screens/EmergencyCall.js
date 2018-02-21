@@ -3,6 +3,7 @@ import { View, Text, Image, StatusBar,
 import styles from '../styles/styles.js';
 import { Constants } from '../constants/constants.js';
 import Communications from 'react-native-communications';
+import React, {Component} from 'react'
 
 export default class EmergencyCallView extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ export default class EmergencyCallView extends Component {
         <View style={styles.topBarContainer}>
           <StatusBar hidden={false} />
           <View style={styles.topBarTextContainer}>
-            <Text style={styles.topBarText}>Emergency</Text>
+            <Text style={styles.topBarText}>ขอความช่วยเหลือ</Text>
           </View>
         </View>
 
@@ -39,7 +40,7 @@ export default class EmergencyCallView extends Component {
                   source = {require('../../images/message-icon.png')}
                   style = {styles.emergencyCallButtonImage}
                 />
-                <Text style={styles.emergencyCallButtonText}>Text The Hub</Text>
+                <Text style={styles.emergencyCallButtonText}>ส่งข้อความหาเดอะฮับ</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -50,7 +51,7 @@ export default class EmergencyCallView extends Component {
                   source = {require('../../images/call_center.png')}
                   style = {styles.emergencyCallButtonImage}
                 />
-                <Text style={styles.emergencyCallButtonText}>Call The Childline</Text>
+                <Text style={styles.emergencyCallButtonText}>โทรหาเดอะฮับ</Text>
               </View>
             </TouchableOpacity>
           </View>

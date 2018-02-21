@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import React, {Component} from 'react';
-import { View, Text, Button, TouchableOpacity, FlatList, Image, StatusBar } from 'react-native';
+import { View, Text, Button, TouchableOpacity, FlatList, Image, StatusBar, Keyboard } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import styles from '../styles/styles.js';
 import { fb } from '../../App'
@@ -42,6 +42,11 @@ export default class EducationSearchView extends Component {
     this.setState({ displayedResources: filteredResources });
   }
 
+  _goBack = () => {
+    Keyboard.dismiss();
+    this.props.navigation.navigate('Education');
+  }
+
   render() {
     return (
       <View style={styles.educationContainer}>
@@ -49,7 +54,7 @@ export default class EducationSearchView extends Component {
         <View style={styles.topBarContainer}>
           <StatusBar hidden={false} />
           <View style={{flexDirection: 'row', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center'}}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Education')}>
+            <TouchableOpacity onPress={this._goBack}>
               <View style={{alignItems: 'center', justifyContent: 'center', padding: 3}}><Icon name={'ios-arrow-back'} size={26} style={{color: 'white'}} /></View>
             </TouchableOpacity>
             <View style={styles.topBarTextContainer}>
