@@ -65,7 +65,8 @@ export default class Login extends Component {
           lastName: this.state.lastName,
           age: this.state.age,
           gender: this.state.gender,
-          streak: 0
+          streak: 0,
+          isAdmin: "false",
         });
 
         var currentUser = firebase.auth().currentUser;

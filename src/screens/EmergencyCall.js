@@ -1,4 +1,3 @@
-import React, {Component} from 'react';
 import { View, Text, Image, StatusBar,
   TouchableNativeFeedback, TouchableHighlight, TouchableOpacity } from 'react-native';
 import styles from '../styles/styles.js';
