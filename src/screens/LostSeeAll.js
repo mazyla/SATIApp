@@ -6,40 +6,34 @@ import styles from '../styles/styles.js';
 import { fb } from '../../App'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-export default class EducationSearchView extends Component {
+export default class LostSeeAll extends Component {
   constructor(props) {
     super(props);
 
-    this.educationRef = fb.database().ref('education');
+    this.lostRef = fb.database().ref('lost');
 
     this.state = {
-      type: null, // Conflict management, first aid, stds, etc.
-      //***can check this to query instead of having to make separate pages for the 3 different types.***
-      resources: [],
-      displayedResources: [],
+      lost: [],
+      displayedLost: [],
     }
   }
 
   componentWillMount() {
-    this.setState({ type: this.props.navigation.state.params.type});
-    this.getResources();
+    this.getLost();
   }
 
-  getResources = () => {
-    this.educationRef.on("value", function(snapshot) {
-      var resourceList = snapshot.val();
-      this.setState({ resources: resourceList });
-      this.setState({ displayedResources: resourceList.filter(item => item.type === this.props.navigation.state.params.type) });
+  getLost = () => {
+    this.lostRef.on("value", function(snapshot) {
+      var lostList = snapshot.val();
+      this.setState({ lost: lostList, displayedLost: lostList });
     }, this);
   }
 
-  searchResources = (search) => {
-    var filteredResources = this.state.resources.filter((resource) => {
-      // Case insensitive
-      return (resource.type === this.state.type) && (resource.name.toLowerCase().includes(search.toLowerCase()));
-      // TODO: add filters for other fields
+  searchLost = (search) => {
+    var filteredLost = this.state.lost.filter((lost) => {
+      return (lost.name.toLowerCase().includes(search.toLowerCase()));
     });
-    this.setState({ displayedResources: filteredResources });
+    this.setState({ displayedLost: filteredLost });
   }
 
   render() {
@@ -49,11 +43,11 @@ export default class EducationSearchView extends Component {
         <View style={styles.topBarContainer}>
           <StatusBar hidden={false} />
           <View style={{flexDirection: 'row', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center'}}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Education')}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('NewsFeed')}>
               <View style={{alignItems: 'center', justifyContent: 'center', padding: 3}}><Icon name={'ios-arrow-back'} size={26} style={{color: 'white'}} /></View>
             </TouchableOpacity>
             <View style={styles.topBarTextContainer}>
-              <Text style={styles.topBarText}>Education Search</Text>
+              <Text style={styles.topBarText}>Lost Search</Text>
             </View>
           </View>
         </View>
@@ -63,14 +57,14 @@ export default class EducationSearchView extends Component {
             placeholder='Type Here...'
             showLoading
             lightTheme
-            onChangeText={this.searchResources}
+            onChangeText={this.searchLost}
             clearIcon={{color: '#86939e', name: 'close'}}
           />
         </View>
 
         <View style={{flex: 1}}>
           <FlatList
-            data={this.state.displayedResources}
+            data={this.state.displayedLost}
             renderItem={({item}) =>
               <View style={{borderWidth: 1, flexDirection: 'row'}}>
                 <Image source={{uri:item.picture}} style={{width:100, height:100, borderRadius: 50}} />
@@ -87,4 +81,5 @@ export default class EducationSearchView extends Component {
       </View>
     );
   }
+
 }

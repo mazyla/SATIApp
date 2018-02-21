@@ -8,7 +8,7 @@ import { fb } from '../../App';
 
 const ENTRIES = [
   {
-       title: 'Mario loves Taylor Swift',
+       title: 'Learn about STDs',
        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
        illustration: 'https://i.imgur.com/UYiroysl.jpg'
    },
@@ -180,23 +180,31 @@ export default class NewsFeedView extends Component {
           <TouchableOpacity
             activeOpacity={1}
             style={styles.newsFeedSeeAll}
-            onPress={() => {alert('See All Pressed')}}>
+            onPress={() => this.props.navigation.navigate("NewsFeedSeeAll")}>
               <Text style={styles.newsFeedSeeAllText}>See All</Text>
           </TouchableOpacity>
         </View>
 
-        <View style={{height: '35%'}}>
-          <Card title="Lost" containerStyle={{height: '100%'}}>
+        <View style={{height: '5%', alignItems: 'center'}}>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{fontSize:20, fontWeight: 'bold'}}>Lost</Text>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("LostSeeAll")}>
+              <View><Text style={{fontSize:14, color: 'blue'}}>See All</Text></View>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={{height: '30%'}}>
+          <Card containerStyle={{height: '100%'}}>
             {
               this.state.lost.map((u, i) => {
                 return (
                   <ListItem
                     key={i}
                     roundAvatar
-                    titleStyle={{fontSize: 12}}
+                    titleStyle={{fontSize: 14}}
                     hideChevron={true}
-                    avatarStyle={{height:20,width:20}}
-                    avatarContainerStyle={{height:20, width:20}}
+                    avatarStyle={{height:30,width:30}}
+                    avatarContainerStyle={{height:30, width:30}}
                     title={u.name}
                     avatar={u.picture}
                     onPress={() => {alert(u.name)}}
