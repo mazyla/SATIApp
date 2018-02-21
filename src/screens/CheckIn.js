@@ -6,6 +6,7 @@ import { CheckBox } from 'react-native-elements';
 import PropTypes from 'prop-types';
 import { fb } from '../../App'
 import { Picker } from 'react-native-picker-dropdown'
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 
@@ -25,7 +26,6 @@ export default class CheckInView extends Component {
         lat: null,
         long: null,
       },
-      // totalCheckIns: this.getTotalCheckIns(),
       checkIns: this.getAllCheckInsForCurrentUser(),
       totalCheckIns: 0,
       lastCheckIn: 0,
@@ -71,6 +71,9 @@ getLastCheckIn = () => {
       // more than a day since last check in // reset
       this.setState({streak: 0})
       this.resetUserStreak();
+    } else if ((today.getTime() - this.state.lastCheckIn) > 64800000) {
+      // more than 18 hours since the last check in, increment streak
+      this.increaseStreak();
     } else {
       var array = [];
       var userDetails = this.userRef.orderByChild("email").equalTo(user);
@@ -190,14 +193,29 @@ getAverageFeeling = () => {
     return date.getTime();
   }
 
+  goToProfile = () => {
+    this.props.navigation.navigate("Profile");
+  }
+
   render() {
     return (
       <View style={styles.checkInContainer}>
 
         <View style={styles.topBarContainer}>
-          <StatusBar hidden={false} />
-          <View style={styles.topBarTextContainer}>
+          <StatusBar />
+          <View style={styles.topBarViewContainer}>
             <Text style={styles.topBarText}>Update Status</Text>
+            <TouchableOpacity
+              style={styles.topBarProfileButton}
+              onPress={this.goToProfile}>
+              <View>
+              <Icon
+                name='ios-contact-outline'
+                size={26}
+
+              />
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
 

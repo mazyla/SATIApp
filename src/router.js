@@ -15,6 +15,7 @@ import Education from './screens/Education'
 import Login from './screens/Login'
 import SignUp from './screens/SignUp'
 import EducationSearch from './screens/EducationSearch'
+import Profile from './screens/Profile'
 
 export const LoginStack = StackNavigator({
   Login: {
@@ -50,6 +51,23 @@ const EducationSearchStack = StackNavigator({
     screen: EducationSearch,
     navigationOptions: {
       header: null,
+    },
+  },
+});
+
+const CheckInProfileStack = StackNavigator({
+  CheckIn: {
+    screen: CheckIn,
+    headerMode: 'screen',
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Profile: {
+    screen: Profile,
+    headerMode: 'screen',
+    navigationOptions: {
+      headerTitle: "Your Profile",
     },
   },
 });
@@ -117,7 +135,7 @@ export const Tabs = TabNavigator({
    },
   },
   CheckIn: {
-    screen: CheckIn,
+    screen: CheckInProfileStack,
     navigationOptions: {
       tabBarLabel: ({tintColor, focused}) => (<Text style={{marginBottom: 3, textAlign: 'center', fontSize: 12, color: focused ? '#55ab98' : '#a09e9f'}}>Check In</Text>),
       tabBarIcon: ({ tintColor, focused }) => (

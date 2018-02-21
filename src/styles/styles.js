@@ -77,11 +77,11 @@ var myStyles = React.StyleSheet.create({
     alignItems: 'center',
   },
   // Text container for top bar
-  topBarTextContainer: {
+  topBarViewContainer: {
     width: '80%',
     height: '100%',
-    justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'row',
   },
   // Top bar text
   topBarText: {
@@ -90,6 +90,11 @@ var myStyles = React.StyleSheet.create({
     width: '100%',
     fontWeight: 'bold',
     fontSize: lp(3),
+    marginTop: lp(2),
+  },
+  topBarProfileButton: {
+    justifyContent: 'flex-end',
+    marginTop: lp(2),
   },
   /*
     Top bar -end
