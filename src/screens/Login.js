@@ -56,53 +56,51 @@ export default class Login extends Component {
     render() {
         return (
             <TouchableWithoutFeedback onPress={() => {DismissKeyboard()}}>
-              <ScrollView>
-              <ImageBackground
-                style={styles.loginBackgroundImage}
-                source={require('../../images/loginBG.png')}>
-                <View style={styles.loginContainer}>
-                    <View style={styles.loginFormGroup}>
-                        <KeyboardAvoidingView
-                          behavior="padding">
-                          <Text style={styles.loginTitle}>SATIconnect</Text>
-                          <Sae
-                              label={"Email Address"}
-                              iconClass={FontAwesomeIcon}
-                              iconName={"envelope"}
-                              iconColor={"white"}
-                              onChangeText={(email) => this.setState({email})}
-                              keyboardType="email-address"
-                              autoCapitalize={'none'}
-                              autoCorrect={false}
-                          />
-                          <Sae
-                              label={"Password"}
-                              iconClass={FontAwesomeIcon}
-                              iconName={"lock"}
-                              iconColor={"white"}
-                              onChangeText={(password) => this.setState({password})}
-                              password={true}
-                              autoCapitalize={'none'}
-                              autoCorrect={false}
-                          />
-                        </KeyboardAvoidingView>
+                <ImageBackground
+                  style={styles.loginBackgroundImage}
+                  source={require('../../images/loginBG.png')}>
+                  <View style={styles.loginContainer}>
+                      <View style={styles.loginFormGroup}>
+                          <KeyboardAvoidingView
+                            behavior="padding">
+                            <Text style={styles.loginTitle}>SATIconnect</Text>
+                            <Sae
+                                label={"Email Address"}
+                                iconClass={FontAwesomeIcon}
+                                iconName={"envelope"}
+                                iconColor={"white"}
+                                onChangeText={(email) => this.setState({email})}
+                                keyboardType="email-address"
+                                autoCapitalize={'none'}
+                                autoCorrect={false}
+                            />
+                            <Sae
+                                label={"Password"}
+                                iconClass={FontAwesomeIcon}
+                                iconName={"lock"}
+                                iconColor={"white"}
+                                onChangeText={(password) => this.setState({password})}
+                                password={true}
+                                autoCapitalize={'none'}
+                                autoCorrect={false}
+                            />
+                          </KeyboardAvoidingView>
 
-                        <View style={styles.loginSubmitGroup}>
-                          <Button
-                            onPress={this.login}
-                            textStyle={styles.loginSubmitText}>Login</Button>
-                          <Button
-                            onPress={this.signup}
-                            style={styles.loginSignUpButton}
-                            textStyle={styles.loginSubmitText}>Sign up</Button>
-                        </View>
-                    </View>
-                    <View style={styles.loginResponseContainer}>
-                        <Text style={styles.loginResponse}>{this.state.response}</Text>
-                    </View>
-                </View>
-              </ImageBackground>
-              </ScrollView>
+                          <View style={styles.loginSubmitGroup}>
+                            <Button
+                              onPress={this.login}
+                              textStyle={styles.loginSubmitText}>Login</Button>
+                            <Button
+                              onPress={this.signup}
+                              style={styles.loginSignUpButton}
+                              textStyle={styles.loginSubmitText}>Sign up</Button>
+                          </View>
+                      </View>
+                      <View style={styles.loginResponseContainer}>
+                          <Text style={styles.loginResponse}>{this.state.response}</Text>
+                      </View>
+                  </View>
+                </ImageBackground>
             </TouchableWithoutFeedback>
         );
     }
