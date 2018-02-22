@@ -218,12 +218,11 @@ getAverageFeeling = () => {
             <TouchableOpacity
               style={styles.topBarProfileButton}
               onPress={this.goToProfile}>
-              <View style={{width:30,height:30,borderRadius:15, backgroundColor:'white'}}>
-                <Icon
-                  name='ios-contact'
-                  size={30}
-                />
-              </View>
+              <Icon
+                name='ios-contact'
+                color='white'
+                size={styles.topBarProfileButtonSize}
+              />
             </TouchableOpacity>
           </View>
         </View>
