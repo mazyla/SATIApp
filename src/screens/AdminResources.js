@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 import { View, Text, Image, Switch, Button, TouchableOpacity,
-  StatusBar, Alert, FlatList, Modal, KeyboardAvoidingView } from 'react-native';
+  StatusBar, Alert, FlatList, Modal, KeyboardAvoidingView,
+  TextInput, dismissKeyboard } from 'react-native';
 import styles from '../styles/styles.js';
 import { fb } from '../../App'
+import Icon from 'react-native-vector-icons/Ionicons';
+import * as firebase from "firebase";
+
+import ButtonNew from "apsl-react-native-button";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { Sae } from "react-native-textinput-effects";
-import Icon from 'react-native-vector-icons/Ionicons';
+import DismissKeyboard from "dismissKeyboard";
 
 export default class AdminResources extends Component {
   constructor(props) {
@@ -49,6 +54,18 @@ export default class AdminResources extends Component {
    this.props.navigation.navigate("Profile");
  }
 
+ storeResourceInDatabase = () => {
+   firebase.database().ref("resources").push({
+     name: this.state.newResourceName,
+     type: this.state.newResourceType,
+     coordinate: {
+       latitude: this.state.newResourceLatitude,
+       longitude: this.state.newResourceLongitude,
+     }
+   });
+   this.closeModal();
+ }
+
   render() {
     return (
       <View style={styles.resourcesContainer}>
@@ -81,19 +98,43 @@ export default class AdminResources extends Component {
               animationType={'slide'}
               onRequestClose={() => this.closeModal()}
           >
-          <View style={styles.modalContainer}>
-           <View style={styles.innerContainer}>
-                <Text>Add New Resource</Text>
-                <View style={styles.loginFormGroup}>
+            <View>
+              <Text style={styles.loginTitle}>Add New Resource</Text>
+              <TextInput
+                placeholder={"Name"}
+                onChangeText={(title) => this.setState({newResourceName: title})}
+                autoCapitalize={'none'}
+                autoCorrect={false}
+              />
+              <TextInput
+                placeholder={"Type: food, shelter, clinic"}
+                onChangeText={(type) => this.setState({newResourceType: type})}
+                autoCapitalize={'none'}
+                autoCorrect={false}
+              />
+              <TextInput
+                placeholder={"Latitude"}
+                onChangeText={(latitude) => this.setState({newResourceLatitude: latitude})}
+                autoCapitalize={'none'}
+                autoCorrect={false}
+              />
+              <TextInput
+                placeholder={"Longitude"}
+                onChangeText={(longitude) => this.setState({newResourceLongitude: longitude})}
+                autoCapitalize={'none'}
+                autoCorrect={false}
+              />
 
-                <Button
-                    onPress={() => this.closeModal()}
-                    title="Close"
-                >
-                </Button>
+              <View>
+                <ButtonNew
+                  onPress={this.storeResourceInDatabase}
+                  textStyle={styles.loginSubmitText}>Add</ButtonNew>
+              <Button
+                  onPress={() => this.closeModal()}
+                  title="Close">
+              </Button>
               </View>
-            </View>
-                      </View>
+          </View>
           </Modal>
 
 
@@ -102,7 +143,7 @@ export default class AdminResources extends Component {
           data={this.state.currentResources}
           renderItem={({item}) =>
           <View style={styles.adminResourcesListContainer}>
-            <Text style={styles.adminResourcesListItemText}>{item.key} - {item.type}</Text>
+            <Text style={styles.adminResourcesListItemText}>{item.name} - {item.type}</Text>
 
           </View>
         }

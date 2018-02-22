@@ -14,8 +14,17 @@ export default class AdminNewsFeed extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.resourcesContainer}>
 
+      <View style={styles.topBarContainer}>
+        <StatusBar />
+        <View style={styles.topBarViewContainer}>
+          <Text style={styles.topBarText}>Resources</Text>
+          <TouchableOpacity
+            style={styles.topBarProfileButton}
+            onPress={this.goToProfile}>
+            <View>
+        </View>
       </View>
     );
 
