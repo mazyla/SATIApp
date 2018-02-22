@@ -31,12 +31,7 @@ export default class AdminResources extends Component {
           item.key = childSnapshot.key;
           tempResources.push(item);
         });
-<<<<<<< HEAD
-      this.setState({resources: tempResources});
-      //Alert.alert(resources[5].key.toString());
-=======
       this.setState({currentResources: tempResources});
->>>>>>> fa17ec65ba465c7ff487e5ddce97223bdc6d3159
       tempResources = [];
       },this);
 

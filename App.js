@@ -27,6 +27,7 @@ export default class App extends Component {
           user: user,
         })
       };
+  }
 
   componentWillUnmount() {
     this.authSubscription();

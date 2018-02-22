@@ -502,17 +502,6 @@ var myStyles = React.StyleSheet.create({
   /*
     News Feed -end
   */
-  /*
-    Education -start
-  */
-  // Top view for Education
-  educationContainer: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  /*
-    Education -end
-  */
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
