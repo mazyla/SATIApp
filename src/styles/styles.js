@@ -159,6 +159,8 @@ var myStyles = React.StyleSheet.create({
     height: lp(80),
     alignItems: 'center',
     justifyContent: 'space-between',
+    backgroundColor: '#55ab98',
+    opacity: 0.7,
   },
   educationButtonContainer: {
     width: '100%',
