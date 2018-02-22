@@ -50,6 +50,7 @@ export default class Login extends Component {
           this.setState({
               response: error.toString()
           });
+          return;
       }
     }
 

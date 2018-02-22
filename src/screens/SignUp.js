@@ -55,7 +55,8 @@ export default class Login extends Component {
         } catch (error) {
             this.setState({
                 response: error.toString()
-            })
+            });
+            return;
         }
 
         let userDetailsPath = "/users/" + 1;
