@@ -28,12 +28,11 @@ export default class App extends Component {
         })
       };
 
-  componentWillMount() {
-    this.setAdmin();
+  componentWillUnmount() {
+    this.authSubscription();
   }
 
   componentDidMount() {
-
       this.authSubscription = firebase.auth().onAuthStateChanged((user) => {
         _setLoadingUser(user);
         var userRef = firebaseApp.database().ref().child('users');
@@ -60,16 +59,6 @@ export default class App extends Component {
 
       });
     }
-
-  renderScreen() {
-    // The application is initialising
-    if (this.state.loading) return null;
-    if (this.state.isAdmin) {
-      return <AdminTabs />;
-    } else if (this.state.user) {
-      return <Tabs />;
-    } else return <LoginStack />;
-  }
 
   render() {
     if (this.state.loading) return null;
