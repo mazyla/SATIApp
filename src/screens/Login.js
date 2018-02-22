@@ -4,6 +4,7 @@ import {
     Text,
     View,
     ImageBackground,
+    ScrollView,
     StyleSheet,
     dismissKeyboard,
     KeyboardAvoidingView,
@@ -17,7 +18,6 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { Sae } from "react-native-textinput-effects";
 import DismissKeyboard from "dismissKeyboard";
 import styles from '../styles/styles.js';
-import CommonStyle from "../styles/common.css";
 
 export default class Login extends Component {
     constructor(props) {
@@ -56,6 +56,7 @@ export default class Login extends Component {
     render() {
         return (
             <TouchableWithoutFeedback onPress={() => {DismissKeyboard()}}>
+              <ScrollView>
               <ImageBackground
                 style={styles.loginBackgroundImage}
                 source={require('../../images/loginBG.png')}>
@@ -101,6 +102,7 @@ export default class Login extends Component {
                     </View>
                 </View>
               </ImageBackground>
+              </ScrollView>
             </TouchableWithoutFeedback>
         );
     }
