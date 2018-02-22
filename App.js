@@ -26,7 +26,7 @@ export default class App extends Component {
           loading: true,
           user: user,
         })
-      };
+    };
   }
 
   componentWillUnmount() {
