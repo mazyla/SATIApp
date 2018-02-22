@@ -48,6 +48,7 @@ export default class CheckInView extends Component {
       this.getLastCheckIn();
       this.getAverageFeeling();
       tempCheckIns = [];
+
       },this);
 
 
@@ -88,12 +89,7 @@ getLastCheckIn = () => {
       }, this);
     }
   }
-  // disable check in if less than 4 hours till last
-  if ((today.getTime() - this.state.lastCheckIn) < 14400000) {
-    this.setState({shouldDisableCheckIn: true});
-  } else {
-    this.setState({shouldDisableCheckIn: false});
-  }
+
 }
 
 getAverageFeeling = () => {
@@ -118,17 +114,35 @@ getAverageFeeling = () => {
 }
 
   checkIn = () => {
-    this.setState({ lastcheckin: new Date() });
-    this.setLocation();
-    var now = new Date();
-    var lastCheckIn = parseInt(this.state.lastCheckIn);
-    var temp = now.getTime() - lastCheckIn;
-    if ((now.getTime() - lastCheckIn) > 64800000) {
-      // needs to not have checked in for more than 18 hours
-      // so that you can increase streak
-      this.increaseStreak();
+
+    var today = new Date();
+    // disable check in if less than 4 hours till last
+    if ((today.getTime() - this.state.lastCheckIn) < 14400000) {
+      var minutesTillCheckIn = Math.round((14400000 - (today.getTime() - this.state.lastCheckIn))/60000);
+      var hoursTillCheckIn = Math.floor(minutesTillCheckIn/60);
+      var minutesLeft = minutesTillCheckIn - (60*hoursTillCheckIn);
+      if (hoursTillCheckIn > 0) {
+        if (minutesLeft == 0) {
+          Alert.alert("Please wait " + hoursTillCheckIn + " hours to check in");
+        }
+        Alert.alert("Please wait " + hoursTillCheckIn + " hours " + minutesLeft + " minutes to check in");
+      } else {
+        Alert.alert("Please wait " + minutesTillCheckIn + " minutes to check in");
+      }
+    } else {
+      this.setState({ lastcheckin: new Date() });
+      this.setLocation();
+      var now = new Date();
+      var lastCheckIn = parseInt(this.state.lastCheckIn);
+      var temp = now.getTime() - lastCheckIn;
+      if ((now.getTime() - lastCheckIn) > 64800000) {
+        // needs to not have checked in for more than 18 hours
+        // so that you can increase streak
+        this.increaseStreak();
+      }
+      this.getLastCheckIn();
     }
-    this.getLastCheckIn();
+
   };
 
   increaseStreak = () => {
@@ -265,10 +279,9 @@ getAverageFeeling = () => {
           <View style={styles.checkInUpdateButtonContainer}>
             <TouchableOpacity
             style={[styles.checkInUpdateButton, {
-            backgroundColor: this.state.shouldDisableCheckIn ? "#ebebed" : "#324D5C"}]}
+            backgroundColor: "#324D5C"}]}
             activeOpacity={1}
             onPress={this.checkIn}
-            disabled={this.state.shouldDisableCheckIn}
             styleDisabled={styles.checkInUpdateButtonDisabled}>
               <View style={styles.checkInUpdateButtonTextContainer}>
                 <Text style={styles.checkInUpdateButtonText}>Safety Check</Text>
