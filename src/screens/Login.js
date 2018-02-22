@@ -4,6 +4,7 @@ import {
     Text,
     View,
     ImageBackground,
+    ScrollView,
     StyleSheet,
     dismissKeyboard,
     KeyboardAvoidingView,
@@ -17,7 +18,6 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { Sae } from "react-native-textinput-effects";
 import DismissKeyboard from "dismissKeyboard";
 import styles from '../styles/styles.js';
-import CommonStyle from "../styles/common.css";
 
 export default class Login extends Component {
     constructor(props) {
@@ -50,57 +50,58 @@ export default class Login extends Component {
           this.setState({
               response: error.toString()
           });
+          return;
       }
     }
 
     render() {
         return (
             <TouchableWithoutFeedback onPress={() => {DismissKeyboard()}}>
-              <ImageBackground
-                style={styles.loginBackgroundImage}
-                source={require('../../images/loginBG.png')}>
-                <View style={styles.loginContainer}>
-                    <View style={styles.loginFormGroup}>
-                        <KeyboardAvoidingView
-                          behavior="padding">
-                          <Text style={styles.loginTitle}>SATIconnect</Text>
-                          <Sae
-                              label={"Email Address"}
-                              iconClass={FontAwesomeIcon}
-                              iconName={"envelope"}
-                              iconColor={"white"}
-                              onChangeText={(email) => this.setState({email})}
-                              keyboardType="email-address"
-                              autoCapitalize={'none'}
-                              autoCorrect={false}
-                          />
-                          <Sae
-                              label={"Password"}
-                              iconClass={FontAwesomeIcon}
-                              iconName={"lock"}
-                              iconColor={"white"}
-                              onChangeText={(password) => this.setState({password})}
-                              password={true}
-                              autoCapitalize={'none'}
-                              autoCorrect={false}
-                          />
-                        </KeyboardAvoidingView>
+                <ImageBackground
+                  style={styles.loginBackgroundImage}
+                  source={require('../../images/loginBG.png')}>
+                  <View style={styles.loginContainer}>
+                      <View style={styles.loginFormGroup}>
+                          <KeyboardAvoidingView
+                            behavior="padding">
+                            <Text style={styles.loginTitle}>SATIconnect</Text>
+                            <Sae
+                                label={"Email Address"}
+                                iconClass={FontAwesomeIcon}
+                                iconName={"envelope"}
+                                iconColor={"white"}
+                                onChangeText={(email) => this.setState({email})}
+                                keyboardType="email-address"
+                                autoCapitalize={'none'}
+                                autoCorrect={false}
+                            />
+                            <Sae
+                                label={"Password"}
+                                iconClass={FontAwesomeIcon}
+                                iconName={"lock"}
+                                iconColor={"white"}
+                                onChangeText={(password) => this.setState({password})}
+                                password={true}
+                                autoCapitalize={'none'}
+                                autoCorrect={false}
+                            />
+                          </KeyboardAvoidingView>
 
-                        <View style={styles.loginSubmitGroup}>
-                          <Button
-                            onPress={this.login}
-                            textStyle={styles.loginSubmitText}>Login</Button>
-                          <Button
-                            onPress={this.signup}
-                            style={styles.loginSignUpButton}
-                            textStyle={styles.loginSubmitText}>Sign up</Button>
-                        </View>
-                    </View>
-                    <View style={styles.loginResponseContainer}>
-                        <Text style={styles.loginResponse}>{this.state.response}</Text>
-                    </View>
-                </View>
-              </ImageBackground>
+                          <View style={styles.loginSubmitGroup}>
+                            <Button
+                              onPress={this.login}
+                              textStyle={styles.loginSubmitText}>Login</Button>
+                            <Button
+                              onPress={this.signup}
+                              style={styles.loginSignUpButton}
+                              textStyle={styles.loginSubmitText}>Sign up</Button>
+                          </View>
+                      </View>
+                      <View style={styles.loginResponseContainer}>
+                          <Text style={styles.loginResponse}>{this.state.response}</Text>
+                      </View>
+                  </View>
+                </ImageBackground>
             </TouchableWithoutFeedback>
         );
     }

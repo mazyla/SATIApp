@@ -33,7 +33,7 @@ export default class App extends Component {
 ];
     }
 
-    componentDidMount() {
+  componentDidMount() {
 
       this.authSubscription = firebase.auth().onAuthStateChanged((user) => {
         _setLoadingUser(user);
