@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import React, {Component} from 'react';
-import { View, Text, TouchableOpacity, FlatList, StatusBar } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StatusBar, ImageBackground } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import styles from '../styles/styles.js';
 import { fb } from '../../App'
@@ -8,7 +8,6 @@ import { fb } from '../../App'
 export default class EducationView extends Component {
   constructor(props) {
     super(props);
-    //this._logout = this._logout.bind(this);
   }
 
 
@@ -24,38 +23,55 @@ export default class EducationView extends Component {
           </View>
         </View>
 
-        <View style={{alignItems:'center', justifyContent: 'center', height: '100%', width: '100%'}}>
+        <View style={{justifyContent: 'center'}}>
+        <View style={styles.educationButtonContainerContainer}>
 
-          <View style={{alignItems:'center', width: '100%'}}>
+          <View style={styles.educationButtonContainer}>
             <TouchableOpacity
-              style={{width: '100%'}}
+              style={styles.educationButton}
               onPress={() => this.props.navigation.navigate("EducationSearch", { type: "Health Issues" })}>
-              <View style={{width: '100%', alignItems: 'center', paddingVertical: 30, borderWidth: 1, marginTop: 20, marginBottom: 20}}>
-                <Text style={{fontSize: 18, textAlign: 'center'}}>Health Issues</Text>
-              </View>
+              <ImageBackground
+                source={require('../../images/health_issues.jpg')}
+                style={styles.educationButtonBackgroundImage}>
+                <View style={styles.educationButtonTextContainer}>
+                  <View style={styles.educationButtonColor}></View>
+                  <Text style={styles.educationButtonText}>Health Issues</Text>
+                </View>
+              </ImageBackground>
             </TouchableOpacity>
           </View>
 
-          <View style={{alignItems:'center', width: '100%'}}>
+          <View style={styles.educationButtonContainer}>
             <TouchableOpacity
-              style={{width: '100%'}}
+              style={styles.educationButton}
               onPress={() => this.props.navigation.navigate("EducationSearch", { type: "First Aid" })}>
-              <View style={{width: '100%', alignItems: 'center', paddingVertical: 30, borderWidth: 1, marginTop: 20, marginBottom: 20}}>
-                <Text style={{fontSize: 18, textAlign: 'center'}}>First Aid</Text>
-              </View>
+              <ImageBackground
+                source={require('../../images/first_aid.jpg')}
+                style={styles.educationButtonBackgroundImage}>
+                <View style={styles.educationButtonTextContainer}>
+                  <View style={styles.educationButtonColor}></View>
+                  <Text style={styles.educationButtonText}>First Aid</Text>
+                </View>
+              </ImageBackground>
             </TouchableOpacity>
           </View>
 
-          <View style={{alignItems:'center', width: '100%'}}>
+          <View style={styles.educationButtonContainer}>
             <TouchableOpacity
-              style={{width:'100%'}}
+              style={styles.educationButton}
               onPress={() => this.props.navigation.navigate("EducationSearch", { type: "Conflict Management" })}>
-              <View style={{width: '100%', alignItems: 'center', paddingVertical: 30, borderWidth: 1, marginTop: 20, marginBottom: 20}}>
-                <Text style={{fontSize: 18, textAlign: 'center'}}>Conflict Management</Text>
-              </View>
+              <ImageBackground
+                source={require('../../images/conflict_management.jpg')}
+                style={styles.educationButtonBackgroundImage}>
+                <View style={styles.educationButtonTextContainer}>
+                  <View style={styles.educationButtonColor}></View>
+                  <Text style={styles.educationButtonText}>Conflict Management</Text>
+                </View>
+              </ImageBackground>
             </TouchableOpacity>
           </View>
 
+        </View>
         </View>
 
       </View>

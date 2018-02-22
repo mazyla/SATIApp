@@ -42,7 +42,6 @@ export default class CheckInView extends Component {
           let item = childSnapshot.val();
           item.key = childSnapshot.key;
           tempCheckIns.push(item);
-          Alert.alert(item);
         });
       this.setState({checkIns: tempCheckIns});
       this.getTotalCheckIns();
@@ -219,12 +218,11 @@ getAverageFeeling = () => {
             <TouchableOpacity
               style={styles.topBarProfileButton}
               onPress={this.goToProfile}>
-              <View>
-              <Icon
-                name='ios-contact-outline'
-                size={26}
-
-              />
+              <View style={{width:30,height:30,borderRadius:15, backgroundColor:'white'}}>
+                <Icon
+                  name='ios-contact'
+                  size={30}
+                />
               </View>
             </TouchableOpacity>
           </View>

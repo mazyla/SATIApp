@@ -188,9 +188,6 @@ export default class NewsFeedView extends Component {
         <View style={{height: '5%', alignItems: 'center'}}>
           <View style={{flexDirection: 'row'}}>
             <Text style={{fontSize:20, fontWeight: 'bold'}}>Lost</Text>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate("LostSeeAll")}>
-              <View><Text style={{fontSize:14, color: 'blue'}}>See All</Text></View>
-            </TouchableOpacity>
           </View>
         </View>
         <View style={{height: '30%'}}>
@@ -214,6 +211,9 @@ export default class NewsFeedView extends Component {
             }
           </Card>
         </View>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate("LostSeeAll")}>
+          <View><Text style={{fontSize:14, color: 'blue'}}>See All</Text></View>
+        </TouchableOpacity>
 
       </View>
     );
