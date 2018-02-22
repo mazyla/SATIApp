@@ -148,6 +148,11 @@ var myStyles = React.StyleSheet.create({
     fontSize: lp(4),
     backgroundColor: 'white',
   },
+  topBarTextContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+  },
   /*
     Top bar -end
   */
@@ -374,11 +379,6 @@ var myStyles = React.StyleSheet.create({
       fontFamily: 'Cochin',
       fontSize: lp(2.25),
   },
-  // Share location check box
-  // checkInShareLocationCheckBox: {
-  //   //marginRight: lp(2.25),
-  //   //**********
-  // },
   // Status picker container
   checkInStatusPickerContainer: {
     width: '40%',
@@ -411,7 +411,7 @@ var myStyles = React.StyleSheet.create({
   },
   // Carousel slider content container
   newsFeedSliderContentContainer: {
-    paddingVertical: 10,
+    paddingVertical: lp(2),
   },
   // Carousel container
   newsFeedCarouselContainer: {
@@ -435,7 +435,7 @@ var myStyles = React.StyleSheet.create({
   newsFeedCarouselSlideImage: {
     position: 'absolute',
     width: '100%',
-    height: '80%',
+    height: '100%',
   },
   // Carousel slide image title
   newsFeedCarouselSlideImageTitle: {
@@ -448,10 +448,10 @@ var myStyles = React.StyleSheet.create({
   // Carousel slide image subtitle
   newsFeedCarouselSlideImageSubtitle: {
     marginBottom: wp(0.25),
-    color: 'gray',
+    color: '#525052',
     fontSize: wp(4),
     fontStyle: 'italic',
-    paddingVertical: 3,
+    paddingVertical: lp(1),
   },
   // Carousel slide text container
   newsFeedCarouselSlideTextContainer: {
@@ -465,7 +465,7 @@ var myStyles = React.StyleSheet.create({
   newsFeedCarouselSlideTextBackgroundContainer: {
     alignItems: 'center',
     width: '100%',
-    height: wp(16),
+    height: lp(18),
     backgroundColor: 'white',
     opacity: 0.8,
   },
@@ -481,18 +481,18 @@ var myStyles = React.StyleSheet.create({
   },
   // Pagination container
   newsFeedPaginationContainer: {
-    paddingVertical: 8,
+    paddingVertical: lp(1),
   },
   // Pagination dots
   newsFeedPaginationDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
+    width: lp(1.5),
+    height: lp(1.5),
+    borderRadius: lp(0.75),
     marginHorizontal: 0,
   },
   // See all
   newsFeedSeeAll: {
-    marginTop: 5,
+    marginTop: lp(0.5),
     width: '20%',
     height: lp(5),
   },

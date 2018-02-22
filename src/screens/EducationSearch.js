@@ -53,13 +53,20 @@ export default class EducationSearchView extends Component {
 
         <View style={styles.topBarContainer}>
           <StatusBar hidden={false} />
-          <View style={{flexDirection: 'row', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center'}}>
-            <TouchableOpacity onPress={this._goBack}>
-              <View style={{alignItems: 'center', justifyContent: 'center', padding: 3}}><Icon name={'ios-arrow-back'} size={26} style={{color: 'white'}} /></View>
-            </TouchableOpacity>
-            <View style={styles.topBarTextContainer}>
-              <Text style={styles.topBarText}>Education Search</Text>
+          <View style={{flexDirection: 'row', width: '100%', height: '100%', alignItems: 'center'}}>
+
+            <View style={{justifyContent: 'center', borderWidth: 1, alignItems: 'flex-start'}}>
+              <TouchableOpacity onPress={this._goBack} style={{alignItems: 'center', justifyContent: 'center', borderWidth: 1}}>
+                <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                  <Icon name={'ios-arrow-back'} size={26} style={{color: 'white'}} />
+                </View>
+              </TouchableOpacity>
             </View>
+
+            <View style={styles.topBarTextContainer}>
+              <Text style={styles.topBarText}>{this.state.type}</Text>
+            </View>
+
           </View>
         </View>
 

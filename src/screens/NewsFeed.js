@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Image, Text, TouchableOpacity, StatusBar } from 'react-native';
+import { View, Image, Text, TouchableOpacity, StatusBar, ImageBackground } from 'react-native';
 import styles from '../styles/styles.js';
 import { Constants } from '../constants/constants.js';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
@@ -116,15 +116,16 @@ export default class NewsFeedView extends Component {
         activeOpacity={1}
         onPress={() => { alert(`You've clicked '${item.title}'`); }}>
           <View style={styles.newsFeedCarouselSlideContainer}>
-            <Image style={styles.newsFeedCarouselSlideImage} source={{ uri: item.illustration }} />
-            <View style={styles.newsFeedCarouselSlideTextBackgroundContainerFlex}>
-              <View style={styles.newsFeedCarouselSlideTextBackgroundContainer}>
-                <View style={styles.newsFeedCarouselSlideTextContainer}>
-                  <Text style={styles.newsFeedCarouselSlideImageTitle}>{item.title}</Text>
-                  <Text style={styles.newsFeedCarouselSlideImageSubtitle}>{item.subtitle}</Text>
+            <ImageBackground style={styles.newsFeedCarouselSlideImage} source={{ uri: item.illustration }}>
+              <View style={styles.newsFeedCarouselSlideTextBackgroundContainerFlex}>
+                <View style={styles.newsFeedCarouselSlideTextBackgroundContainer}>
+                  <View style={styles.newsFeedCarouselSlideTextContainer}>
+                    <Text style={styles.newsFeedCarouselSlideImageTitle}>{item.title}</Text>
+                    <Text style={styles.newsFeedCarouselSlideImageSubtitle}>{item.subtitle}</Text>
+                  </View>
                 </View>
               </View>
-            </View>
+            </ImageBackground>
           </View>
         </TouchableOpacity>
       </View>
@@ -147,11 +148,9 @@ export default class NewsFeedView extends Component {
               ref={(c) => { this._carousel = c; }}
               layout={'default'}
               data={ENTRIES}
-              inactiveSlideScale={0.94}
+              inactiveSlideScale={0.9}
               inactiveSlideOpacity={0.7}
               autoplay={false}
-              autoplayDelay={8000}
-              autoplayInterval={8000}
               loop={true}
               containerCustomStyle={styles.newsFeedSlider}
               contentContainerCustomStyle={styles.newsFeedSliderContentContainer}
