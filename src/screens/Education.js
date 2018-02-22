@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import React, {Component} from 'react';
-import { View, Text, TouchableOpacity, FlatList, StatusBar } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StatusBar, ImageBackground } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import styles from '../styles/styles.js';
 import { fb } from '../../App'
@@ -30,9 +30,14 @@ export default class EducationView extends Component {
             <TouchableOpacity
               style={styles.educationButton}
               onPress={() => this.props.navigation.navigate("EducationSearch", { type: "Health Issues" })}>
-              <View style={styles.educationButtonTextContainer}>
-                <Text style={styles.educationButtonText}>Health Issues</Text>
-              </View>
+              <ImageBackground
+                source={require('../../images/health_issues.jpg')}
+                style={styles.educationButtonBackgroundImage}>
+                <View style={styles.educationButtonTextContainer}>
+                  <View style={styles.educationButtonColor}></View>
+                  <Text style={styles.educationButtonText}>Health Issues</Text>
+                </View>
+              </ImageBackground>
             </TouchableOpacity>
           </View>
 
@@ -40,9 +45,14 @@ export default class EducationView extends Component {
             <TouchableOpacity
               style={styles.educationButton}
               onPress={() => this.props.navigation.navigate("EducationSearch", { type: "First Aid" })}>
-              <View style={styles.educationButtonTextContainer}>
-                <Text style={styles.educationButtonText}>First Aid</Text>
-              </View>
+              <ImageBackground
+                source={require('../../images/first_aid.jpg')}
+                style={styles.educationButtonBackgroundImage}>
+                <View style={styles.educationButtonTextContainer}>
+                  <View style={styles.educationButtonColor}></View>
+                  <Text style={styles.educationButtonText}>First Aid</Text>
+                </View>
+              </ImageBackground>
             </TouchableOpacity>
           </View>
 
@@ -50,9 +60,14 @@ export default class EducationView extends Component {
             <TouchableOpacity
               style={styles.educationButton}
               onPress={() => this.props.navigation.navigate("EducationSearch", { type: "Conflict Management" })}>
-              <View style={styles.educationButtonTextContainer}>
-                <Text style={styles.educationButtonText}>Conflict Management</Text>
-              </View>
+              <ImageBackground
+                source={require('../../images/conflict_management.jpg')}
+                style={styles.educationButtonBackgroundImage}>
+                <View style={styles.educationButtonTextContainer}>
+                  <View style={styles.educationButtonColor}></View>
+                  <Text style={styles.educationButtonText}>Conflict Management</Text>
+                </View>
+              </ImageBackground>
             </TouchableOpacity>
           </View>
 
