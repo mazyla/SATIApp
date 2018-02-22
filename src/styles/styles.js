@@ -502,8 +502,6 @@ var myStyles = React.StyleSheet.create({
   /*
     News Feed -end
   */
-<<<<<<< HEAD
-=======
   /*
     Education -start
   */
@@ -524,7 +522,6 @@ var myStyles = React.StyleSheet.create({
     alignItems: 'center',
     marginTop: lp(8),
   },
->>>>>>> fa17ec65ba465c7ff487e5ddce97223bdc6d3159
 });
 
 module.exports = myStyles;

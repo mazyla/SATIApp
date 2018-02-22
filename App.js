@@ -21,43 +21,17 @@ export default class App extends Component {
       isAdmin: false,
     };
 
-<<<<<<< HEAD
-    console.ignoredYellowBox = [
-      'Setting a timer'
-    ];
-  }
-=======
     _setLoadingUser = (user) => {
         this.setState ({
           loading: true,
           user: user,
         })
       };
->>>>>>> fa17ec65ba465c7ff487e5ddce97223bdc6d3159
 
   componentWillMount() {
     this.setAdmin();
   }
 
-<<<<<<< HEAD
-  setAdmin = () => {
-    this.authSubscription = firebase.auth().onAuthStateChanged((user) => {
-      if (user === null) return;
-      var userRef = firebaseApp.database().ref().child('users');
-      var userDetails = userRef.orderByChild("email").equalTo(user.email);
-      userDetails.on("value", function(snapshot) {
-        snapshot.forEach(childSnapshot => {
-            let item = childSnapshot.val();
-            this.setState({
-              isAdmin: item.isAdmin,
-              user: user,
-              loading: false,
-            });
-        });
-      }, this);
-    });
-  }
-=======
   componentDidMount() {
 
       this.authSubscription = firebase.auth().onAuthStateChanged((user) => {
@@ -86,7 +60,6 @@ export default class App extends Component {
 
       });
     }
->>>>>>> fa17ec65ba465c7ff487e5ddce97223bdc6d3159
 
   renderScreen() {
     // The application is initialising
@@ -99,14 +72,10 @@ export default class App extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-    return this.renderScreen();
-=======
     if (this.state.loading) return null;
     if (this.state.isAdmin) return <AdminTabs />
     else if (this.state.user) return <Tabs />
     return <LoginStack />;
->>>>>>> fa17ec65ba465c7ff487e5ddce97223bdc6d3159
   }
 }
 

@@ -54,8 +54,6 @@ export const LoginStack = StackNavigator({
       header: null,
     },
   },
-<<<<<<< HEAD
-=======
   Profile: {
     screen: Profile,
     headerMode: 'screen',
@@ -64,7 +62,6 @@ export const LoginStack = StackNavigator({
       tabBarVisible: false,
     },
   },
->>>>>>> fa17ec65ba465c7ff487e5ddce97223bdc6d3159
 });
 
 export const EducationSearchStack = StackNavigator({
