@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import { View, Text, Image, Switch, Button, TouchableOpacity,
-  StatusBar, Alert, FlatList } from 'react-native';
+  StatusBar, Alert, FlatList, Modal, KeyboardAvoidingView } from 'react-native';
 import styles from '../styles/styles.js';
 import { fb } from '../../App'
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import { Sae } from "react-native-textinput-effects";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class AdminResources extends Component {
   constructor(props) {
@@ -12,6 +15,11 @@ export default class AdminResources extends Component {
 
     this.state = {
       currentResources: this.getAllResources(),
+      modalVisible: false,
+      newResourceName: "",
+      newResourceType: "",
+      newResourceLongitude: "",
+      newResourceLatitude: "",
     }
   }
 
@@ -23,35 +31,75 @@ export default class AdminResources extends Component {
           item.key = childSnapshot.key;
           tempResources.push(item);
         });
-      this.setState({resources: tempResources});
-      Alert.alert(resources[5].key.toString());
+      this.setState({currentResources: tempResources});
       tempResources = [];
       },this);
 
   }
 
-  renderFlatListItem = (item) => {
-    return (
-      <View key={"parentView"+item.key}>
-		    <Text key={"topicCat"+item.type} style={styles.itemTypeText}>{item.type}</Text>
-      </View>
-	   )
-   }
+  openModal() {
+   this.setState({modalVisible:true});
+ }
+
+ closeModal() {
+   this.setState({modalVisible:false});
+ }
+
+ goToProfile = () => {
+   this.props.navigation.navigate("Profile");
+ }
 
   render() {
     return (
       <View style={styles.resourcesContainer}>
 
-        <View style={styles.topBarContainer}>
-          <StatusBar hidden={false} />
-          <View style={styles.topBarTextContainer}>
-            <Text style={styles.topBarText}>Resources</Text>
-          </View>
+      <View style={styles.topBarContainer}>
+        <StatusBar />
+        <View style={styles.topBarViewContainer}>
+          <Text style={styles.topBarText}>Resources</Text>
+          <TouchableOpacity
+            style={styles.topBarProfileButton}
+            onPress={this.goToProfile}>
+            <View>
+            <Icon
+              name='ios-contact-outline'
+              size={26}
+            />
+            </View>
+          </TouchableOpacity>
         </View>
+      </View>
+
+        <TouchableOpacity
+        onPress={() => this.openModal()} >
+          <Text>Add New Resource</Text>
+
+        </TouchableOpacity>
+
+        <Modal
+              visible={this.state.modalVisible}
+              animationType={'slide'}
+              onRequestClose={() => this.closeModal()}
+          >
+          <View style={styles.modalContainer}>
+           <View style={styles.innerContainer}>
+                <Text>Add New Resource</Text>
+                <View style={styles.loginFormGroup}>
+
+                <Button
+                    onPress={() => this.closeModal()}
+                    title="Close"
+                >
+                </Button>
+              </View>
+            </View>
+                      </View>
+          </Modal>
+
 
         <View>
           <FlatList
-          data={this.state.resources}
+          data={this.state.currentResources}
           renderItem={({item}) =>
           <View style={styles.adminResourcesListContainer}>
             <Text style={styles.adminResourcesListItemText}>{item.key} - {item.type}</Text>
@@ -60,6 +108,7 @@ export default class AdminResources extends Component {
         }
         />
         </View>
+
 
         </View>
     );

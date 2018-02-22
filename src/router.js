@@ -47,6 +47,21 @@ export const LoginStack = StackNavigator({
           title: 'Create an account',
     },
   },
+  AdminTabs: {
+    screen: AdminResources,
+    headerMode: 'screen',
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Profile: {
+    screen: Profile,
+    headerMode: 'screen',
+    navigationOptions: {
+      headerTitle: "Your Profile",
+      tabBarVisible: false,
+    },
+  },
 });
 
 export const EducationSearchStack = StackNavigator({
@@ -68,6 +83,23 @@ export const EducationSearchStack = StackNavigator({
 export const CheckInProfileStack = StackNavigator({
   CheckIn: {
     screen: CheckIn,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Profile: {
+    screen: Profile,
+    headerMode: 'screen',
+    navigationOptions: {
+      headerTitle: "Your Profile",
+      tabBarVisible: false,
+    },
+  },
+});
+
+export const ResourceProfileAdminStack = StackNavigator({
+  Resources: {
+    screen: AdminResources,
     navigationOptions: {
       header: null,
     },
@@ -194,7 +226,7 @@ export const Tabs = TabNavigator({
 export const AdminTabs = TabNavigator({
 
   Resources: {
-    screen: AdminResources,
+    screen: ResourceProfileAdminStack,
     headerMode: 'screen',
     navigationOptions: {
       tabBarLabel: ({tintColor, focused}) => (<Text style={{marginBottom: 3, textAlign: 'center', fontSize: 12, color: focused ? '#55ab98' : '#a09e9f'}}>Resources</Text>),

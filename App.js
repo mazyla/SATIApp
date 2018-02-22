@@ -23,9 +23,8 @@ export default class App extends Component {
 
     _setLoadingUser = (user) => {
         this.setState ({
-          loading: false,
+          loading: true,
           user: user,
-          isAdmin: false,
         })
       };
 
@@ -34,35 +33,43 @@ export default class App extends Component {
 ];
     }
 
-  componentDidMount() {
-    this.authSubscription = firebase.auth().onAuthStateChanged((user) => {
-      _setLoadingUser(user);
-      var userRef = firebaseApp.database().ref().child('users');
-      var tempIsAdmin;
-      var userDetails = userRef.orderByChild("email").equalTo(user.email);
-      userDetails.once("value", function(snapshot) {
-        snapshot.forEach(childSnapshot => {
-            let item = childSnapshot.val();
-            item.key = childSnapshot.key;
-            tempIsAdmin = item.isAdmin;
+    componentDidMount() {
 
-        });
-        this.setState({isAdmin: tempIsAdmin});
-        Alert.alert(this.state.isAdmin.toString());
-      }, this);
-    });
-  }
+      this.authSubscription = firebase.auth().onAuthStateChanged((user) => {
+        _setLoadingUser(user);
+        var userRef = firebaseApp.database().ref().child('users');
+        var tempIsAdmin;
+
+        if (user === null || user === undefined) {
+          this.setState({loading: false, isAdmin: false});
+
+          return
+        }
+        var userDetails = userRef.orderByChild("email").equalTo(user.email);
+        userDetails.once("value", function(snapshot) {
+          snapshot.forEach(childSnapshot => {
+              let item = childSnapshot.val();
+              item.key = childSnapshot.key;
+              tempIsAdmin = item.isAdmin;
+              this.setState ({
+                isAdmin: tempIsAdmin,
+                loading: false,
+              })
+          });
+
+        }, this);
+
+      });
+    }
 
   componentWillUnmount() {
     this.authSubscription();
   }
 
   render() {
-    // The application is initialising
     if (this.state.loading) return null;
-    //Alert.alert(this.state.isAdmin.toString());
     if (this.state.isAdmin) return <AdminTabs />
-    if (this.state.user) return <Tabs />
+    else if (this.state.user) return <Tabs />
     return <LoginStack />;
   }
 }

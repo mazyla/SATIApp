@@ -466,6 +466,15 @@ var myStyles = React.StyleSheet.create({
   /*
     Education -end
   */
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'grey',
+  },
+  innerContainer: {
+    alignItems: 'center',
+    marginTop: lp(8),
+  },
 });
 
 module.exports = myStyles;
