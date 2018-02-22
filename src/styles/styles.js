@@ -142,7 +142,11 @@ var myStyles = React.StyleSheet.create({
   },
   topBarProfileButton: {
     justifyContent: 'flex-end',
-    marginTop: lp(2),
+    alignItems: 'center',
+  },
+  topBarProfileButtonSize: {
+    fontSize: lp(4),
+    backgroundColor: 'white',
   },
   /*
     Top bar -end
@@ -160,7 +164,6 @@ var myStyles = React.StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: '#55ab98',
-    opacity: 0.7,
   },
   educationButtonContainer: {
     width: '100%',
@@ -264,10 +267,6 @@ var myStyles = React.StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     alignItems: 'center',
-  },
-  // Profile button
-  checkInProfile: {
-    // set width and height
   },
   // Check in stats container
   checkInStatsContainer: {
