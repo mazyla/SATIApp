@@ -42,7 +42,7 @@ export default class Login extends Component {
       DismissKeyboard();
       try {
           await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
-          this.setState({ response: "Logged In!" });
+          //this.setState({ response: "Logged In!" });
           setTimeout(() => {
               this.props.navigation.navigate('Tabs');
           }, 1500);
@@ -66,7 +66,8 @@ export default class Login extends Component {
                             behavior="padding">
                             <Text style={styles.loginTitle}>SATIconnect</Text>
                             <Sae
-                                label={"Email Address"}
+                                label={"Email address"}
+                                labelStyle={styles.loginInputLabel}
                                 iconClass={FontAwesomeIcon}
                                 iconName={"envelope"}
                                 iconColor={"white"}
@@ -77,6 +78,7 @@ export default class Login extends Component {
                             />
                             <Sae
                                 label={"Password"}
+                                labelStyle={styles.loginInputLabel}
                                 iconClass={FontAwesomeIcon}
                                 iconName={"lock"}
                                 iconColor={"white"}

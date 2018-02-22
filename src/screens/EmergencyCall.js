@@ -28,7 +28,7 @@ export default class EmergencyCallView extends Component {
         <View style={styles.topBarContainer}>
           <StatusBar hidden={false} />
           <View style={styles.topBarTextContainer}>
-            <Text style={styles.topBarText}>ขอความช่วยเหลือ</Text>
+            <Text style={styles.topBarText}>Emergency Call</Text>
           </View>
         </View>
 
@@ -40,7 +40,7 @@ export default class EmergencyCallView extends Component {
                   source = {require('../../images/message-icon.png')}
                   style = {styles.emergencyCallButtonImage}
                 />
-                <Text style={styles.emergencyCallButtonText}>ส่งข้อความหาเดอะฮับ</Text>
+                <Text style={styles.emergencyCallButtonText}>Text The Hub</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -51,7 +51,7 @@ export default class EmergencyCallView extends Component {
                   source = {require('../../images/call_center.png')}
                   style = {styles.emergencyCallButtonImage}
                 />
-                <Text style={styles.emergencyCallButtonText}>โทรหาเดอะฮับ</Text>
+                <Text style={styles.emergencyCallButtonText}>Call The Childline</Text>
               </View>
             </TouchableOpacity>
           </View>

@@ -47,6 +47,13 @@ export const LoginStack = StackNavigator({
           title: 'Create an account',
     },
   },
+  AdminTabs: {
+    screen: AdminResources,
+    headerMode: 'screen',
+    navigationOptions: {
+      header: null,
+    },
+  },
 });
 
 export const EducationSearchStack = StackNavigator({

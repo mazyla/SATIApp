@@ -91,6 +91,7 @@ export default class Login extends Component {
                     behavior="padding">
                   <Sae
                       label={"First Name"}
+                      labelStyle={styles.loginInputLabel}
                       iconClass={FontAwesomeIcon}
                       iconName={"pencil"}
                       iconColor={"white"}
@@ -100,6 +101,7 @@ export default class Login extends Component {
                   />
                   <Sae
                       label={"Last Name"}
+                      labelStyle={styles.loginInputLabel}
                       iconClass={FontAwesomeIcon}
                       iconName={"pencil"}
                       iconColor={"white"}
@@ -109,6 +111,7 @@ export default class Login extends Component {
                   />
                   <Sae
                       label={"Email Address"}
+                      labelStyle={styles.loginInputLabel}
                       iconClass={FontAwesomeIcon}
                       iconName={"envelope"}
                       iconColor={"white"}
@@ -118,6 +121,7 @@ export default class Login extends Component {
                   />
                   <Sae
                       label={"Password"}
+                      labelStyle={styles.loginInputLabel}
                       iconClass={FontAwesomeIcon}
                       iconName={"key"}
                       iconColor={"white"}
@@ -127,6 +131,7 @@ export default class Login extends Component {
                   />
                   <Sae
                       label={"Gender"}
+                      labelStyle={styles.loginInputLabel}
                       iconClass={FontAwesomeIcon}
                       iconName={"key"}
                       iconColor={"white"}
@@ -136,6 +141,7 @@ export default class Login extends Component {
                   />
                   <Sae
                       label={"Age"}
+                      labelStyle={styles.loginInputLabel}
                       iconClass={FontAwesomeIcon}
                       iconName={"key"}
                       iconColor={"white"}

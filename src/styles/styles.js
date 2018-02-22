@@ -90,6 +90,9 @@ var myStyles = React.StyleSheet.create({
     fontWeight: "bold",
     opacity: 0.8,
   },
+  loginInputLabel: {
+    color: '#76448a',
+  },
   loginSubmitGroup: {
     paddingTop: lp(5),
   },
@@ -143,6 +146,46 @@ var myStyles = React.StyleSheet.create({
   },
   /*
     Top bar -end
+  */
+  /*
+    Education -start
+  */
+  educationContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  educationButtonContainerContainer: {
+    width: '100%',
+    height: '90%',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  educationButtonContainer: {
+    width: '100%',
+    height: '25%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    //borderWidth: 1,
+  },
+  educationButton: {
+    width: '100%',
+  },
+  educationButtonTextContainer: {
+    width: '100%',
+    height: '80%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: lp(10),
+    //borderWidth: 1,
+    backgroundColor: '#1abc9c',
+    marginTop: lp(4),
+  },
+  educationButtonText: {
+    textAlign: 'center',
+    fontSize: lp(3),
+  },
+  /*
+    Education -end
   */
   /*
     Resources -start
@@ -207,6 +250,10 @@ var myStyles = React.StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     alignItems: 'center',
+  },
+  // Profile button
+  checkInProfile: {
+    // set width and height
   },
   // Check in stats container
   checkInStatsContainer: {
@@ -454,17 +501,6 @@ var myStyles = React.StyleSheet.create({
   },
   /*
     News Feed -end
-  */
-  /*
-    Education -start
-  */
-  // Top view for Education
-  educationContainer: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  /*
-    Education -end
   */
 });
 

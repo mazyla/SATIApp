@@ -24,7 +24,7 @@ export default class AdminResources extends Component {
           tempResources.push(item);
         });
       this.setState({resources: tempResources});
-      Alert.alert(resources[5].key.toString());
+      //Alert.alert(resources[5].key.toString());
       tempResources = [];
       },this);
 

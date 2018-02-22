@@ -97,7 +97,7 @@ export default class ResourcesView extends React.Component {
         <View style={styles.topBarContainer}>
           <StatusBar hidden={false} />
           <View style={styles.topBarTextContainer}>
-            <Text style={styles.topBarText}>Resources</Text>
+            <Text style={styles.topBarText}>Resource Finder</Text>
           </View>
         </View>
 
