@@ -502,6 +502,29 @@ var myStyles = React.StyleSheet.create({
   /*
     News Feed -end
   */
+<<<<<<< HEAD
+=======
+  /*
+    Education -start
+  */
+  // Top view for Education
+  educationContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  /*
+    Education -end
+  */
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'grey',
+  },
+  innerContainer: {
+    alignItems: 'center',
+    marginTop: lp(8),
+  },
+>>>>>>> fa17ec65ba465c7ff487e5ddce97223bdc6d3159
 });
 
 module.exports = myStyles;

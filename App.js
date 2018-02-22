@@ -21,15 +21,25 @@ export default class App extends Component {
       isAdmin: false,
     };
 
+<<<<<<< HEAD
     console.ignoredYellowBox = [
       'Setting a timer'
     ];
   }
+=======
+    _setLoadingUser = (user) => {
+        this.setState ({
+          loading: true,
+          user: user,
+        })
+      };
+>>>>>>> fa17ec65ba465c7ff487e5ddce97223bdc6d3159
 
   componentWillMount() {
     this.setAdmin();
   }
 
+<<<<<<< HEAD
   setAdmin = () => {
     this.authSubscription = firebase.auth().onAuthStateChanged((user) => {
       if (user === null) return;
@@ -47,6 +57,36 @@ export default class App extends Component {
       }, this);
     });
   }
+=======
+  componentDidMount() {
+
+      this.authSubscription = firebase.auth().onAuthStateChanged((user) => {
+        _setLoadingUser(user);
+        var userRef = firebaseApp.database().ref().child('users');
+        var tempIsAdmin;
+
+        if (user === null || user === undefined) {
+          this.setState({loading: false, isAdmin: false});
+
+          return
+        }
+        var userDetails = userRef.orderByChild("email").equalTo(user.email);
+        userDetails.once("value", function(snapshot) {
+          snapshot.forEach(childSnapshot => {
+              let item = childSnapshot.val();
+              item.key = childSnapshot.key;
+              tempIsAdmin = item.isAdmin;
+              this.setState ({
+                isAdmin: tempIsAdmin,
+                loading: false,
+              })
+          });
+
+        }, this);
+
+      });
+    }
+>>>>>>> fa17ec65ba465c7ff487e5ddce97223bdc6d3159
 
   renderScreen() {
     // The application is initialising
@@ -59,7 +99,14 @@ export default class App extends Component {
   }
 
   render() {
+<<<<<<< HEAD
     return this.renderScreen();
+=======
+    if (this.state.loading) return null;
+    if (this.state.isAdmin) return <AdminTabs />
+    else if (this.state.user) return <Tabs />
+    return <LoginStack />;
+>>>>>>> fa17ec65ba465c7ff487e5ddce97223bdc6d3159
   }
 }
 
