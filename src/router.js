@@ -20,6 +20,11 @@ import Profile from './screens/Profile'
 import NewsFeedSeeAll from './screens/NewsFeedSeeAll'
 import LostSeeAll from './screens/LostSeeAll'
 
+import AdminResources from './screens/AdminResources'
+import AdminNewsFeed from './screens/AdminNewsFeed'
+import AdminCheckIn from './screens/AdminCheckIn'
+import AdminContent from './screens/AdminContent'
+
 
 export const LoginStack = StackNavigator({
   Login: {
@@ -156,6 +161,80 @@ export const Tabs = TabNavigator({
   },
   Education: {
     screen: EducationSearchStack,
+    navigationOptions: {
+      tabBarLabel: ({tintColor, focused}) => (<Text style={{marginBottom: 3, textAlign: 'center', fontSize: 12, color: focused ? '#55ab98' : '#a09e9f'}}>Education</Text>),
+      tabBarIcon: ({ tintColor, focused }) => (
+       <Icon
+         name={focused ? 'ios-clipboard' : 'ios-clipboard-outline'}
+         size={26}
+         style={{marginBottom: (Platform.OS === 'ios') ? 20 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
+       />
+     ),
+   },
+ },
+},
+ {
+    tabBarPosition: 'bottom',  // So your Android tabs go bottom
+    tabBarOptions: {
+      inactiveTintColor: '#a09e9f', // Color of tab when not pressed
+      showIcon: 'true', // Shows an icon for both iOS and Android
+
+      labelStyle: {
+        fontSize: 12,
+      },
+
+      style: {
+        backgroundColor: '#fff', // Makes Android tab bar white instead of standard blue
+         height: (Platform.OS === 'ios') ? 49 : lp(8) // I didn't use this in my app, so the numbers may be off.
+      }
+    },
+});
+
+
+export const AdminTabs = TabNavigator({
+
+  Resources: {
+    screen: AdminResources,
+    headerMode: 'screen',
+    navigationOptions: {
+      tabBarLabel: ({tintColor, focused}) => (<Text style={{marginBottom: 3, textAlign: 'center', fontSize: 12, color: focused ? '#55ab98' : '#a09e9f'}}>Resources</Text>),
+      tabBarIcon: ({ tintColor, focused }) => (
+       <Icon
+         name={focused ? 'ios-compass' : 'ios-compass-outline'}
+         size={26}
+         style={{marginBottom: (Platform.OS === 'ios') ? 20 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
+       />
+     ),
+   },
+  },
+  NewsFeed: {
+    screen: AdminNewsFeed,
+    navigationOptions: {
+      tabBarLabel: ({tintColor, focused}) => (<Text style={{marginBottom: 3, textAlign: 'center', fontSize: 12, color: focused ? '#55ab98' : '#a09e9f'}}>NewsFeed</Text>),
+      tabBarIcon: ({ tintColor, focused }) => (
+       <Icon
+         name={focused ? 'ios-navigate' : 'ios-navigate-outline'}
+         size={26}
+         style={{marginBottom: (Platform.OS === 'ios') ? 20 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
+       />
+     ),
+   },
+  },
+  CheckIn: {
+    screen: AdminCheckIn,
+    navigationOptions: {
+      tabBarLabel: ({tintColor, focused}) => (<Text style={{marginBottom: 3, textAlign: 'center', fontSize: 12, color: focused ? '#55ab98' : '#a09e9f'}}>Check In</Text>),
+      tabBarIcon: ({ tintColor, focused }) => (
+       <Icon
+         name={focused ? 'ios-checkmark' : 'ios-checkmark-outline'}
+         size={32}
+         style={{marginBottom: (Platform.OS === 'ios') ? 20 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
+       />
+     ),
+   },
+  },
+  Education: {
+    screen: AdminContent,
     navigationOptions: {
       tabBarLabel: ({tintColor, focused}) => (<Text style={{marginBottom: 3, textAlign: 'center', fontSize: 12, color: focused ? '#55ab98' : '#a09e9f'}}>Education</Text>),
       tabBarIcon: ({ tintColor, focused }) => (

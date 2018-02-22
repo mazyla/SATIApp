@@ -38,6 +38,7 @@ export default class Login extends Component {
     }
 
     async signup() {
+<<<<<<< HEAD
       DismissKeyboard();
       try {
           await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
@@ -68,6 +69,47 @@ export default class Login extends Component {
       currentUser.updateProfile({
         displayName: this.state.displayName,
       });
+=======
+
+        DismissKeyboard();
+
+        try {
+            await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
+
+            this.setState({
+                response: "account created"
+            });
+
+            setTimeout(() => {
+                this.props.navigation.navigate('Tabs');
+            }, 1500);
+
+        } catch (error) {
+            this.setState({
+                response: error.toString()
+            })
+        }
+
+        let userDetailsPath = "/users/" + 1;
+
+        firebase.database().ref("users").push({
+          email: this.state.email,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          age: this.state.age,
+          gender: this.state.gender,
+          streak: 0,
+          isAdmin: "false",
+        });
+
+        var currentUser = firebase.auth().currentUser;
+        currentUser.updateProfile({
+          displayName: this.state.displayName,
+        });
+
+
+
+>>>>>>> 080f64e7d53c431d40c4567b2a96a97513603d37
     }
 
     render() {

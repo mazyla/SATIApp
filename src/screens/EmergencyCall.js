@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
 import { View, Text, Image, StatusBar,
   TouchableNativeFeedback, TouchableHighlight, TouchableOpacity } from 'react-native';
 import styles from '../styles/styles.js';
 import { Constants } from '../constants/constants.js';
 import Communications from 'react-native-communications';
+import React, {Component} from 'react'
 
 export default class EmergencyCallView extends Component {
   constructor(props) {

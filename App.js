@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { LoginStack, Tabs, Login } from './src/router'
+import { Alert } from 'react-native';
+import { LoginStack, Tabs, Login, AdminTabs } from './src/router'
 import * as firebase from 'firebase';
 
 // Initialize Firebase
@@ -17,12 +18,14 @@ export default class App extends Component {
     super();
     this.state = {
       loading: true,
+      isAdmin: false,
     };
 
     _setLoadingUser = (user) => {
         this.setState ({
           loading: false,
           user: user,
+          isAdmin: false,
         })
       };
 
@@ -34,21 +37,33 @@ export default class App extends Component {
   componentDidMount() {
     this.authSubscription = firebase.auth().onAuthStateChanged((user) => {
       _setLoadingUser(user);
+      var userRef = firebaseApp.database().ref().child('users');
+      var tempIsAdmin;
+      var userDetails = userRef.orderByChild("email").equalTo(user.email);
+      userDetails.once("value", function(snapshot) {
+        snapshot.forEach(childSnapshot => {
+            let item = childSnapshot.val();
+            item.key = childSnapshot.key;
+            tempIsAdmin = item.isAdmin;
+
+        });
+        this.setState({isAdmin: tempIsAdmin});
+        Alert.alert(this.state.isAdmin.toString());
+      }, this);
     });
   }
-  
+
   componentWillUnmount() {
     this.authSubscription();
   }
 
-
   render() {
     // The application is initialising
-        if (this.state.loading) return null;
-        // The user is an Object, so they're logged in
-        if (this.state.user) return <Tabs />;
-        // The user is null, so they're logged out
-        return <LoginStack />;
+    if (this.state.loading) return null;
+    //Alert.alert(this.state.isAdmin.toString());
+    if (this.state.isAdmin) return <AdminTabs />
+    if (this.state.user) return <Tabs />
+    return <LoginStack />;
   }
 }
 

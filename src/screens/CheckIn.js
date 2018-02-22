@@ -1,4 +1,3 @@
-import firebase from 'firebase';
 import React, {Component} from 'react';
 import { View, Text, Image, Switch, Button, TouchableOpacity, StatusBar, Alert } from 'react-native';
 import styles from '../styles/styles.js';
@@ -7,9 +6,6 @@ import PropTypes from 'prop-types';
 import { fb } from '../../App'
 import { Picker } from 'react-native-picker-dropdown'
 import Icon from 'react-native-vector-icons/Ionicons';
-
-
-
 
 export default class CheckInView extends Component {
   constructor(props) {
@@ -46,6 +42,7 @@ export default class CheckInView extends Component {
           let item = childSnapshot.val();
           item.key = childSnapshot.key;
           tempCheckIns.push(item);
+          Alert.alert(item);
         });
       this.setState({checkIns: tempCheckIns});
       this.getTotalCheckIns();
@@ -58,8 +55,8 @@ export default class CheckInView extends Component {
   }
 
   getTotalCheckIns = () => {
-    this.setState({totalCheckIns: this.state.checkIns.length});
-}
+      this.setState({totalCheckIns: this.state.checkIns.length});
+    }
 
 getLastCheckIn = () => {
 
