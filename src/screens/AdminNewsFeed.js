@@ -30,7 +30,6 @@ export default class AdminNewsFeed extends Component {
           let item = childSnapshot.val();
           item.key = childSnapshot.key;
           tempActivities.push(item);
-          Alert.alert(item.name);
         });
       this.setState({currentActivites: tempActivities});
       tempActivites = [];
