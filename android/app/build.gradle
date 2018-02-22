@@ -137,6 +137,9 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-background-fetch')
+    compile project(':react-native-navigation')
+    compile project(':react-native-geocoder')
     compile project(':react-native-vector-icons')
     compile project(':react-native-gesture-handler')
     compile project(':react-native-maps')
