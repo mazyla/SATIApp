@@ -523,7 +523,7 @@ var myStyles = React.StyleSheet.create({
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'grey',
+    backgroundColor: 'white',
   },
   innerContainer: {
     alignItems: 'center',

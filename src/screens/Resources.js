@@ -55,8 +55,8 @@ export default class ResourcesView extends React.Component {
       var resources = [];
       snap.forEach((child) => {
         resources.push({
-          key: child.key,
-          title: child.key,
+          key: child.val().name,
+          title: child.val().name,
           coordinate: {
             latitude: child.val().coordinate.latitude,
             longitude: child.val().coordinate.longitude,
