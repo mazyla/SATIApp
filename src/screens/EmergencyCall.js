@@ -49,7 +49,7 @@ export default class EmergencyCallView extends Component {
               <View style={styles.emergencyCallButtonImageContainer}>
                 <Image
                   source = {require('../../images/call_center.png')}
-                  style = {styles.emergencyCallButtonImage}
+                  style = {styles.emergencyCallButtonImage2}
                 />
                 <Text style={styles.emergencyCallButtonText}>Call The Childline</Text>
               </View>

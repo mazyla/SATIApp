@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import React, {Component} from 'react';
-import { View, Text, Button, TouchableOpacity, FlatList, Image, StatusBar, Keyboard } from 'react-native';
+import { View, Text, Button, TouchableOpacity, FlatList, Image, StatusBar, Keyboard, WebView } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import styles from '../styles/styles.js';
 import { fb } from '../../App'
@@ -55,8 +55,8 @@ export default class EducationSearchView extends Component {
           <StatusBar hidden={false} />
           <View style={{flexDirection: 'row', width: '100%', height: '100%', alignItems: 'center'}}>
 
-            <View style={{justifyContent: 'center', borderWidth: 1, alignItems: 'flex-start'}}>
-              <TouchableOpacity onPress={this._goBack} style={{alignItems: 'center', justifyContent: 'center', borderWidth: 1}}>
+            <View style={{justifyContent: 'center', alignItems: 'flex-start', margin: 10}}>
+              <TouchableOpacity onPress={this._goBack} style={{alignItems: 'center', justifyContent: 'center'}}>
                 <View style={{alignItems: 'center', justifyContent: 'center'}}>
                   <Icon name={'ios-arrow-back'} size={26} style={{color: 'white'}} />
                 </View>
@@ -84,13 +84,19 @@ export default class EducationSearchView extends Component {
           <FlatList
             data={this.state.displayedResources}
             renderItem={({item}) =>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('EducationSearchViewResource', {resource: item})}>
               <View style={{borderWidth: 1, flexDirection: 'row'}}>
                 <Image source={{uri:item.picture}} style={{width:100, height:100, borderRadius: 50}} />
+                <WebView
+                  javaScriptEnabled={true}
+                  domStorageEnabled={true}
+                  style={{height: 100, width: 100}}
+                  source={{uri: item.video}} />
                 <View>
                   <Text style={{padding: 10, fontSize: 18, height: 44, fontWeight: 'bold'}}>{item.name}</Text>
-                  <Text style={{padding: 10}}>Location: {item.location}</Text>
                 </View>
               </View>
+              </TouchableOpacity>
             }
           />
         </View>

@@ -15,6 +15,7 @@ import Education from './screens/Education'
 import Login from './screens/Login'
 import SignUp from './screens/SignUp'
 import EducationSearch from './screens/EducationSearch'
+import EducationSearchViewResource from './screens/EducationSearchViewResource'
 
 import Profile from './screens/Profile'
 import NewsFeedSeeAll from './screens/NewsFeedSeeAll'
@@ -75,6 +76,12 @@ export const EducationSearchStack = StackNavigator({
     screen: EducationSearch,
     navigationOptions: {
       header: null,
+      tabBarVisible: false,
+    },
+  },
+  EducationSearchViewResource: {
+    screen: EducationSearchViewResource,
+    navigationOptions: {
       tabBarVisible: false,
     },
   },

@@ -152,6 +152,7 @@ var myStyles = React.StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
+    width: '100%',
   },
   /*
     Top bar -end
@@ -255,6 +256,10 @@ var myStyles = React.StyleSheet.create({
   emergencyCallButtonImage: {
     height: wp(30),
     width: wp(30),
+  },
+  emergencyCallButtonImage2: {
+    height: wp(30),
+    width: wp(35),
   },
   // Button text
   emergencyCallButtonText: {

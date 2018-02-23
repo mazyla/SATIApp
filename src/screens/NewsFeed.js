@@ -3,14 +3,14 @@ import { View, Image, Text, TouchableOpacity, StatusBar, ImageBackground } from 
 import styles from '../styles/styles.js';
 import { Constants } from '../constants/constants.js';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-import { Card, ListItem } from 'react-native-elements';
+import { List, ListItem } from 'react-native-elements';
 import { fb } from '../../App';
 
 const ENTRIES = [
   {
-       title: 'Learn about STDs',
-       subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-       illustration: 'https://i.imgur.com/UYiroysl.jpg'
+       title: 'STD Prevention',
+       subtitle: 'Come to The Hub to learn about STDs and how to prevent them.',
+       illustration: 'https://firebasestorage.googleapis.com/v0/b/satiapp-1515724417816.appspot.com/o/pexels-photo-612825.jpeg?alt=media&token=6798478b-acd7-48eb-87c8-ab862839b63e'
    },
    {
        title: 'Ava is not a CS major',
@@ -184,35 +184,48 @@ export default class NewsFeedView extends Component {
           </TouchableOpacity>
         </View>
 
-        <View style={{height: '5%', alignItems: 'center'}}>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={{fontSize:20, fontWeight: 'bold'}}>Lost</Text>
+        <View style={{alignItems: 'center'}}>
+        <View style={{ height: '62%', width: '80%', borderWidth: 1, borderRadius: 10}}>
+
+          <View style={{height: '5%', alignItems: 'center', margin: 5}}>
+            <Text style={{fontSize:20, fontWeight: 'bold'}}>Have you seen these kids?</Text>
           </View>
+
+          <View style={{height: '80%'}}>
+            <List containerStyle={{height: '80%', width: '100%', borderWidth: 1}}>
+              {
+                this.state.lost.map((u, i) => {
+                  //alert(u.name);
+                  return (
+                    <ListItem
+                      key={i}
+                      roundAvatar
+                      titleStyle={{fontSize: 14}}
+                      hideChevron={true}
+                      avatarStyle={{height:30,width:30, alignItems: 'center', justifyContent: 'center'}}
+                      avatarContainerStyle={{height:30, width:30, alignItems: 'center', justifyContent: 'center'}}
+                      title={u.name}
+                      avatar={u.picture}
+                      onPress={() => {alert(u.name)}}
+                    />
+                  );
+                })
+              }
+            </List>
+          </View>
+
+          <View style={{alignItems: 'center'}}>
+            <TouchableOpacity
+              style={{height: 50, alignItems: 'center'}}
+              onPress={() => this.props.navigation.navigate("LostSeeAll")}>
+              <View>
+                <Text style={{fontSize:14, color: 'blue'}}>See All</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
         </View>
-        <View style={{height: '30%'}}>
-          <Card containerStyle={{height: '100%'}}>
-            {
-              this.state.lost.map((u, i) => {
-                return (
-                  <ListItem
-                    key={i}
-                    roundAvatar
-                    titleStyle={{fontSize: 14}}
-                    hideChevron={true}
-                    avatarStyle={{height:30,width:30}}
-                    avatarContainerStyle={{height:30, width:30}}
-                    title={u.name}
-                    avatar={u.picture}
-                    onPress={() => {alert(u.name)}}
-                  />
-                );
-              })
-            }
-          </Card>
         </View>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate("LostSeeAll")}>
-          <View><Text style={{fontSize:14, color: 'blue'}}>See All</Text></View>
-        </TouchableOpacity>
 
       </View>
     );
