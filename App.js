@@ -12,6 +12,9 @@ const firebaseConfig = {
   storageBucket: "satiapp-1515724417816.appspot.com",
 };
 const firebaseApp = firebase.initializeApp(firebaseConfig);
+// Maybe we can disable this at the end, but all the warnings I See
+// now are the timer ones in Android
+console.disableYellowBox = true;
 
 export default class App extends Component {
   constructor() {
