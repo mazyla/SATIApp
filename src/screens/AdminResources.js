@@ -25,6 +25,7 @@ export default class AdminResources extends Component {
 
   getAllResources = () => {
     var tempResources = [];
+
     this.resourcesRef.on("value", function(snapshot) {
       snapshot.forEach(childSnapshot => {
           let item = childSnapshot.val();
@@ -70,8 +71,23 @@ export default class AdminResources extends Component {
  }
 
  removeResource = (resource) => {
-   // Stub
-   // Maybe alert to ask admin if they are sure
+   // alert Admin
+   Alert.alert(
+  'Delete a Resource',
+  'Are you sure you want to delete this resource?',
+  [
+    {text: 'Cancel', onPress: () => {console.log('Cancel Pressed')}, style: 'cancel'},
+    {text: 'OK', onPress: () => {
+      // delete the resource here
+      this.deleteResourceFromDatabase(resource);
+    }},
+  ],
+  { cancelable: false }
+);
+ }
+
+ deleteResourceFromDatabase = (resource) => {
+   var thisResource = this.resourcesRef.child(resource.key).remove();
  }
 
   render() {
@@ -139,6 +155,7 @@ export default class AdminResources extends Component {
           </View>
         </Modal>
 
+
         <TouchableOpacity
           style={styles.adminResourcesAddButton}
           onPress={() => this.openModal()}>
@@ -160,15 +177,6 @@ export default class AdminResources extends Component {
             renderItem={({item}) =>
               <View style={styles.adminResourcesListContainer}>
                 <Text style={styles.adminResourcesListItemText}>{item.name} - {item.type}</Text>
-                <TouchableOpacity
-                  style={styles.adminResourcesIconContainer2}
-                  onPress={() => {/*this.editResource(item)*/}}>
-                  <Icon
-                    name='ios-create'
-                    color='black'
-                    size={styles.topBarProfileButtonSize}
-                  />
-                </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.adminResourcesIconContainer}
                   onPress={() => {this.removeResource(item)}}>
