@@ -125,8 +125,9 @@ getAverageFeeling = () => {
       if (hoursTillCheckIn > 0) {
         if (minutesLeft == 0) {
           Alert.alert("Please wait " + hoursTillCheckIn + " hours to check in");
-        }
+        } else {
         Alert.alert("Please wait " + hoursTillCheckIn + " hours " + minutesLeft + " minutes to check in");
+      }
       } else {
         Alert.alert("Please wait " + minutesTillCheckIn + " minutes to check in");
       }
