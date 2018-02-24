@@ -125,8 +125,9 @@ getAverageFeeling = () => {
       if (hoursTillCheckIn > 0) {
         if (minutesLeft == 0) {
           Alert.alert("Please wait " + hoursTillCheckIn + " hours to check in");
-        }
+        } else {
         Alert.alert("Please wait " + hoursTillCheckIn + " hours " + minutesLeft + " minutes to check in");
+      }
       } else {
         Alert.alert("Please wait " + minutesTillCheckIn + " minutes to check in");
       }
@@ -144,7 +145,18 @@ getAverageFeeling = () => {
       this.getLastCheckIn();
     }
 
+    // store last check in as a users attribute
+    this.saveLastCheckIn();
+
   };
+
+  saveLastCheckIn = () => {
+    var user = fb.auth().currentUser.email;
+    var userDetails = this.userRef.orderByChild("email").equalTo(user);
+    userDetails.once("child_added", function(snapshot) {
+      snapshot.ref.update({ lastCheckIn: (new Date()).getTime()});
+    });
+  }
 
   increaseStreak = () => {
     var tempStreak = parseInt(this.state.streak) + 1;
@@ -158,7 +170,7 @@ getAverageFeeling = () => {
   resetUserStreak = () => {
     var user = fb.auth().currentUser.email;
     var userDetails = this.userRef.orderByChild("email").equalTo(user);
-    userDetails.once("value", function(snapshot) {
+    userDetails.once("child_added", function(snapshot) {
       snapshot.ref.update({ streak: 0});
     });
   }
@@ -202,11 +214,11 @@ getAverageFeeling = () => {
 
   formatDate = (date) => {
     return date.getTime();
-  }
+  };
 
   goToProfile = () => {
     this.props.navigation.navigate("Profile");
-  }
+  };
 
   render() {
     return (

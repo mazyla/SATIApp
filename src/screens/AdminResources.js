@@ -50,7 +50,7 @@ export default class AdminResources extends Component {
  }
 
  storeResourceInDatabase = () => {
-   firebase.database().ref("resources").push({
+   fb.database().ref("resources").push({
      name: this.state.newResourceName,
      type: this.state.newResourceType,
      coordinate: {
