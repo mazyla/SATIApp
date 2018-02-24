@@ -142,7 +142,7 @@ getAverageFeeling = () => {
         this.increaseStreak();
       }
       this.getLastCheckIn();
-    // }
+    }
 
     // store last check in as a users attribute
     this.saveLastCheckIn();
@@ -213,11 +213,11 @@ getAverageFeeling = () => {
 
   formatDate = (date) => {
     return date.getTime();
-  }
+  };
 
   goToProfile = () => {
     this.props.navigation.navigate("Profile");
-  }
+  };
 
   render() {
     return (
