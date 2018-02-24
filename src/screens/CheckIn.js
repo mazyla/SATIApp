@@ -7,13 +7,14 @@ import { fb } from '../../App'
 import { Picker } from 'react-native-picker-dropdown'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Constants, lp, wp } from '../constants/constants.js';
+import { Lang, getText } from '../constants/language.js';
 
 export default class CheckInView extends Component {
   constructor(props) {
     super(props);
 
     this.checkInRef = fb.database().ref().child('users_checkIn');
-    this.userRef = fb.database().ref().child('users');
+    this.usersRef = fb.database().ref().child('users');
 
     this.state = {
       lastcheckin: new Date(),
@@ -29,9 +30,56 @@ export default class CheckInView extends Component {
       streak: 0,
       shouldDisableCheckIn: false,
       averageFeeling: "😐",
-
-
+      language: "",
+      labelTopBarTitle: getText(this.language, Lang.UpdateStatus),
+      labelTotalCheckIns: getText(this.language, Lang.TotalCheckIns),
+      labelConsecutiveDays: getText(this.language, Lang.ConsecutiveDays),
+      labelAverageFeeling: getText(this.language, Lang.AverageFeeling),
+      labelShareLocation: getText(this.language, Lang.ShareLocation),
+      labelCheckIn: getText(this.language, Lang.CheckIn),
+      labelPickerNone: getText(this.language, Lang.None),
+      labelPickerHappy: getText(this.language, Lang.Happy),
+      labelPickerHopeful: getText(this.language, Lang.Hopeful),
+      labelPickerAwesome: getText(this.language, Lang.Awesome),
+      labelPickerRelaxed: getText(this.language, Lang.Relaxed),
+      labelPickerSad: getText(this.language, Lang.Sad),
+      labelPickerConcerned: getText(this.language, Lang.Concerned),
+      labelPickerSick: getText(this.language, Lang.Sick),
+      labelPickerNeedHelp: getText(this.language, Lang.NeedHelp),
     }
+  }
+
+  componentWillMount() {
+    this.getLanguage();
+  }
+
+  getLanguage = () => {
+    var user = fb.auth().currentUser;
+    this.usersRef.orderByChild("email").equalTo(user.email).on("value", function(snapshot) {
+      var userid = Object.keys(snapshot.val())[0];
+      snapshot.forEach((userInfo) => {
+        let item = userInfo.val();
+        this.setState({ language: item.language });
+        this.setState({ labelTopBarTitle: getText(item.language, Lang.UpdateStatus) });
+        this.setState({ labelTotalCheckIns: getText(item.language, Lang.TotalCheckIns) });
+        this.setState({ labelConsecutiveDays: getText(item.language, Lang.ConsecutiveDays) });
+        this.setState({ labelAverageFeeling: getText(item.language, Lang.AverageFeeling) });
+        this.setState({ labelShareLocation: getText(item.language, Lang.ShareLocation) });
+        this.setState({ labelCheckIn: getText(item.language, Lang.CheckIn) });
+        this.setState({ labelPickerNone: getText(item.language, Lang.None) });
+        this.setState({ labelPickerHappy: getText(item.language, Lang.Happy) });
+        this.setState({ labelPickerHopeful: getText(item.language, Lang.Hopeful) });
+        this.setState({ labelPickerAwesome: getText(item.language, Lang.Awesome) });
+        this.setState({ labelPickerRelaxed: getText(item.language, Lang.Relaxed) });
+        this.setState({ labelPickerSad: getText(item.language, Lang.Sad) });
+        this.setState({ labelPickerConcerned: getText(item.language, Lang.Concerned) });
+        this.setState({ labelPickerSick: getText(item.language, Lang.Sick) });
+        this.setState({ labelPickerNeedHelp: getText(item.language, Lang.NeedHelp) });
+      });
+    }, (error) => {
+      alert(error);
+      this.setState({ language : "Thai" });
+    }, this);
   }
 
   getAllCheckInsForCurrentUser = () => {
@@ -74,7 +122,7 @@ getLastCheckIn = () => {
       this.increaseStreak();
     } else {
       var array = [];
-      var userDetails = this.userRef.orderByChild("email").equalTo(user);
+      var userDetails = this.usersRef.orderByChild("email").equalTo(user);
       userDetails.on("value", function(snapshot) {
         snapshot.forEach(childSnapshot => {
             let item = childSnapshot.val();
@@ -152,7 +200,7 @@ getAverageFeeling = () => {
 
   saveLastCheckIn = () => {
     var user = fb.auth().currentUser.email;
-    var userDetails = this.userRef.orderByChild("email").equalTo(user);
+    var userDetails = this.usersRef.orderByChild("email").equalTo(user);
     userDetails.once("child_added", function(snapshot) {
       snapshot.ref.update({ lastCheckIn: (new Date()).getTime()});
     });
@@ -161,7 +209,7 @@ getAverageFeeling = () => {
   increaseStreak = () => {
     var tempStreak = parseInt(this.state.streak) + 1;
     var user = fb.auth().currentUser.email;
-    var userDetails = this.userRef.orderByChild("email").equalTo(user);
+    var userDetails = this.usersRef.orderByChild("email").equalTo(user);
     userDetails.once("child_added", function(snapshot) {
       snapshot.ref.update({ streak: tempStreak});
     });
@@ -169,7 +217,7 @@ getAverageFeeling = () => {
 
   resetUserStreak = () => {
     var user = fb.auth().currentUser.email;
-    var userDetails = this.userRef.orderByChild("email").equalTo(user);
+    var userDetails = this.usersRef.orderByChild("email").equalTo(user);
     userDetails.once("child_added", function(snapshot) {
       snapshot.ref.update({ streak: 0});
     });
@@ -227,7 +275,7 @@ getAverageFeeling = () => {
         <View style={styles.topBarContainer}>
           <StatusBar />
           <View style={styles.topBarViewContainer}>
-            <Text style={styles.topBarText}>Update Status</Text>
+            <Text style={styles.topBarText}>{this.state.labelTopBarTitle}</Text>
             <TouchableOpacity
               style={styles.topBarProfileButton}
               onPress={this.goToProfile}>
@@ -245,17 +293,17 @@ getAverageFeeling = () => {
         <View style={styles.checkInStatsContainer}>
           <View style={styles.checkInTotalCheckInsContainer}>
             <Text style={styles.checkInTotalCheckIns}>{this.state.totalCheckIns}</Text>
-            <Text style={styles.checkInTotalCheckInsLabel}>Total check-ins</Text>
+            <Text style={styles.checkInTotalCheckInsLabel}>{this.state.labelTotalCheckIns}</Text>
           </View>
 
           <View style={styles.checkInOtherStatsContainerContainer}>
             <View style={styles.checkInOtherStatsContainer}>
               <Text style={styles.checkInOtherStats}>{this.state.streak}</Text>
-              <Text style={styles.checkInOtherStatsLabel}>Consecutive days</Text>
+              <Text style={styles.checkInOtherStatsLabel}>{this.state.labelConsecutiveDays}</Text>
             </View>
             <View style={styles.checkInOtherStatsContainer}>
               <Text style={styles.checkInOtherStats}>{this.state.averageFeeling}</Text>
-              <Text style={styles.checkInOtherStatsLabel}>Average Feeling</Text>
+              <Text style={styles.checkInOtherStatsLabel}>{this.state.labelAverageFeeling}</Text>
             </View>
           </View>
         </View>
@@ -267,15 +315,15 @@ getAverageFeeling = () => {
               style={styles.checkInStatusPicker}
               selectedValue={this.state.statusMessage}
               onValueChange={this.setStatus}>
-              <Picker.Item label="None" value="0" />
-              <Picker.Item label="🙂 Happy" value="60" />
-              <Picker.Item label="🌷 Hopeful" value="50" />
-              <Picker.Item label="😁 Awesome" value="70" />
-              <Picker.Item label="😌 Relaxed" value="40" />
-              <Picker.Item label="😢 Sad" value="20" />
-              <Picker.Item label="😟 Concerned" value="30" />
-              <Picker.Item label="😷 Sick" value="10" />
-              <Picker.Item label="🆘 Need Help" value="🆘 Need Help" />
+              <Picker.Item label={this.state.labelPickerNone} value="0" />
+              <Picker.Item label={this.state.labelPickerHappy} value="60" />
+              <Picker.Item label={this.state.labelPickerHopeful} value="50" />
+              <Picker.Item label={this.state.labelPickerAwesome} value="70" />
+              <Picker.Item label={this.state.labelPickerRelaxed} value="40" />
+              <Picker.Item label={this.state.labelPickerSad} value="20" />
+              <Picker.Item label={this.state.labelPickerConcerned} value="30" />
+              <Picker.Item label={this.state.labelPickerSick} value="10" />
+              <Picker.Item label={this.state.labelPickerNeedHelp} value="🆘 Need Help" />
             </Picker>
           </View>
 
@@ -286,7 +334,7 @@ getAverageFeeling = () => {
               containerStyle={styles.checkInShareLocationCheckBox}
               checked={this.state.shareLocation}
               onPress={() => this.setState({ shareLocation: !this.state.shareLocation })}
-              title='Share Location'
+              title={this.state.labelShareLocation}
             />
           </View>
 
@@ -298,7 +346,7 @@ getAverageFeeling = () => {
             onPress={this.checkIn}
             styleDisabled={styles.checkInUpdateButtonDisabled}>
               <View style={styles.checkInUpdateButtonTextContainer}>
-                <Text style={styles.checkInUpdateButtonText}>Safety Check</Text>
+                <Text style={styles.checkInUpdateButtonText}>{this.state.labelCheckIn}</Text>
               </View>
             </TouchableOpacity>
           </View>

@@ -51,21 +51,6 @@ var myStyles = React.StyleSheet.create({
     backgroundColor: '#fff',
     height: Constants.height,
   },
-  logoutButtonContainer: {
-    borderRadius:10,
-    marginTop: 400,
-    backgroundColor: '#df555f',
-    width: Constants.width - 50,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: '6%',
-  },
-  logoutText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
   /*
     Login -start
   */
@@ -156,6 +141,53 @@ var myStyles = React.StyleSheet.create({
   },
   /*
     Top bar -end
+  */
+  /*
+    Profile -start
+  */
+  profileContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  toggleLanguageContainer: {
+    borderRadius:10,
+    backgroundColor: '#2e86c1',
+    width: '80%',
+    height: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: lp(10),
+  },
+  toggleLanguageButton: {
+    width: '100%',
+  },
+  toggleLanguageText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 18,
+    textAlign: 'center',
+  },
+  logoutButtonContainer: {
+    borderRadius:10,
+    backgroundColor: '#df555f',
+    width: '80%',
+    height: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: lp(10),
+  },
+  logoutButton: {
+    width: '100%',
+  },
+  logoutText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 18,
+    textAlign: 'center',
+  },
+  /*
+    Profile -end
   */
   /*
     Education -start
@@ -300,7 +332,7 @@ var myStyles = React.StyleSheet.create({
   },
   // Total check ins label
   checkInTotalCheckInsLabel: {
-    fontSize: lp(3),
+    fontSize: lp(3.25),
     color: 'black',
   },
   // Other stats containers container
@@ -325,7 +357,7 @@ var myStyles = React.StyleSheet.create({
   },
   // Other stats label
   checkInOtherStatsLabel: {
-    fontSize: lp(2),
+    fontSize: lp(2.5),
     color: 'black',
   },
   // Check in container
@@ -364,7 +396,7 @@ var myStyles = React.StyleSheet.create({
   // Check in button text
   checkInUpdateButtonText: {
     color: 'white',
-    fontSize: lp(2.5),
+    fontSize: lp(2.75),
     fontWeight: 'bold',
   },
   // Share location container
@@ -378,7 +410,7 @@ var myStyles = React.StyleSheet.create({
       flexDirection: 'row',
   },
   checkInShareLocationCheckBox: {
-    width: '45%',
+    width: '55%',
     height: lp(8),
     alignItems: 'center',
     justifyContent: 'center',
@@ -390,11 +422,11 @@ var myStyles = React.StyleSheet.create({
       color: 'black',
       fontWeight: 'bold',
       fontFamily: 'Cochin',
-      fontSize: lp(2.5),
+      fontSize: lp(2.75),
   },
   // Status picker container
   checkInStatusPickerContainer: {
-    width: '45%',
+    width: '55%',
     borderWidth: wp(0.25),
     borderRadius: wp(3),
     height: lp(8),

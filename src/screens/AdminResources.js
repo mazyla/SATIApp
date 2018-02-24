@@ -5,11 +5,13 @@ import { SearchBar } from 'react-native-elements';
 import styles from '../styles/styles.js';
 import { fb } from '../../App'
 import Icon from 'react-native-vector-icons/Ionicons';
+import { Lang, getText } from '../constants/language.js';
 
 export default class AdminResources extends Component {
   constructor(props) {
     super(props);
 
+    this.usersRef = fb.database().ref('users');
     this.resourcesRef = fb.database().ref().child('resources');
 
     this.state = {
@@ -20,7 +22,33 @@ export default class AdminResources extends Component {
       newResourceType: "",
       newResourceLongitude: "",
       newResourceLatitude: "",
+      language: "",
+      labelTopBarTitle: getText(this.language, Lang.AdminResources),
+      labelAddResourceButton: getText(this.language, Lang.AddNewResource),
+      labelSearchPlaceholder: getText(this.language, Lang.TypeHere),
     }
+
+  }
+
+  componentWillMount() {
+    this.getLanguage();
+  }
+
+  getLanguage = () => {
+    var user = fb.auth().currentUser;
+    this.usersRef.orderByChild("email").equalTo(user.email).on("value", function(snapshot) {
+      var userid = Object.keys(snapshot.val())[0];
+      snapshot.forEach((userInfo) => {
+        let item = userInfo.val();
+        this.setState({ language: item.language });
+        this.setState({ labelTopBarTitle: getText(item.language, Lang.AdminResources) });
+        this.setState({ labelAddResourceButton: getText(item.language, Lang.AddNewResource) });
+        this.setState({ labelSearchPlaceholder: getText(item.language, Lang.TypeHere) });
+      });
+    }, (error) => {
+      alert(error);
+      this.setState({ language : "Thai" });
+    }, this);
   }
 
   getAllResources = () => {
@@ -97,7 +125,7 @@ export default class AdminResources extends Component {
         <View style={styles.topBarContainer}>
           <StatusBar />
           <View style={styles.topBarViewContainer}>
-            <Text style={styles.topBarText}>Add Resources</Text>
+            <Text style={styles.topBarText}>{this.state.labelTopBarTitle}</Text>
             <TouchableOpacity
               style={styles.topBarProfileButton}
               onPress={this.goToProfile}>
@@ -116,7 +144,7 @@ export default class AdminResources extends Component {
           onRequestClose={() => this.closeModal()}>
           <View style={styles.adminResourcesAddModalContainer}>
             <View style={styles.adminResourcesAddModalInnerContainer}>
-                <Text style={styles.adminResourcesAddModalTitle}>Add New Resource</Text>
+                <Text style={styles.adminResourcesAddModalTitle}>{this.state.labelAddResourceButton}</Text>
                 <View style={styles.adminResourcesAddModalForm}>
                   <TextInput
                     placeholder={"Name"}
@@ -159,12 +187,12 @@ export default class AdminResources extends Component {
         <TouchableOpacity
           style={styles.adminResourcesAddButton}
           onPress={() => this.openModal()}>
-          <Text style={styles.adminResourcesAddButtonText}>Add New Resource</Text>
+          <Text style={styles.adminResourcesAddButtonText}>{this.state.labelAddResourceButton}</Text>
         </TouchableOpacity>
 
         <View style={styles.adminResourcesSearchContainer}>
           <SearchBar
-            placeholder='Type Here...'
+            placeholder={this.state.labelSearchPlaceholder}
             showLoading
             lightTheme
             onChangeText={this.searchAdminResources}
