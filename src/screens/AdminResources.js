@@ -25,6 +25,7 @@ export default class AdminResources extends Component {
 
   getAllResources = () => {
     var tempResources = [];
+
     this.resourcesRef.on("value", function(snapshot) {
       snapshot.forEach(childSnapshot => {
           let item = childSnapshot.val();
@@ -70,8 +71,23 @@ export default class AdminResources extends Component {
  }
 
  removeResource = (resource) => {
-   // Stub
-   // Maybe alert to ask admin if they are sure
+   // alert Admin
+   Alert.alert(
+  'Delete a Resource',
+  'Are you sure you want to delete this resource?',
+  [
+    {text: 'Cancel', onPress: () => {console.log('Cancel Pressed')}, style: 'cancel'},
+    {text: 'OK', onPress: () => {
+      // delete the resource here
+      this.deleteResourceFromDatabase(resource);
+    }},
+  ],
+  { cancelable: false }
+);
+ }
+
+ deleteResourceFromDatabase = (resource) => {
+   var thisResource = this.resourcesRef.child(resource.key).remove();
  }
 
   render() {
