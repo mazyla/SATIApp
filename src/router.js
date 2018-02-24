@@ -298,7 +298,7 @@ export const AdminTabs = TabNavigator({
 
       style: {
         backgroundColor: '#fff', // Makes Android tab bar white instead of standard blue
-         height: (Platform.OS === 'ios') ? 49 : lp(8) // I didn't use this in my app, so the numbers may be off.
+         height: (Platform.OS === 'ios') ? lp(8) : lp(8) // I didn't use this in my app, so the numbers may be off.
       }
     },
 });

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { fb } from '../../App'
 import { Picker } from 'react-native-picker-dropdown'
 import Icon from 'react-native-vector-icons/Ionicons';
+import { Constants, lp, wp } from '../constants/constants.js';
 
 export default class CheckInView extends Component {
   constructor(props) {
@@ -279,7 +280,9 @@ getAverageFeeling = () => {
 
           <View style={styles.checkInShareLocationContainer}>
             <CheckBox
-              style={styles.checkInShareLocationCheckBox}
+              size={lp(6)}
+              textStyle={styles.checkInShareLocationText}
+              containerStyle={styles.checkInShareLocationCheckBox}
               checked={this.state.shareLocation}
               onPress={() => this.setState({ shareLocation: !this.state.shareLocation })}
               title='Share Location'
