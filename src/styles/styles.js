@@ -573,18 +573,27 @@ var myStyles = React.StyleSheet.create({
     position: 'absolute',
     right: wp(1) + lp(4),
   },
-  /*
-    Admin Resources -end
-  */
-  modalContainer: {
+  adminResourcesAddModalContainer: {
     flex: 1,
     justifyContent: 'center',
     backgroundColor: 'white',
   },
-  innerContainer: {
+  adminResourcesAddModalInnerContainer: {
     alignItems: 'center',
     marginTop: lp(8),
   },
+  adminResourcesAddModalTitle: {
+    fontSize: lp(3),
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  adminResourcesAddModalForm: {
+    //borderWidth: 1,
+    width: '60%',
+  },
+  /*
+    Admin Resources -end
+  */
 });
 
 module.exports = myStyles;

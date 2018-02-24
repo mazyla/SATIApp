@@ -95,58 +95,57 @@ export default class AdminResources extends Component {
           </View>
         </View>
 
-        <TouchableOpacity
-          style={styles.adminResourcesAddButton}
-          onPress={() => this.openModal()}>
-          <Text style={styles.adminResourcesAddButtonText}>Add New Resource</Text>
-        </TouchableOpacity>
-
         <Modal
-              visible={this.state.modalVisible}
-              animationType={'slide'}
-              onRequestClose={() => this.closeModal()}
-          >
-          <View style={styles.modalContainer}>
-           <View style={styles.innerContainer}>
-                <Text>Add New Resource</Text>
-                <View>
+          visible={this.state.modalVisible}
+          animationType={'slide'}
+          onRequestClose={() => this.closeModal()}
+        >
+          <View style={styles.adminResourcesAddModalContainer}>
+            <View style={styles.adminResourcesAddModalInnerContainer}>
+                <Text style={styles.adminResourcesAddModalTitle}>Add New Resource</Text>
+                <View style={styles.adminResourcesAddModalForm}>
                   <TextInput
                     placeholder={"Name"}
                     onChangeText={(name) => this.setState({newResourceName: name})}
                     autoCapitalize={'none'}
                     autoCorrect={false}
-                />
-                <TextInput
-                  placeholder={"Type: food, shelter, clinic"}
-                  onChangeText={(type) => this.setState({newResourceType: type})}
-                  autoCapitalize={'none'}
-                  autoCorrect={false}
-              />
-              <TextInput
-                placeholder={"Latitude"}
-                onChangeText={(latitude) => this.setState({newResourceLatitude: latitude})}
-                autoCapitalize={'none'}
-                autoCorrect={false}
-            />
-            <TextInput
-              placeholder={"Longitude"}
-              onChangeText={(longitude) => this.setState({newResourceLongitude: longitude})}
-              autoCapitalize={'none'}
-              autoCorrect={false}
-          />
-            <Button
-              onPress={() => this.storeResourceInDatabase()}
-              title="Add New Resource">
-            </Button>
-
-            <Button
-                onPress={() => this.closeModal()}
-                title="Close">
-            </Button>
+                  />
+                  <TextInput
+                    placeholder={"Type: food, shelter, clinic"}
+                    onChangeText={(type) => this.setState({newResourceType: type})}
+                    autoCapitalize={'none'}
+                    autoCorrect={false}
+                  />
+                  <TextInput
+                    placeholder={"Latitude"}
+                    onChangeText={(latitude) => this.setState({newResourceLatitude: latitude})}
+                    autoCapitalize={'none'}
+                    autoCorrect={false}
+                  />
+                  <TextInput
+                    placeholder={"Longitude"}
+                    onChangeText={(longitude) => this.setState({newResourceLongitude: longitude})}
+                    autoCapitalize={'none'}
+                    autoCorrect={false}
+                  />
+                <Button
+                  onPress={() => this.storeResourceInDatabase()}
+                  title="Add New Resource">
+                </Button>
+                <Button
+                  onPress={() => this.closeModal()}
+                  title="Close">
+                </Button>
               </View>
             </View>
-                      </View>
-          </Modal>
+          </View>
+        </Modal>
+
+        <TouchableOpacity
+          style={styles.adminResourcesAddButton}
+          onPress={() => this.openModal()}>
+          <Text style={styles.adminResourcesAddButtonText}>Add New Resource</Text>
+        </TouchableOpacity>
 
         <View style={styles.adminResourcesSearchContainer}>
           <SearchBar
