@@ -53,19 +53,6 @@ export default class AdminCheckIn extends Component {
         let item = childSnapshot.val();
         item.key = childSnapshot.key;
 
-        // var tempCheckIns = [];
-        // var userCheckIn = this.checkInRef.orderByChild("email").equalTo(item.email);
-        // userCheckIn.on("value", function(snapshot) {
-        //   snapshot.forEach(childSnapshot => {
-        //       let checkInSnap = childSnapshot.val();
-        //       checkInSnap.key = childSnapshot.key;
-        //       tempCheckIns.push(new Date(checkInSnap.time));
-        //     });
-        //
-        //   },this);
-        //   item.lastCheckIn = tempCheckIns[(tempCheckIns.length)-1];
-        //   Alert.alert(item.lastCheckIn.toString());
-
         tempUsers.push(item);
       });
       this.setState({currentUsers: tempUsers, displayedUsers: tempUsers});
@@ -85,8 +72,16 @@ export default class AdminCheckIn extends Component {
   }
 
   recentCheckIn = (item) => {
-    // return 'red';
-    // return 'green';
+    var now = new Date();
+    if ((now.getTime() - item.lastCheckIn) < 259200000) {
+      //highlight checkin green to show that user has checked in
+      // within the last 3 days.
+      return '#00ff99';
+    } else {
+      // if not checked in in last 3 days, highlight it red
+      return 'red';
+    }
+
   }
 
   render() {
@@ -124,7 +119,7 @@ export default class AdminCheckIn extends Component {
             renderItem={({item}) =>
               <View style={styles.adminResourcesListContainer, {backgroundColor: this.recentCheckIn(item)}}>
                 <Text style={styles.adminResourcesListItemText}>
-                {item.firstName}  {item.lastName} - {(new Date(item.lastCheckIn).toString().split("GMT+0000"))[0]}</Text>
+                {item.firstName}  {item.lastName} - {(new Date(item.lastCheckIn).toString().split("GMT"))[0]}</Text>
 
               </View>
             }
