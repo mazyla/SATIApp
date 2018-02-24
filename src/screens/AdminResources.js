@@ -70,6 +70,11 @@ export default class AdminResources extends Component {
    this.setState({ displayedResources: filteredResources });
  }
 
+ removeResource = (resource) => {
+   // Stub
+   // Maybe alert to ask admin if they are sure
+ }
+
   render() {
     return (
       <View style={styles.resourcesContainer}>
@@ -160,7 +165,7 @@ export default class AdminResources extends Component {
                 <Text style={styles.adminResourcesListItemText}>{item.key} - {item.type}</Text>
                 <TouchableOpacity
                   style={styles.adminResourcesIconContainer}
-                  onPress={() => {}}>
+                  onPress={() => {this.removeResource(item)}}>
                   <Icon
                     name='ios-close-circle'
                     color='red'
