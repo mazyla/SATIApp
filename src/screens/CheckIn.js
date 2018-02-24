@@ -141,9 +141,20 @@ getAverageFeeling = () => {
         this.increaseStreak();
       }
       this.getLastCheckIn();
-    }
+    // }
+
+    // store last check in as a users attribute
+    this.saveLastCheckIn();
 
   };
+
+  saveLastCheckIn = () => {
+    var user = fb.auth().currentUser.email;
+    var userDetails = this.userRef.orderByChild("email").equalTo(user);
+    userDetails.once("child_added", function(snapshot) {
+      snapshot.ref.update({ lastCheckIn: (new Date()).getTime()});
+    });
+  }
 
   increaseStreak = () => {
     var tempStreak = parseInt(this.state.streak) + 1;
@@ -157,7 +168,7 @@ getAverageFeeling = () => {
   resetUserStreak = () => {
     var user = fb.auth().currentUser.email;
     var userDetails = this.userRef.orderByChild("email").equalTo(user);
-    userDetails.once("value", function(snapshot) {
+    userDetails.once("child_added", function(snapshot) {
       snapshot.ref.update({ streak: 0});
     });
   }

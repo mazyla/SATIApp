@@ -48,7 +48,7 @@ export default class AdminResources extends Component {
  }
 
  storeResourceInDatabase = () => {
-   firebase.database().ref("resources").push({
+   fb.database().ref("resources").push({
      name: this.state.newResourceName,
      type: this.state.newResourceType,
      coordinate: {
@@ -139,7 +139,7 @@ export default class AdminResources extends Component {
           data={this.state.currentResources}
           renderItem={({item}) =>
           <View style={styles.adminResourcesListContainer}>
-            <Text style={styles.adminResourcesListItemText}>{item.key} - {item.type}</Text>
+            <Text style={styles.adminResourcesListItemText}>{item.name} - {item.type}</Text>
 
           </View>
         }
