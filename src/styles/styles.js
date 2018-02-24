@@ -528,6 +528,50 @@ var myStyles = React.StyleSheet.create({
   /*
     News Feed -end
   */
+  /*
+    Admin Resources -start
+  */
+  adminResourcesAddButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: lp(4),
+    padding: lp(2),
+    width: wp(45),
+    height:lp(10),
+    borderRadius: wp(2.5),
+    backgroundColor: '#2e86c1'
+  },
+  adminResourcesAddButtonText: {
+    fontSize: lp(2.65),
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  adminResourcesSearchContainer: {
+    width: '90%',
+  },
+  adminResourcesSearchResultsContainer: {
+    width: '90%',
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderBottomWidth: 1,
+    height: '60%',
+  },
+  adminResourcesListContainer: {
+    width: '100%',
+    height: lp(8),
+    flex: 1,
+    flexDirection: 'row',
+    borderTopWidth: 1,
+    borderColor: 'gray',
+    alignItems: 'center',
+  },
+  adminResourcesIconContainer: {
+    position: 'absolute',
+    right: wp(1),
+  },
+  /*
+    Admin Resources -end
+  */
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
