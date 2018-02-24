@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { View, Text, Image, Switch, Button,
   TouchableOpacity, StatusBar, Alert, FlatList } from 'react-native';
+import { SearchBar } from 'react-native-elements';
 import styles from '../styles/styles.js';
 import { fb } from '../../App'
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -14,7 +15,8 @@ export default class AdminCheckIn extends Component {
 
     this.state = {
       currentUsers: this.getAllUsersNotAdmin(),
-    }
+      displayedUsers: [],
+    };
   }
 
   getAllUsersNotAdmin = () => {
@@ -41,45 +43,68 @@ export default class AdminCheckIn extends Component {
 
         tempUsers.push(item);
       });
-      this.setState({currentUsers: tempUsers});
+      this.setState({currentUsers: tempUsers, displayedUsers: tempUsers});
       tempUsers = [];
     }, this);
+  }
+
+  searchAdminCheckIns = (search) => {
+    var filteredUsers = this.state.currentUsers.filter((user) => {
+      // Case insensitive
+      return (user.firstName.toLowerCase().includes(search.toLowerCase())) ||
+        (user.lastName.toLowerCase().includes(search.toLowerCase())) ||
+        (user.email.toLowerCase().includes(search.toLowerCase()));
+      // TODO: add filters for other fields
+    });
+    this.setState({ displayedUsers: filteredUsers });
+  }
+
+  recentCheckIn = (item) => {
+    // return 'red';
+    // return 'green';
   }
 
   render() {
     return (
       <View style={styles.resourcesContainer}>
 
-      <View style={styles.topBarContainer}>
-        <StatusBar />
-        <View style={styles.topBarViewContainer}>
-          <Text style={styles.topBarText}>Check Ins</Text>
-          <TouchableOpacity
-            style={styles.topBarProfileButton}
-            onPress={this.goToProfile}>
-            <View>
-            <Icon
-              name='ios-contact-outline'
-              size={26}
-            />
-            </View>
-          </TouchableOpacity>
+        <View style={styles.topBarContainer}>
+          <StatusBar />
+          <View style={styles.topBarViewContainer}>
+            <Text style={styles.topBarText}>Check Ins</Text>
+            <TouchableOpacity
+              style={styles.topBarProfileButton}
+              onPress={this.goToProfile}>
+              <Icon
+                name='ios-contact'
+                color='white'
+                size={styles.topBarProfileButtonSize}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
 
-      <View>
-        <FlatList
-        data={this.state.currentUsers}
-        renderItem={({item}) =>
-        <View style={styles.adminResourcesListContainer}>
-          <Text style={styles.adminResourcesListItemText}>
-          {item.firstName}  {item.lastName} - {(new Date(item.lastCheckIn).toString().split("GMT+0000"))[0]}</Text>
-
+        <View style={styles.adminResourcesSearchContainer}>
+          <SearchBar
+            placeholder='Type Here...'
+            showLoading
+            lightTheme
+            onChangeText={this.searchAdminCheckIns}
+            clearIcon={{color: '#86939e', name: 'close'}}
+          />
         </View>
-      }
-      />
-      </View>
+        <View>
+          <FlatList
+            data={this.state.displayedUsers}
+            renderItem={({item}) =>
+              <View style={styles.adminResourcesListContainer, {backgroundColor: this.recentCheckIn(item)}}>
+                <Text style={styles.adminResourcesListItemText}>
+                {item.firstName}  {item.lastName} - {(new Date(item.lastCheckIn).toString().split("GMT+0000"))[0]}</Text>
 
+              </View>
+            }
+          />
+        </View>
 
       </View>
     );

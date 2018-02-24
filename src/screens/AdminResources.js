@@ -97,8 +97,7 @@ export default class AdminResources extends Component {
         <Modal
           visible={this.state.modalVisible}
           animationType={'slide'}
-          onRequestClose={() => this.closeModal()}
-        >
+          onRequestClose={() => this.closeModal()}>
           <View style={styles.adminResourcesAddModalContainer}>
             <View style={styles.adminResourcesAddModalInnerContainer}>
                 <Text style={styles.adminResourcesAddModalTitle}>Add New Resource</Text>
