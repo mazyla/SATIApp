@@ -161,6 +161,9 @@ var myStyles = React.StyleSheet.create({
   },
   toggleLanguageButton: {
     width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   toggleLanguageText: {
     color: 'white',
@@ -179,6 +182,9 @@ var myStyles = React.StyleSheet.create({
   },
   logoutButton: {
     width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   logoutText: {
     color: 'white',
