@@ -156,6 +156,7 @@ export default class AdminResources extends Component {
           </View>
         </Modal>
 
+
         <TouchableOpacity
           style={styles.adminResourcesAddButton}
           onPress={() => this.openModal()}>
@@ -177,15 +178,6 @@ export default class AdminResources extends Component {
             renderItem={({item}) =>
               <View style={styles.adminResourcesListContainer}>
                 <Text style={styles.adminResourcesListItemText}>{item.name} - {item.type}</Text>
-                <TouchableOpacity
-                  style={styles.adminResourcesIconContainer2}
-                  onPress={() => {/*this.editResource(item)*/}}>
-                  <Icon
-                    name='ios-create'
-                    color='black'
-                    size={styles.topBarProfileButtonSize}
-                  />
-                </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.adminResourcesIconContainer}
                   onPress={() => {this.removeResource(item)}}>
