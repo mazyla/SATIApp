@@ -86,7 +86,7 @@ export default class ResourcesView extends React.Component {
           longitudeDelta: LONGITUDE_DELTA
         },
       });
-    }, (error) => this.setState({ error: error.message }), { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 });
+    }, (error) => this.setState({ error: error.message }), { enableHighAccuracy: true, timeout: 5000, maximumAge: 1000 });
     this.listenForItems(this.resourcesRef);
   }
 

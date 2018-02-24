@@ -370,26 +370,34 @@ var myStyles = React.StyleSheet.create({
   // Share location container
   checkInShareLocationContainer: {
       backgroundColor: '#fff',
-      width: '50%',
-      height: lp(7),
+      width: '100%',
+      height: lp(8),
       margin: lp(2),
       justifyContent: 'center',
       alignItems: 'center',
       flexDirection: 'row',
+  },
+  checkInShareLocationCheckBox: {
+    width: '45%',
+    height: lp(8),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: wp(0.25),
+    borderRadius: wp(3),
   },
   // Share location text
   checkInShareLocationText: {
       color: 'black',
       fontWeight: 'bold',
       fontFamily: 'Cochin',
-      fontSize: lp(2.25),
+      fontSize: lp(2.5),
   },
   // Status picker container
   checkInStatusPickerContainer: {
-    width: '40%',
+    width: '45%',
     borderWidth: wp(0.25),
     borderRadius: wp(3),
-    height: lp(7),
+    height: lp(8),
     justifyContent: Platform.OS === 'ios' ? 'center' : 'space-between',
   },
   // Status picker

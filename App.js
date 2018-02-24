@@ -63,7 +63,7 @@ export default class App extends Component {
 
   render() {
     if (this.state.loading) return null;
-    if (this.state.isAdmin) return <AdminTabs />
+    if (this.state.isAdmin === "true") return <AdminTabs />
     else if (this.state.user) return <Tabs />
     return <LoginStack />;
   }
