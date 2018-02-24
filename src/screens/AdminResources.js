@@ -58,7 +58,6 @@ export default class AdminResources extends Component {
        longitude: this.state.newResourceLongitude,
      }
    });
-  // this.closeModal();
  }
 
  searchAdminResources = (search) => {
@@ -161,7 +160,7 @@ export default class AdminResources extends Component {
             data={this.state.displayedResources}
             renderItem={({item}) =>
               <View style={styles.adminResourcesListContainer}>
-                <Text style={styles.adminResourcesListItemText}>{item.key} - {item.type}</Text>
+                <Text style={styles.adminResourcesListItemText}>{item.name} - {item.type}</Text>
                 <TouchableOpacity
                   style={styles.adminResourcesIconContainer2}
                   onPress={() => {/*this.editResource(item)*/}}>
