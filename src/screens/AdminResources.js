@@ -164,6 +164,15 @@ export default class AdminResources extends Component {
               <View style={styles.adminResourcesListContainer}>
                 <Text style={styles.adminResourcesListItemText}>{item.key} - {item.type}</Text>
                 <TouchableOpacity
+                  style={styles.adminResourcesIconContainer2}
+                  onPress={() => {/*this.editResource(item)*/}}>
+                  <Icon
+                    name='ios-create'
+                    color='black'
+                    size={styles.topBarProfileButtonSize}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
                   style={styles.adminResourcesIconContainer}
                   onPress={() => {this.removeResource(item)}}>
                   <Icon

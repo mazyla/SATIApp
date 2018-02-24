@@ -569,6 +569,10 @@ var myStyles = React.StyleSheet.create({
     position: 'absolute',
     right: wp(1),
   },
+  adminResourcesIconContainer2: {
+    position: 'absolute',
+    right: wp(1) + lp(4),
+  },
   /*
     Admin Resources -end
   */
