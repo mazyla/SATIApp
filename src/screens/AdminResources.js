@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { View, Text, Image, Switch, Button, TouchableOpacity,
   StatusBar, Alert, FlatList, Modal, KeyboardAvoidingView, TextInput } from 'react-native';
+import { SearchBar } from 'react-native-elements';
 import styles from '../styles/styles.js';
 import { fb } from '../../App'
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -13,6 +14,7 @@ export default class AdminResources extends Component {
 
     this.state = {
       currentResources: this.getAllResources(),
+      displayedResources: [],
       modalVisible: false,
       newResourceName: "",
       newResourceType: "",
@@ -29,7 +31,7 @@ export default class AdminResources extends Component {
           item.key = childSnapshot.key;
           tempResources.push(item);
         });
-      this.setState({currentResources: tempResources});
+      this.setState({currentResources: tempResources, displayedResources: tempResources});
       tempResources = [];
       },this);
 
@@ -59,31 +61,44 @@ export default class AdminResources extends Component {
   // this.closeModal();
  }
 
+ searchAdminResources = (search) => {
+   var filteredResources = this.state.currentResources.filter((resource) => {
+     // Case insensitive
+     return (resource.name.toLowerCase().includes(search.toLowerCase()));
+     // TODO: add filters for other fields
+   });
+   this.setState({ displayedResources: filteredResources });
+ }
+
+ removeResource = (resource) => {
+   // Stub
+   // Maybe alert to ask admin if they are sure
+ }
+
   render() {
     return (
       <View style={styles.resourcesContainer}>
 
-      <View style={styles.topBarContainer}>
-        <StatusBar />
-        <View style={styles.topBarViewContainer}>
-          <Text style={styles.topBarText}>Resources</Text>
-          <TouchableOpacity
-            style={styles.topBarProfileButton}
-            onPress={this.goToProfile}>
-            <View>
-            <Icon
-              name='ios-contact-outline'
-              size={26}
-            />
-            </View>
-          </TouchableOpacity>
+        <View style={styles.topBarContainer}>
+          <StatusBar />
+          <View style={styles.topBarViewContainer}>
+            <Text style={styles.topBarText}>Add Resources</Text>
+            <TouchableOpacity
+              style={styles.topBarProfileButton}
+              onPress={this.goToProfile}>
+              <Icon
+                name='ios-contact'
+                color='white'
+                size={styles.topBarProfileButtonSize}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
 
         <TouchableOpacity
-        onPress={() => this.openModal()} >
-          <Text>Add New Resource</Text>
-
+          style={styles.adminResourcesAddButton}
+          onPress={() => this.openModal()}>
+          <Text style={styles.adminResourcesAddButtonText}>Add New Resource</Text>
         </TouchableOpacity>
 
         <Modal
@@ -133,17 +148,33 @@ export default class AdminResources extends Component {
                       </View>
           </Modal>
 
-
-        <View>
+        <View style={styles.adminResourcesSearchContainer}>
+          <SearchBar
+            placeholder='Type Here...'
+            showLoading
+            lightTheme
+            onChangeText={this.searchAdminResources}
+            clearIcon={{color: '#86939e', name: 'close'}}
+          />
+        </View>
+        <View style={styles.adminResourcesSearchResultsContainer}>
           <FlatList
-          data={this.state.currentResources}
-          renderItem={({item}) =>
-          <View style={styles.adminResourcesListContainer}>
-            <Text style={styles.adminResourcesListItemText}>{item.name} - {item.type}</Text>
-
-          </View>
-        }
-        />
+            data={this.state.displayedResources}
+            renderItem={({item}) =>
+              <View style={styles.adminResourcesListContainer}>
+                <Text style={styles.adminResourcesListItemText}>{item.key} - {item.type}</Text>
+                <TouchableOpacity
+                  style={styles.adminResourcesIconContainer}
+                  onPress={() => {this.removeResource(item)}}>
+                  <Icon
+                    name='ios-close-circle'
+                    color='red'
+                    size={styles.topBarProfileButtonSize}
+                  />
+                </TouchableOpacity>
+              </View>
+            }
+          />
         </View>
 
 
