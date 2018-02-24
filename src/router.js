@@ -59,7 +59,7 @@ export const LoginStack = StackNavigator({
     screen: Profile,
     headerMode: 'screen',
     navigationOptions: {
-      headerTitle: "Your Profile",
+      headerTitle: "Settings",
       tabBarVisible: false,
     },
   },
@@ -98,7 +98,7 @@ export const CheckInProfileStack = StackNavigator({
     screen: Profile,
     headerMode: 'screen',
     navigationOptions: {
-      headerTitle: "Your Profile",
+      headerTitle: "Settings",
       tabBarVisible: false,
     },
   },
@@ -115,7 +115,7 @@ export const ResourceProfileAdminStack = StackNavigator({
     screen: Profile,
     headerMode: 'screen',
     navigationOptions: {
-      headerTitle: "Your Profile",
+      headerTitle: "Settings",
       tabBarVisible: false,
     },
   },
