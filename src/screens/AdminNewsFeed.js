@@ -95,7 +95,7 @@ export default class AdminNewsFeed extends Component {
         >
         <View style={styles.modalContainer}>
          <View style={styles.innerContainer}>
-              <Text>Add New Resource</Text>
+              <Text>Add New Activity</Text>
               <View>
                 <TextInput
                   placeholder={"Name"}
