@@ -6,6 +6,7 @@ import styles from '../styles/styles.js';
 import { fb } from '../../App'
 import Icon from 'react-native-vector-icons/Ionicons';
 
+
 export default class AdminResources extends Component {
   constructor(props) {
     super(props);
@@ -18,8 +19,8 @@ export default class AdminResources extends Component {
       modalVisible: false,
       newResourceName: "",
       newResourceType: "",
-      newResourceLongitude: "",
-      newResourceLatitude: "",
+      newResourceLongitude: 0,
+      newResourceLatitude: 0,
     }
   }
 
@@ -55,8 +56,8 @@ export default class AdminResources extends Component {
      name: this.state.newResourceName,
      type: this.state.newResourceType,
      coordinate: {
-       latitude: this.state.newResourceLatitude,
-       longitude: this.state.newResourceLongitude,
+       latitude: parseFloat(this.state.newResourceLatitude),
+       longitude: parseFloat(this.state.newResourceLongitude),
      }
    });
  }

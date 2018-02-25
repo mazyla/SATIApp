@@ -68,11 +68,13 @@ getLastCheckIn = () => {
     if ((today.getTime() - this.state.lastCheckIn) > 86400000) {
       // more than a day since last check in // reset
       this.setState({streak: 0})
-      this.resetUserStreak();
-    } else if ((today.getTime() - this.state.lastCheckIn) > 64800000) {
-      // more than 18 hours since the last check in, increment streak
-      this.increaseStreak();
-    } else {
+     this.resetUserStreak();
+    }
+    //  else if ((today.getTime() - this.state.lastCheckIn) > 64800000) {
+    //   // more than 18 hours since the last check in, increment streak
+    //   this.increaseStreak();
+    // }
+    else {
       var array = [];
       var userDetails = this.userRef.orderByChild("email").equalTo(user);
       userDetails.on("value", function(snapshot) {
@@ -81,6 +83,7 @@ getLastCheckIn = () => {
             item.key = childSnapshot.key;
             array.push(item);
         });
+        // this.increaseStreak();
         if (array[0].streak >= 3) {
           this.setState({streak: (array[0].streak.toString() + "🔥")});
         } else {
@@ -143,10 +146,11 @@ getAverageFeeling = () => {
         this.increaseStreak();
       }
       this.getLastCheckIn();
+      // store last check in as a users attribute
+      this.saveLastCheckIn();
     }
 
-    // store last check in as a users attribute
-    this.saveLastCheckIn();
+
 
   };
 

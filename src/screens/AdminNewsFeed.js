@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
 import { View, Text, Image, Switch, Button, TouchableOpacity,
-  StatusBar, Alert, FlatList, TextInput, Modal } from 'react-native';
+  StatusBar, Alert, FlatList, TextInput, Modal,
+  Platform} from 'react-native';
 import styles from '../styles/styles.js';
 import { fb } from '../../App'
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as firebase from "firebase";
+import ImagePicker from 'react-native-image-picker';
 
 export default class AdminNewsFeed extends Component {
   constructor(props) {
     super(props);
 
     this.activitiesRef = fb.database().ref().child('activities');
+    this.storage = firebase.storage();
 
     this.state = {
       currentActivities: this.getAllActivities(),
@@ -20,8 +23,11 @@ export default class AdminNewsFeed extends Component {
       newActivityDescription: "",
       newActivityLocation: "",
       newActivityTime: "",
+      activityImage: null,
     }
   }
+
+
 
   getAllActivities = () => {
     var tempActivities = [];
@@ -59,6 +65,8 @@ export default class AdminNewsFeed extends Component {
    });
   // this.closeModal();
  }
+
+
 
   render() {
     return (
@@ -128,7 +136,9 @@ export default class AdminNewsFeed extends Component {
           onChangeText={(time) => this.setState({newActivityTime: time})}
           autoCapitalize={'none'}
           autoCorrect={false}
-      />
+          />
+
+
           <Button
             onPress={() => this.storeActivityInDatabase()}
             title="Add New Activity">
