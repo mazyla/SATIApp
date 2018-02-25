@@ -5,6 +5,7 @@ import { SearchBar } from 'react-native-elements';
 import styles from '../styles/styles.js';
 import { fb } from '../../App'
 import Icon from 'react-native-vector-icons/Ionicons';
+import { Lang, getText } from '../constants/language.js';
 
 export default class AdminCheckIn extends Component {
   constructor(props) {
@@ -16,7 +17,31 @@ export default class AdminCheckIn extends Component {
     this.state = {
       currentUsers: this.getAllUsersNotAdmin(),
       displayedUsers: [],
-    };
+      language: "",
+      labelTopBarTitle: getText(this.language, Lang.CheckIns),
+      labelSearchPlaceholder: getText(this.language, Lang.TypeHere),
+    }
+
+  }
+
+  componentWillMount() {
+    this.getLanguage();
+  }
+
+  getLanguage = () => {
+    var user = fb.auth().currentUser;
+    this.usersRef.orderByChild("email").equalTo(user.email).on("value", function(snapshot) {
+      var userid = Object.keys(snapshot.val())[0];
+      snapshot.forEach((userInfo) => {
+        let item = userInfo.val();
+        this.setState({ language: item.language });
+        this.setState({ labelTopBarTitle: getText(item.language, Lang.CheckIns) });
+        this.setState({ labelSearchPlaceholder: getText(item.language, Lang.TypeHere) });
+      });
+    }, (error) => {
+      alert(error);
+      this.setState({ language : "Thai" });
+    }, this);
   }
 
   getAllUsersNotAdmin = () => {
@@ -66,7 +91,7 @@ export default class AdminCheckIn extends Component {
         <View style={styles.topBarContainer}>
           <StatusBar />
           <View style={styles.topBarViewContainer}>
-            <Text style={styles.topBarText}>Check Ins</Text>
+            <Text style={styles.topBarText}>{this.state.labelTopBarTitle}</Text>
             <TouchableOpacity
               style={styles.topBarProfileButton}
               onPress={this.goToProfile}>
@@ -81,7 +106,7 @@ export default class AdminCheckIn extends Component {
 
         <View style={styles.adminResourcesSearchContainer}>
           <SearchBar
-            placeholder='Type Here...'
+            placeholder={this.state.labelSearchPlaceholder}
             showLoading
             lightTheme
             onChangeText={this.searchAdminCheckIns}
