@@ -10,7 +10,7 @@ export default class NewsFeedSeeAll extends Component {
   constructor(props) {
     super(props);
 
-    this.newsFeedRef = fb.database().ref('newsFeed');
+    this.activitiesRef = fb.database().ref('activities');
 
     this.state = {
       activities: [],
@@ -19,15 +19,55 @@ export default class NewsFeedSeeAll extends Component {
   }
 
   componentWillMount() {
-    this.getActivities();
+    this.getEntries();
   }
 
-  getActivities = () => {
-    this.newsFeedRef.on("value", function(snapshot) {
-      var activityList = snapshot.val();
-      this.setState({ activities: activityList, displayedActivities: activityList });
+  getEntries = () => {
+    var activities = [];
+    var education = [];
+    this.activitiesRef.on("value", function(snapshot) {
+      snapshot.forEach(childSnapshot => {
+          let item = childSnapshot.val();
+          item.key = childSnapshot.key;
+          activities.push(item);
+
+      });
+      // if (activities.length < 5) {
+      //   this.educationalRef.on("value", function(snapshot) {
+      //     snapshot.forEach(childSnapshot => {
+      //         let item = childSnapshot.val();
+      //         item.key = childSnapshot.key;
+      //         education.push(item);
+      //     });
+      // }
+
+    // sort activities by their time
+      for (i = 0; i < activities.length; i++) {
+        for (j = 0; j < i; j++) {
+          if (activities[i].time < activities[j].time) {
+            var temp = activities[i];
+            activities[i] = activities[j];
+            activities[j] = temp;
+          }
+        }
+      }
+
+      if (activities.length > 5) {
+        activities.splice(5, activities.length - 5);
+    }
+      this.setState({activities: activities, displayedActivities: activities});
+
+
     }, this);
+
   }
+
+  // getActivities = () => {
+  //   this.newsFeedRef.on("value", function(snapshot) {
+  //     var activityList = snapshot.val();
+  //     this.setState({ activities: activityList, displayedActivities: activityList });
+  //   }, this);
+  // }
 
   searchActivities = (search) => {
     var filteredActivities = this.state.activities.filter((activity) => {
