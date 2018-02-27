@@ -188,11 +188,11 @@ getAverageFeeling = () => {
       var now = new Date();
       var lastCheckIn = parseInt(this.state.lastCheckIn);
       var temp = now.getTime() - lastCheckIn;
-      if ((now.getTime() - lastCheckIn) > 64800000) {
+      //if ((now.getTime() - lastCheckIn) > 64800000) {
         // needs to not have checked in for more than 18 hours
         // so that you can increase streak
         this.increaseStreak();
-      }
+      //}
       this.getLastCheckIn();
       // store last check in as a users attribute
       this.saveLastCheckIn();
@@ -212,6 +212,7 @@ getAverageFeeling = () => {
 
   increaseStreak = () => {
     var tempStreak = parseInt(this.state.streak) + 1;
+    //var tempStreak = 3;
     var user = fb.auth().currentUser.email;
     var userDetails = this.usersRef.orderByChild("email").equalTo(user);
     userDetails.once("child_added", function(snapshot) {

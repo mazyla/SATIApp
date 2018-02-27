@@ -241,7 +241,7 @@ export const AdminTabs = TabNavigator({
        <Icon
          name={focused ? 'ios-compass' : 'ios-compass-outline'}
          size={26}
-         style={{marginBottom: (Platform.OS === 'ios') ? 20 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
+         style={{marginBottom: (Platform.OS === 'ios') ? 0 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
        />
      ),
    },
@@ -254,7 +254,7 @@ export const AdminTabs = TabNavigator({
        <Icon
          name={focused ? 'ios-navigate' : 'ios-navigate-outline'}
          size={26}
-         style={{marginBottom: (Platform.OS === 'ios') ? 20 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
+         style={{marginBottom: (Platform.OS === 'ios') ? 0 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
        />
      ),
    },
@@ -267,7 +267,7 @@ export const AdminTabs = TabNavigator({
        <Icon
          name={focused ? 'ios-checkmark' : 'ios-checkmark-outline'}
          size={32}
-         style={{marginBottom: (Platform.OS === 'ios') ? 20 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
+         style={{marginBottom: (Platform.OS === 'ios') ? 0 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
        />
      ),
    },
@@ -280,7 +280,7 @@ export const AdminTabs = TabNavigator({
        <Icon
          name={focused ? 'ios-clipboard' : 'ios-clipboard-outline'}
          size={26}
-         style={{marginBottom: (Platform.OS === 'ios') ? 20 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
+         style={{marginBottom: (Platform.OS === 'ios') ? 0 : 0, color: focused ? '#55ab98' : '#a09e9f'}}
        />
      ),
    },

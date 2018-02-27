@@ -7,6 +7,7 @@ import { fb } from '../../App'
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as firebase from "firebase";
 import ImagePicker from 'react-native-image-picker';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 
 export default class AdminNewsFeed extends Component {
   constructor(props) {
@@ -22,14 +23,27 @@ export default class AdminNewsFeed extends Component {
       newActivityType: "",
       newActivityDescription: "",
       newActivityLocation: "",
-      newActivityTime: "",
+      newActivityTime: null,
       activityImage: null,
+      newActivityOrganizer: "",
+      isDateTimePickerVisible: false,
+
     }
+
   }
 
 
+  _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
+
+  _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
+
+  _handleDatePicked = (date) => {
+    this.setState({ newActivityTime: date});
+    this._hideDateTimePicker();
+  };
 
   getAllActivities = () => {
+    this.setState({currentActivites: []});
     var tempActivities = [];
     this.activitiesRef.on("value", function(snapshot) {
       snapshot.forEach(childSnapshot => {
@@ -38,7 +52,7 @@ export default class AdminNewsFeed extends Component {
           tempActivities.push(item);
         });
       this.setState({currentActivites: tempActivities});
-      tempActivites = [];
+      tempActivities = [];
       },this);
 
   }
@@ -59,11 +73,32 @@ export default class AdminNewsFeed extends Component {
    firebase.database().ref("activities").push({
      name: this.state.newActivityName,
      type: this.state.newActivityType,
+     time: this.state.newActivityTime.getTime(),
      description: this.state.newActivityDescription,
+     organizer: this.state.newActivityOrganizer,
      location: this.state.newActivityLocation,
-     when: this.state.newActivityTime,
    });
-  // this.closeModal();
+  this.closeModal();
+ }
+
+ removeActivity = (activity) => {
+   // alert Admin
+   Alert.alert(
+  'Delete an Activity',
+  'Are you sure you want to delete this activity?',
+  [
+    {text: 'Cancel', onPress: () => {console.log('Cancel Pressed')}, style: 'cancel'},
+    {text: 'OK', onPress: () => {
+      // delete the resource here
+      this.deleteResourceFromDatabase(activity);
+    }},
+  ],
+  { cancelable: false }
+);
+ }
+
+ deleteResourceFromDatabase = (activity) => {
+   var thisActivity = this.activitiesRef.child(activity.key).remove();
  }
 
 
@@ -101,7 +136,7 @@ export default class AdminNewsFeed extends Component {
             animationType={'slide'}
             onRequestClose={() => this.closeModal()}
         >
-        <View style={styles.modalContainer}>
+        <View style={styles.adminActivitiesAddModalContainer}>
          <View style={styles.innerContainer}>
               <Text>Add New Activity</Text>
               <View>
@@ -131,13 +166,21 @@ export default class AdminNewsFeed extends Component {
             autoCapitalize={'none'}
             autoCorrect={false}
         />
+        <TouchableOpacity onPress={this._showDateTimePicker}>
+          <Text>Show DatePicker</Text>
+        </TouchableOpacity>
+        <DateTimePicker
+          isVisible={this.state.isDateTimePickerVisible}
+          onConfirm={this._handleDatePicked}
+          onCancel={this._hideDateTimePicker}
+          mode={'datetime'}
+        />
         <TextInput
-          placeholder={"When?"}
-          onChangeText={(time) => this.setState({newActivityTime: time})}
+          placeholder={"Organizer"}
+          onChangeText={(organizer) => this.setState({newActivityOrganizer: organizer})}
           autoCapitalize={'none'}
           autoCorrect={false}
           />
-
 
           <Button
             onPress={() => this.storeActivityInDatabase()}
@@ -160,6 +203,15 @@ export default class AdminNewsFeed extends Component {
         renderItem={({item}) =>
         <View style={styles.adminResourcesListContainer}>
           <Text style={styles.adminResourcesListItemText}>{item.name} - {item.description}</Text>
+          <TouchableOpacity
+            style={styles.adminResourcesIconContainer}
+            onPress={() => {this.removeActivity(item)}}>
+            <Icon
+              name='ios-close-circle'
+              color='red'
+              size={styles.topBarProfileButtonSize}
+            />
+          </TouchableOpacity>
 
         </View>
       }

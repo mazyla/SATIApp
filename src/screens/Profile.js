@@ -60,7 +60,7 @@ export default class Profile extends Component {
           let lang = (item.language === "English" ? "Thai" : "English");
           this.updateUser(userid, "language", lang);
           let doneMessage = lang === "English" ? Lang.languageChange.english : Lang.languageChange.thai;
-          alert(doneMessage);
+          //alert(doneMessage);
         });
       }, (error) => {alert(error)}, this);
     }
