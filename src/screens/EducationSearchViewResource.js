@@ -22,25 +22,34 @@ export default class EducationSearchViewResource extends Component {
 
   renderResource = () => {
     var res = this.state.resource;
-    if (res.picture === null || res.picture === undefined) {
-      if (res.video === null || res.video === undefined) {
-        return null;
-      } else {
+    switch (res.contentType) {
+      case "picture":
+        return (
+          <Image
+            source={{uri: res.content}}
+            resizeMode="contain"
+            style={{width: '100%', height: '100%'}} />
+        );
+        break;
+      case "video":
         return (
           <WebView
             javaScriptEnabled={true}
             domStorageEnabled={true}
             style={{width: '100%', height: '100%'}}
-            source={{uri: res.video}} />
+            source={{uri: res.content}} />
         );
-      }
-    } else {
-      return (
-        <Image
-          source={{uri: res.picture}}
-          resizeMode="contain"
-          style={{width: '100%', height: '100%'}} />
-      );
+        break;
+      case "link":
+        return (
+          <Text>{res.content}</Text>
+        );
+        break;
+      // link by default
+      default:
+        return (
+          <Text>{res.content}</Text>
+        );
     }
   }
 

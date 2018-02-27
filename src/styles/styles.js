@@ -245,6 +245,25 @@ var myStyles = React.StyleSheet.create({
     color: 'white',
     opacity: 1,
   },
+  educationListItemContainer: {
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+  },
+  educationListItemContentPicture: {
+    width: lp(15),
+    height: lp(15),
+  },
+  educationListItemTextContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: wp(100) - lp(15),
+  },
+  educationListItemText: {
+    padding: lp(1),
+    fontSize: lp(3),
+    fontWeight: 'bold',
+  },
   /*
     Education -end
   */

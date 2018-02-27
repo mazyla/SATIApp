@@ -27,16 +27,21 @@ export default class EducationSearchView extends Component {
 
   getResources = () => {
     this.educationRef.on("value", function(snapshot) {
-      var resourceList = snapshot.val();
-      this.setState({ resources: resourceList });
-      this.setState({ displayedResources: resourceList.filter(item => item.type === this.props.navigation.state.params.type) });
+      var filteredList = [];
+      this.setState({ resources: snapshot.val() });
+      snapshot.forEach(item => {
+        if (item.val().type === this.props.navigation.state.params.type) {
+          filteredList.push(item.val());
+        }
+      });
+      this.setState({ displayedResources: filteredList });
     }, this);
   }
 
   searchResources = (search) => {
     var filteredResources = this.state.resources.filter((resource) => {
       // Case insensitive
-      return (resource.type === this.state.type) && (resource.name.toLowerCase().includes(search.toLowerCase()));
+      return (resource.contentType === this.state.type) && (resource.title.toLowerCase().includes(search.toLowerCase()));
       // TODO: add filters for other fields
     });
     this.setState({ displayedResources: filteredResources });
@@ -83,21 +88,54 @@ export default class EducationSearchView extends Component {
         <View style={{flex: 1}}>
           <FlatList
             data={this.state.displayedResources}
-            renderItem={({item}) =>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('EducationSearchViewResource', {resource: item})}>
-              <View style={{borderWidth: 1, flexDirection: 'row'}}>
-                <Image source={{uri:item.picture}} style={{width:100, height:100, borderRadius: 50}} />
-                <WebView
-                  javaScriptEnabled={true}
-                  domStorageEnabled={true}
-                  style={{height: 100, width: 100}}
-                  source={{uri: item.video}} />
-                <View>
-                  <Text style={{padding: 10, fontSize: 18, height: 44, fontWeight: 'bold'}}>{item.name}</Text>
-                </View>
-              </View>
-              </TouchableOpacity>
-            }
+            renderItem={({item}) => {
+              if (item.contentType === "link") {
+                return (
+                  <TouchableOpacity onPress={() => this.props.navigation.navigate('EducationSearchViewResource', {resource: item})}>
+                  <View style={styles.educationListItemContainer}>
+                    <View>
+                      <Text>{item.content}</Text>
+                    </View>
+                    <View style={styles.educationListItemTextContainer}>
+                      <Text style={styles.educationListItemText}>{item.title}</Text>
+                    </View>
+                  </View>
+                  </TouchableOpacity>
+                );
+              } else if (item.contentType === "picture") {
+                return (
+                  <TouchableOpacity onPress={() => this.props.navigation.navigate('EducationSearchViewResource', {resource: item})}>
+                  <View style={styles.educationListItemContainer}>
+                    <View>
+                      <Image
+                        source={{uri: item.content}}
+                        style={styles.educationListItemContentPicture} />
+                    </View>
+                    <View style={styles.educationListItemTextContainer}>
+                      <Text style={styles.educationListItemText}>{item.title}</Text>
+                    </View>
+                  </View>
+                  </TouchableOpacity>
+                );
+              } else if (item.contentType == "video") {
+                return (
+                  <TouchableOpacity onPress={() => this.props.navigation.navigate('EducationSearchViewResource', {resource: item})}>
+                  <View style={styles.educationListItemContainer}>
+                    <View pointerEvents='none'>
+                      <WebView
+                        javaScriptEnabled={true}
+                        domStorageEnabled={true}
+                        style={styles.educationListItemContentPicture}
+                        source={{uri: item.content}} />
+                    </View>
+                    <View style={styles.educationListItemTextContainer}>
+                      <Text style={styles.educationListItemText}>{item.title}</Text>
+                    </View>
+                  </View>
+                  </TouchableOpacity>
+                );
+              }
+            }}
           />
         </View>
 

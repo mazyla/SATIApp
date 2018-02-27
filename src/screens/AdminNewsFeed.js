@@ -6,7 +6,7 @@ import styles from '../styles/styles.js';
 import { fb } from '../../App'
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as firebase from "firebase";
-import ImagePicker from 'react-native-image-picker';
+//import ImagePicker from 'react-native-image-picker';
 
 export default class AdminNewsFeed extends Component {
   constructor(props) {
