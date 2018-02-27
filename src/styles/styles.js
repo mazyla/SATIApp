@@ -245,6 +245,36 @@ var myStyles = React.StyleSheet.create({
     color: 'white',
     opacity: 1,
   },
+  educationListItemContainer: {
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+  },
+  educationListItemContentPicture: {
+    width: lp(15),
+    height: lp(15),
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#dfdfdf',
+  },
+  educationListItemTextContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: wp(100) - lp(15),
+  },
+  educationListItemText: {
+    padding: lp(1),
+    fontSize: lp(3),
+    fontWeight: 'bold',
+  },
+  educationListItemContentLinkText: {
+    fontSize: lp(2.5),
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+    color: 'blue',
+    textAlign: 'center',
+    backgroundColor: '#dfdfdf',
+  },
   /*
     Education -end
   */
