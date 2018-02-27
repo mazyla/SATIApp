@@ -57,7 +57,12 @@ export default class NewsFeedView extends Component {
         }
       }
 
+      if (activities.length > 5) {
+        activities.splice(5, activities.length - 5);
+    }
       this.setState({entries: activities});
+
+
     }, this);
 
   }
