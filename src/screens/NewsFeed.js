@@ -9,34 +9,6 @@ import { fb } from '../../App';
 
 const SLIDER_FIRST_ITEM = 0;
 
-// [
-//   {
-//        title: 'STD Prevention',
-//        subtitle: 'Come to The Hub to learn about STDs and how to prevent them.',
-//        illustration: 'https://firebasestorage.googleapis.com/v0/b/satiapp-1515724417816.appspot.com/o/pexels-photo-612825.jpeg?alt=media&token=6798478b-acd7-48eb-87c8-ab862839b63e'
-//    },
-//    {
-//        title: 'Youth Enterprise',
-//        subtitle: 'Lorem ipsum dolor sit amet',
-//        illustration: 'https://i.imgur.com/UPrs1EWl.jpg'
-//    },
-//    {
-//        title: 'Dan likes Coding',
-//        subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-//        illustration: 'https://i.imgur.com/MABUbpDl.jpg'
-//    },
-//    {
-//        title: 'Mario is feeling 22',
-//        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-//        illustration: 'https://i.imgur.com/KZsmUi2l.jpg'
-//    },
-//    {
-//        title: 'Claire likes research',
-//        subtitle: 'Lorem ipsum dolor sit amet',
-//        illustration: 'https://i.imgur.com/2nCt3Sbl.jpg'
-//    },
-// ],
-
 export default class NewsFeedView extends Component {
   constructor(props) {
     super(props);
@@ -73,6 +45,17 @@ export default class NewsFeedView extends Component {
       //   //       education.push(item);
       //   //   });
     // }
+
+    // sort activities by their time
+      for (i = 0; i < activities.length; i++) {
+        for (j = 0; j < i; j++) {
+          if (activities[i].time < activities[j].time) {
+            var temp = activities[i];
+            activities[i] = activities[j];
+            activities[j] = temp;
+          }
+        }
+      }
 
       this.setState({entries: activities});
     }, this);
