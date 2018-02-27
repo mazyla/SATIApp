@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, Text, Button, TouchableOpacity, StatusBar, WebView, Image, Modal } from 'react-native';
+import { View, Text, Button, TouchableOpacity, StatusBar, WebView, Image, Modal, Linking } from 'react-native';
 import styles from '../styles/styles.js';
 import { fb } from '../../App';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -19,6 +19,16 @@ export default class EducationSearchViewResource extends Component {
     this.state = {
       resource: this.props.navigation.state.params.resource,
     };
+  }
+
+  openLink = (url) => {
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+        console.log('Can\'t handle url: ' + url);
+      } else {
+        return Linking.openURL(url);
+      }
+    }).catch(err => console.error('An error occurred', err));
   }
 
   renderResource = () => {
@@ -40,7 +50,7 @@ export default class EducationSearchViewResource extends Component {
         break;
       case "link":
         return (
-          <Text>{res.content}</Text>
+          <TouchableOpacity onPress={() => this.openLink(res.content)}><Text>{res.content}</Text></TouchableOpacity>
         );
         break;
       // link by default
