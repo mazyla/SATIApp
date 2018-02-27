@@ -93,8 +93,8 @@ export default class EducationSearchView extends Component {
                 return (
                   <TouchableOpacity onPress={() => this.props.navigation.navigate('EducationSearchViewResource', {resource: item})}>
                   <View style={styles.educationListItemContainer}>
-                    <View>
-                      <Text>{item.content}</Text>
+                    <View style={styles.educationListItemContentPicture}>
+                      <Text style={styles.educationListItemContentLinkText}>Link</Text>
                     </View>
                     <View style={styles.educationListItemTextContainer}>
                       <Text style={styles.educationListItemText}>{item.title}</Text>

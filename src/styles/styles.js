@@ -253,6 +253,9 @@ var myStyles = React.StyleSheet.create({
   educationListItemContentPicture: {
     width: lp(15),
     height: lp(15),
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#dfdfdf',
   },
   educationListItemTextContainer: {
     alignItems: 'center',
@@ -263,6 +266,14 @@ var myStyles = React.StyleSheet.create({
     padding: lp(1),
     fontSize: lp(3),
     fontWeight: 'bold',
+  },
+  educationListItemContentLinkText: {
+    fontSize: lp(2.5),
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+    color: 'blue',
+    textAlign: 'center',
+    backgroundColor: '#dfdfdf',
   },
   /*
     Education -end
