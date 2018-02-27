@@ -52,22 +52,11 @@ export default class NewsFeedSeeAll extends Component {
         }
       }
 
-      if (activities.length > 5) {
-        activities.splice(5, activities.length - 5);
-    }
       this.setState({activities: activities, displayedActivities: activities});
-
 
     }, this);
 
   }
-
-  // getActivities = () => {
-  //   this.newsFeedRef.on("value", function(snapshot) {
-  //     var activityList = snapshot.val();
-  //     this.setState({ activities: activityList, displayedActivities: activityList });
-  //   }, this);
-  // }
 
   searchActivities = (search) => {
     var filteredActivities = this.state.activities.filter((activity) => {
@@ -109,7 +98,7 @@ export default class NewsFeedSeeAll extends Component {
 
         <View style={{flex: 1}}>
           <FlatList
-            data={this.state.displayedResources}
+            data={this.state.displayedActivities}
             renderItem={({item}) =>
               <View style={{borderWidth: 1, flexDirection: 'row'}}>
                 <Image source={{uri:item.picture}} style={{width:100, height:100, borderRadius: 50}} />
