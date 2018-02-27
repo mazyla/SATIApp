@@ -38,13 +38,13 @@ export default class NewsFeedView extends Component {
 
       });
       // if (activities.length < 5) {
-      //   // this.educationalRef.on("value", function(snapshot) {
-      //   //   snapshot.forEach(childSnapshot => {
-      //   //       let item = childSnapshot.val();
-      //   //       item.key = childSnapshot.key;
-      //   //       education.push(item);
-      //   //   });
-    // }
+      //   this.educationalRef.on("value", function(snapshot) {
+      //     snapshot.forEach(childSnapshot => {
+      //         let item = childSnapshot.val();
+      //         item.key = childSnapshot.key;
+      //         education.push(item);
+      //     });
+      // }
 
     // sort activities by their time
       for (i = 0; i < activities.length; i++) {

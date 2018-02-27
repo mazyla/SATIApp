@@ -10,7 +10,7 @@ export default class NewsFeedSeeAll extends Component {
   constructor(props) {
     super(props);
 
-    this.newsFeedRef = fb.database().ref('newsFeed');
+    this.activitiesRef = fb.database().ref('activities');
 
     this.state = {
       activities: [],
@@ -19,14 +19,43 @@ export default class NewsFeedSeeAll extends Component {
   }
 
   componentWillMount() {
-    this.getActivities();
+    this.getEntries();
   }
 
-  getActivities = () => {
-    this.newsFeedRef.on("value", function(snapshot) {
-      var activityList = snapshot.val();
-      this.setState({ activities: activityList, displayedActivities: activityList });
+  getEntries = () => {
+    var activities = [];
+    var education = [];
+    this.activitiesRef.on("value", function(snapshot) {
+      snapshot.forEach(childSnapshot => {
+          let item = childSnapshot.val();
+          item.key = childSnapshot.key;
+          activities.push(item);
+
+      });
+      // if (activities.length < 5) {
+      //   this.educationalRef.on("value", function(snapshot) {
+      //     snapshot.forEach(childSnapshot => {
+      //         let item = childSnapshot.val();
+      //         item.key = childSnapshot.key;
+      //         education.push(item);
+      //     });
+      // }
+
+    // sort activities by their time
+      for (i = 0; i < activities.length; i++) {
+        for (j = 0; j < i; j++) {
+          if (activities[i].time < activities[j].time) {
+            var temp = activities[i];
+            activities[i] = activities[j];
+            activities[j] = temp;
+          }
+        }
+      }
+
+      this.setState({activities: activities, displayedActivities: activities});
+
     }, this);
+
   }
 
   searchActivities = (search) => {
@@ -69,7 +98,7 @@ export default class NewsFeedSeeAll extends Component {
 
         <View style={{flex: 1}}>
           <FlatList
-            data={this.state.displayedResources}
+            data={this.state.displayedActivities}
             renderItem={({item}) =>
               <View style={{borderWidth: 1, flexDirection: 'row'}}>
                 <Image source={{uri:item.picture}} style={{width:100, height:100, borderRadius: 50}} />
