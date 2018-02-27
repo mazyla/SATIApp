@@ -1,9 +1,10 @@
 import firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, Text, Button, TouchableOpacity, StatusBar, WebView, Image } from 'react-native';
+import { View, Text, Button, TouchableOpacity, StatusBar, WebView, Image, Modal } from 'react-native';
 import styles from '../styles/styles.js';
 import { fb } from '../../App';
 import Icon from 'react-native-vector-icons/Ionicons';
+import ImageViewer from 'react-native-image-zoom-viewer';
 
 export default class EducationSearchViewResource extends Component {
   constructor(props) {
@@ -25,10 +26,7 @@ export default class EducationSearchViewResource extends Component {
     switch (res.contentType) {
       case "picture":
         return (
-          <Image
-            source={{uri: res.content}}
-            resizeMode="contain"
-            style={{width: '100%', height: '100%'}} />
+          <ImageViewer imageUrls={[{url: res.content}]} />
         );
         break;
       case "video":
