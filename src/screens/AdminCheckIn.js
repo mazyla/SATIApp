@@ -79,7 +79,7 @@ export default class AdminCheckIn extends Component {
       return '#00ff99';
     } else {
       // if not checked in in last 3 days, highlight it red
-      return 'red';
+      return '#ec7063';
     }
 
   }

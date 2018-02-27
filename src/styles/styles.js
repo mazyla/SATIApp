@@ -539,6 +539,12 @@ var myStyles = React.StyleSheet.create({
     backgroundColor: 'white',
     opacity: 0.8,
   },
+  newsFeedCarouselSlideTimeLocationBackgroundContainer: {
+    width: '75%',
+    height: lp(10),
+    backgroundColor: 'white',
+    opacity: 0.6,
+  },
   // Carousel slide text container background container
   newsFeedCarouselSlideTextBackgroundContainerFlex: {
     flex: 1,
@@ -585,6 +591,11 @@ var myStyles = React.StyleSheet.create({
   /*
     News Feed -end
   */
+  adminActivitiesAddModalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'white',
+  },
   /*
     Admin Resources -start
   */
@@ -621,6 +632,9 @@ var myStyles = React.StyleSheet.create({
     borderTopWidth: 1,
     borderColor: 'gray',
     alignItems: 'center',
+  },
+  adminResourcesListItemText: {
+    fontSize: 18,
   },
   adminResourcesIconContainer: {
     position: 'absolute',
